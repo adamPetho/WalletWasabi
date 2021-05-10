@@ -1,6 +1,9 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
 
 namespace WalletWasabi.Gui.Rpc
 {
@@ -85,6 +88,11 @@ namespace WalletWasabi.Gui.Rpc
 			{
 				isBatch = rawJson.TrimStart().StartsWith("[");
 				rawJson = isBatch ? rawJson : $"[{rawJson}]";
+				if (!rawJson.Contains("\""))
+				{
+					rawJson = RebuildJson(rawJson);
+				}
+
 				requests = JsonConvert.DeserializeObject<JsonRpcRequest[]>(rawJson);
 				return true;
 			}
@@ -94,6 +102,86 @@ namespace WalletWasabi.Gui.Rpc
 				isBatch = false;
 				return false;
 			}
+		}
+
+		private static string RebuildJson(string rawJson)
+		{
+			StringBuilder strBuilder = new();
+			List<string[]> wordsMatrix = new();
+			List<string> fixedWordsList = new();
+			List<string> fixedParametersCombined = new();
+
+			var split = rawJson.Split('{', '}');
+
+			//TODO splits "params":["Alice", "Bob"] like "params":["Alice" | "Bob]. Should not split inside there.
+			var parameters = split[1].ToString().Split(',');
+
+			strBuilder.Append("[{");
+
+			foreach (var param in parameters)
+			{
+				wordsMatrix.Add(param.Split(":"));
+			}
+
+			for (int i = 0; i < wordsMatrix.Count; i++)
+			{
+				for (int j = 0; j < wordsMatrix[i].Length; j++)
+				{
+					string currentWord = "";
+
+					//If we have parameters like ["Alice","Test"]
+					//example: {"jsonrpc":"2.0","id":"1","method":"getnewaddress","params":["Daniel, Alice"]}
+					if (wordsMatrix[i][j].ToString().Contains("["))
+					{
+						var everyParameterInOneLine = wordsMatrix[i][j].ToString().Split('[', ']');
+						var parametersSeperated = everyParameterInOneLine[1].Split(',');
+						string result = "[";
+
+						//If we have only one parameter like "params":["WalletName"]
+						//then we just add " " to it
+						if (parametersSeperated.Length == 1)
+						{
+							result += "\"" + parametersSeperated[0] + "\"";
+						}
+						//If we have more parameters like "params":["Bob","Alice"]
+						//then we iterate through them and add " " to them and ',' except to the last one
+						else
+						{
+							for (int k = 0; k < parametersSeperated.Length; k++)
+							{
+								if (k == parametersSeperated.Length - 1)
+								{
+									result += "\"" + parametersSeperated[k] + "\"";
+								}
+								else
+								{
+									result += "\"" + parametersSeperated[k] + "\"" + ",";
+								}
+							}
+						}
+
+						result += "]";
+						currentWord = result;
+					}
+					else
+					{
+						currentWord = "\"" + wordsMatrix[i][j].ToString() + "\"";
+					}
+
+					fixedWordsList.Add(currentWord);
+				}
+			}
+
+			for (int i = 0; i < fixedWordsList.Count - 1; i += 2)
+			{
+				fixedParametersCombined.Add(fixedWordsList[i] + ":" + fixedWordsList[i + 1]);
+			}
+
+			strBuilder.Append(string.Join(',', fixedParametersCombined));
+
+			strBuilder.Append("}]");
+
+			return strBuilder.ToString();
 		}
 	}
 }
