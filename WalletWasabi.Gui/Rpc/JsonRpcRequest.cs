@@ -104,6 +104,15 @@ namespace WalletWasabi.Gui.Rpc
 			}
 		}
 
+		/// <summary>
+		/// Rebuilds the wrong JSON, so the parser can work with it.
+		/// curl -s --data-binary '{"jsonrpc":"2.0","id":"1","method":"getstatus"}' http://127.0.0.1:37128/ is read as '{jsonrpc:2.0,id:1,method:getstatus}'
+		/// which is bad, because we need the " characters.
+		/// This function adds " chars to the wrongly read JSON string.
+		/// SIDE NOTE: It's not finished yet, doesn't handle multiple params like: "params":["Alice","Bob"].
+		/// </summary>
+		/// <param name="rawJson">The wrong JSON string</param>
+		/// <returns>Fixed JSON string</returns>
 		private static string RebuildJson(string rawJson)
 		{
 			StringBuilder strBuilder = new();
@@ -113,10 +122,8 @@ namespace WalletWasabi.Gui.Rpc
 
 			var split = rawJson.Split('{', '}');
 
-			//TODO splits "params":["Alice", "Bob"] like "params":["Alice" | "Bob]. Should not split inside there.
+			//TODO splits "params":["Alice", "Bob"] like "params":["Alice" | "Bob"]. Should not split inside there.
 			var parameters = split[1].ToString().Split(',');
-
-			strBuilder.Append("[{");
 
 			foreach (var param in parameters)
 			{
@@ -176,6 +183,8 @@ namespace WalletWasabi.Gui.Rpc
 			{
 				fixedParametersCombined.Add(fixedWordsList[i] + ":" + fixedWordsList[i + 1]);
 			}
+
+			strBuilder.Append("[{");
 
 			strBuilder.Append(string.Join(',', fixedParametersCombined));
 
