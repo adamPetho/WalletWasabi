@@ -9,6 +9,7 @@ using Avalonia.Skia;
 using WalletWasabi.Helpers;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using Emgu.CV.Util;
 
 namespace WalletWasabi.Tests.UnitTests.QrCode
 {
@@ -30,7 +31,7 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			using IOutputArray points = new Mat();
 			using IOutputArray straightQrCode = new Mat();
 
-			bool isQRCodeDetected = _qRCodeDetector.Detect(image, points);
+			_qRCodeDetector.Detect(image, points);
 			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
 
 			Assert.NotNull(dataCollection);
@@ -42,7 +43,7 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			using IOutputArray points2 = new Mat();
 			using IOutputArray straightQrCode2 = new Mat();
 
-			isQRCodeDetected = _qRCodeDetector.Detect(image2, points2);
+			_qRCodeDetector.Detect(image2, points2);
 			var dataCollection2 = _qRCodeDetector.Decode(image2, points2, straightQrCode2);
 
 			Assert.NotNull(dataCollection2);
@@ -51,35 +52,43 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			Assert.NotEqual(dataCollection, dataCollection2);
 		}
 
-		/*
 		[Fact]
-		public void IncorrectImageReturnsEmpty()
+		public void IncorrectImageThrowsException()
 		{
 			using var app = Start();
-			QRDecoder decoder = new();
 
 			string path = Path.Combine(_commonPartialPath, "NotBitcoinAddress.jpg");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp);
+			using var image = LoadBitmap(path);
 
-			Assert.Empty(dataCollection);
+			using IOutputArray points = new Mat();
+			using IOutputArray straightQrCode = new Mat();
+
+			bool result = _qRCodeDetector.Detect(image, points);
+			Assert.False(result);
+
+			Assert.Throws<CvException>(() => _qRCodeDetector.Decode(image, points, straightQrCode));
 		}
 
 		[Fact]
 		public void DecodePictureTakenByPhone()
 		{
 			using var app = Start();
-			QRDecoder decoder = new();
-			string expectedOutput = "tb1qutgpgraaze3hqnvt2xyw5acsmd3urprk3ff27d";
+			string expectedAddress = "tb1qutgpgraaze3hqnvt2xyw5acsmd3urprk3ff27d";
 
 			string path = Path.Combine(_commonPartialPath, "QrByPhone.jpg");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp);
+			using var image = LoadBitmap(path);
 
-			Assert.Single(dataCollection);
-			Assert.Equal(expectedOutput, dataCollection.First());
+			using IOutputArray points = new Mat();
+			using IOutputArray straightQrCode = new Mat();
+
+			_qRCodeDetector.Detect(image, points);
+			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
+
+			Assert.NotNull(dataCollection);
+			Assert.Equal(expectedAddress, dataCollection);
 		}
 
+		/*
 		[Fact]
 		public void DecodeDifficultPictureTakenByPhone()
 		{
