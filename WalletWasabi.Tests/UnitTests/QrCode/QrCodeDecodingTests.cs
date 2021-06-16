@@ -126,26 +126,6 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			Assert.Equal(expectedOutput, dataCollection);
 		}
 
-		[Fact]
-		public void DecodePictureWithMouseOverTheQRCodeReturnsNull()
-		{
-			using var app = Start();
-			QRDecoder decoder = new();
-			string expectedOutput = "tb1qutgpgraaze3hqnvt2xyw5acsmd3urprk3ff27d";
-
-			string path = Path.Combine(_commonPartialPath, "mouseOverQR.jpg");
-			using var image = LoadBitmap(path);
-
-			using IOutputArray points = new Mat();
-			using IOutputArray straightQrCode = new Mat();
-
-			_qRCodeDetector.Detect(image, points);
-			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
-
-			Assert.NotNull(dataCollection);
-			Assert.Equal(expectedOutput, dataCollection);
-		}
-
 		/*
 		[Fact]
 		public void DecodePictureWithImageInsideTheQR()
