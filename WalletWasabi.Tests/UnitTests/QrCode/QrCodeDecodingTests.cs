@@ -88,35 +88,42 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			Assert.Equal(expectedAddress, dataCollection);
 		}
 
-		/*
 		[Fact]
 		public void DecodeDifficultPictureTakenByPhone()
 		{
 			using var app = Start();
-			QRDecoder decoder = new();
 			string expectedOutput = "Top right corner";
 
 			string path = Path.Combine(_commonPartialPath, "QRBrick.jpg");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp);
+			using var image = LoadBitmap(path);
 
-			Assert.Single(dataCollection);
-			Assert.Equal(expectedOutput, dataCollection.First());
+			using IOutputArray points = new Mat();
+			using IOutputArray straightQrCode = new Mat();
+
+			_qRCodeDetector.Detect(image, points);
+			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
+
+			Assert.NotNull(dataCollection);
+			Assert.Equal(expectedOutput, dataCollection);
 		}
 
 		[Fact]
 		public void DecodePictureWithZebraBackground()
 		{
 			using var app = Start();
-			QRDecoder decoder = new();
 			string expectedOutput = "Let's see a Zebra.";
 
 			string path = Path.Combine(_commonPartialPath, "QRwithZebraBackground.png");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp);
+			using var image = LoadBitmap(path);
 
-			Assert.Single(dataCollection);
-			Assert.Equal(expectedOutput, dataCollection.First());
+			using IOutputArray points = new Mat();
+			using IOutputArray straightQrCode = new Mat();
+
+			_qRCodeDetector.Detect(image, points);
+			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
+
+			Assert.NotNull(dataCollection);
+			Assert.Equal(expectedOutput, dataCollection);
 		}
 
 		[Fact]
@@ -127,13 +134,19 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			string expectedOutput = "tb1qutgpgraaze3hqnvt2xyw5acsmd3urprk3ff27d";
 
 			string path = Path.Combine(_commonPartialPath, "mouseOverQR.jpg");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp);
+			using var image = LoadBitmap(path);
 
-			Assert.Single(dataCollection);
-			Assert.Equal(expectedOutput, dataCollection.First());
+			using IOutputArray points = new Mat();
+			using IOutputArray straightQrCode = new Mat();
+
+			_qRCodeDetector.Detect(image, points);
+			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
+
+			Assert.NotNull(dataCollection);
+			Assert.Equal(expectedOutput, dataCollection);
 		}
 
+		/*
 		[Fact]
 		public void DecodePictureWithImageInsideTheQR()
 		{
