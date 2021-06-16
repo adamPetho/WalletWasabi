@@ -7,38 +7,51 @@ using Avalonia;
 using Avalonia.Media.Imaging;
 using Avalonia.Skia;
 using WalletWasabi.Helpers;
+using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace WalletWasabi.Tests.UnitTests.QrCode
 {
 	public class QrCodeDecodingTests
 	{
 		private readonly string _commonPartialPath = Path.Combine(EnvironmentHelpers.GetFullBaseDirectory(), "UnitTests", "QrCode", "QrTestResources");
+		private readonly QRCodeDetector _qRCodeDetector = new();
 
 		[Fact]
 		public void GetCorrectAddressFromImage()
 		{
 			using var app = Start();
-			QRDecoder decoder = new();
 			string expectedAddress = "tb1ql27ya3gufs5h0ptgjhjd0tm52fq6q0xrav7xza";
 			string otherExpectedAddress = "tb1qfas0k9rn8daqggu7wzp2yne9qdd5fr5wf2u478";
 
 			string path = Path.Combine(_commonPartialPath, "AddressTest1.png");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp);
+			using var image = LoadBitmap(path);
 
-			Assert.NotEmpty(dataCollection);
-			Assert.Equal(expectedAddress, dataCollection.First());
+			using IOutputArray points = new Mat();
+			using IOutputArray straightQrCode = new Mat();
+
+			bool isQRCodeDetected = _qRCodeDetector.Detect(image, points);
+			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
+
+			Assert.NotNull(dataCollection);
+			Assert.Equal(expectedAddress, dataCollection);
 
 			string otherPath = Path.Combine(_commonPartialPath, "AddressTest2.png");
-			using var otherQRCodeInputImage = LoadBitmap(otherPath);
-			var dataCollection2 = decoder.SearchQrCodes(otherQRCodeInputImage);
+			using var image2 = LoadBitmap(otherPath);
 
-			Assert.NotEmpty(dataCollection2);
-			Assert.Equal(otherExpectedAddress, dataCollection2.First());
+			using IOutputArray points2 = new Mat();
+			using IOutputArray straightQrCode2 = new Mat();
+
+			isQRCodeDetected = _qRCodeDetector.Detect(image2, points2);
+			var dataCollection2 = _qRCodeDetector.Decode(image2, points2, straightQrCode2);
+
+			Assert.NotNull(dataCollection2);
+			Assert.Equal(otherExpectedAddress, dataCollection2);
 
 			Assert.NotEqual(dataCollection, dataCollection2);
 		}
 
+		/*
 		[Fact]
 		public void IncorrectImageReturnsEmpty()
 		{
@@ -159,11 +172,14 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			Assert.Equal(firstExpectedOutput, dataCollection[0]);
 			Assert.Equal(secondExpectedOutput, dataCollection[1]);
 		}
+		*/
 
-		private static WriteableBitmap LoadBitmap(string path)
+		private static Image<Rgb, byte> LoadBitmap(string path)
 		{
-			using var fs = File.OpenRead(path);
-			return WriteableBitmap.Decode(fs);
+			//using var fs = File.OpenRead(path);
+			//return WriteableBitmap.Decode(fs);
+			Image<Rgb, byte> img = new(path);
+			return img;
 		}
 
 		private static IDisposable Start()
