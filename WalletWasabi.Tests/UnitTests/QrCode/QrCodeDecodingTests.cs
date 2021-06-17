@@ -121,25 +121,6 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			Assert.Equal(expectedOutput, dataCollection);
 		}
 
-		[Fact]
-		public void DecodePictureWithImageInsideTheQR()
-		{
-			using var app = Start();
-			QRDecoder decoder = new();
-			string expectedOutput = "bitcoin:bc1q3r0ayktdsh8yd3krk5zkvpc5weeqnmw8ztzsgx?amount=1000&label=GIMME%201000BTC";
-
-			string path = Path.Combine(_commonPartialPath, "Payment_details_included.jpg");
-			using var image = LoadBitmap(path);
-
-			using IOutputArray points = new Mat();
-			using IOutputArray straightQrCode = new Mat();
-
-			_qRCodeDetector.Detect(image, points);
-			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
-
-			Assert.Equal(expectedOutput, dataCollection);
-		}
-
 		/*
 		[Fact]
 		public void DecodePictureWithLegacyAddress()
