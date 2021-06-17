@@ -121,41 +121,23 @@ namespace WalletWasabi.Tests.UnitTests.QrCode
 			Assert.Equal(expectedOutput, dataCollection);
 		}
 
-		/*
 		[Fact]
 		public void DecodePictureWithLegacyAddress()
 		{
 			using var app = Start();
-			QRDecoder decoder = new();
 			string expectedOutput = "bitcoin:1EYTGtG4LnFfiMvjJdsU7GMGCQvsRSjYhx";
 
 			string path = Path.Combine(_commonPartialPath, "Random_address_starting_with_1.png");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp);
+			using var image = LoadBitmap(path);
 
-			Assert.Equal(expectedOutput, dataCollection.First());
+			using IOutputArray points = new Mat();
+			using IOutputArray straightQrCode = new Mat();
+
+			_qRCodeDetector.Detect(image, points);
+			var dataCollection = _qRCodeDetector.Decode(image, points, straightQrCode);
+
+			Assert.Equal(expectedOutput, dataCollection);
 		}
-
-		[Fact]
-		public void DecodeQrCodeInsideQrCode()
-		{
-			using var app = Start();
-			QRDecoder decoder = new();
-			string firstExpectedOutput = "Big QR Code";
-			string secondExpectedOutput = "Small QR Code";
-			int expectedLength = 2;
-
-			// If there are two QR Codes on the picture, it will find both, even if they are
-			// stacked on eachother, until the QR Code's quality is okay and is still readable
-			string path = Path.Combine(_commonPartialPath, "DoubleQRCode.png");
-			using var bmp = LoadBitmap(path);
-			var dataCollection = decoder.SearchQrCodes(bmp).ToArray();
-
-			Assert.Equal(expectedLength, dataCollection.Length);
-			Assert.Equal(firstExpectedOutput, dataCollection[0]);
-			Assert.Equal(secondExpectedOutput, dataCollection[1]);
-		}
-		*/
 
 		private static Image<Rgb, byte> LoadBitmap(string path)
 		{
