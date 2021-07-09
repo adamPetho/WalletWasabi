@@ -12,8 +12,8 @@ namespace WalletWasabi.Fluent.Helpers
 	public static class StartupHelper
 	{
 		private const string KeyPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-		private static string ArgumentToAddWasabiToMacOsStartupSetting = $"-c \"osascript -e \' tell application \\\"System Events\\\" to make new login item at end of login items with properties {{name:\\\"WasabiWallet\\\", path:\\\"/Applications/WasabiWallet.app\\\",hidden:false}} \' \"";
-		private static string ArgumentToDeleteWasabiFromMacOsStartupSetting = $"-c \"osascript -e \' tell application \\\"System Events\\\" to delete login item \\\"WasabiWallet\\\" \' \"";
+		private static string ArgumentToAddWasabiToMacOsStartupSetting = $"-c \"osascript -e \' tell application \\\"System Events\\\" to make new login item at end of login items with properties {{name:\\\"{nameof(WalletWasabi)}\\\", path:\\\"/Applications/WasabiWallet.app\\\",hidden:false}} \' \"";
+		private static string ArgumentToDeleteWasabiFromMacOsStartupSetting = $"-c \"osascript -e \' tell application \\\"System Events\\\" to delete login item \\\"{nameof(WalletWasabi)}\\\" \' \"";
 
 		public static bool TryModifyStartupSetting(bool runOnSystemStartup)
 		{
@@ -36,7 +36,7 @@ namespace WalletWasabi.Fluent.Helpers
 			}
 			else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
 			{
-				return TryMacOsModification(runOnSystemStartup);
+				ModifyMacOsLoginItems(runOnSystemStartup);
 			}
 
 			return false;
@@ -67,44 +67,26 @@ namespace WalletWasabi.Fluent.Helpers
 			return false;
 		}
 
-		private static bool TryMacOsModification(bool runOnSystemStartup)
+		private static void ModifyMacOsLoginItems(bool runOnSystemStartup)
 		{
+			ProcessStartInfo processInfo = new()
+			{
+				UseShellExecute = true,
+				WindowStyle = ProcessWindowStyle.Normal,
+				FileName = "/bin/bash",
+				CreateNoWindow = false
+			};
+
+			processInfo.Arguments = runOnSystemStartup ? ArgumentToAddWasabiToMacOsStartupSetting : ArgumentToDeleteWasabiFromMacOsStartupSetting;
+
 			try
 			{
-				if (runOnSystemStartup)
-				{
-					ProcessStartInfo processInfo = new()
-					{
-						UseShellExecute = true,
-						WindowStyle = ProcessWindowStyle.Normal,
-						FileName = "/bin/bash",
-						Arguments = ArgumentToAddWasabiToMacOsStartupSetting,
-						CreateNoWindow = false
-					};
-
-					Process.Start(processInfo);
-				}
-				else
-				{
-					ProcessStartInfo processInfo = new()
-					{
-						UseShellExecute = true,
-						WindowStyle = ProcessWindowStyle.Normal,
-						FileName = "/bin/bash",
-						Arguments = ArgumentToDeleteWasabiFromMacOsStartupSetting,
-						CreateNoWindow = false
-					};
-
-					Process.Start(processInfo);
-				}
-
-				return true;
+				Process.Start(processInfo);
 			}
 			catch (Exception ex)
 			{
 				Logger.LogError(ex);
 			}
-			return false;
 		}
 	}
 }
