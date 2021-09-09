@@ -80,7 +80,7 @@ namespace WalletWasabi.Fluent
 		{
 			if (CanShutdownProvider is { } provider)
 			{
-				e.Cancel = !provider.CanShutdown();
+				e.Cancel = provider.CanShutdown();
 			}
 		}
 	}
