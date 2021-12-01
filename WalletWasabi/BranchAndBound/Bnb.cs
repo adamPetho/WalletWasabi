@@ -12,13 +12,12 @@ namespace WalletWasabi.BranchAndBound
 		private readonly ulong _costOfHeader = 0;
 		private readonly ulong _costPerOutput = 0;
 
-		public Bnb(int bnbTryLimit, List<ulong> utxos)
+		public Bnb(List<ulong> utxos)
 		{
-			BnbTryLimit = bnbTryLimit;
 			AvaliableUTXOs = utxos;
 		}
 
-		public int BnbTryLimit { get; set; }
+		private int BnbTryLimit { get; set; } = 10000;
 		public List<ulong> AvaliableUTXOs { get; set; }
 
 		public bool TryGetExactMatch(ulong target, out List<ulong> selectedCoins)
@@ -41,9 +40,10 @@ namespace WalletWasabi.BranchAndBound
 			ulong targetForMatch = target + _costOfHeader + _costPerOutput;
 			ulong matchRange = _costOfHeader + _costPerOutput;
 			var utxoSorted = AvaliableUTXOs.OrderByDescending(x => x).ToArray();
-			BnbTryLimit--;
 
 			effValue = CalcEffectiveValue(currentSelection);
+
+			BnbTryLimit--;
 
 			if (effValue > targetForMatch + matchRange)
 			{
@@ -117,7 +117,7 @@ namespace WalletWasabi.BranchAndBound
 
 			foreach (var item in list)
 			{
-				sum += item;
+				sum += item;        // TODO effectiveValue = utxo.value − feePerByte × bytesPerInput
 			}
 
 			return sum;

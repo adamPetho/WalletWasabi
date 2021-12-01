@@ -15,13 +15,13 @@ namespace WalletWasabi.Tests.UnitTests
 		{
 			var utxos = new List<ulong> { 10, 5, 8, 11, 2 };
 			ulong target = 19;
-			var tryLimit = 100000;
 
-			var bnb = new Bnb(tryLimit, utxos);
+			var bnb = new Bnb(utxos);
 
 			var wasSuccessful = bnb.TryGetExactMatch(target, out List<ulong> solution);
 
 			Assert.True(wasSuccessful);
+			Assert.Equal(new List<ulong> { 11, 8 }, solution);
 		}
 
 		[Fact]
@@ -29,12 +29,9 @@ namespace WalletWasabi.Tests.UnitTests
 		{
 			var utxos = new List<ulong> { 1, 1, 2, 5, 10, 2, 5, 3, 11, 7, 4, 3, 8, 9 };
 			ulong target = 33;
-			var tryLimit = 100000;
-			var bnb = new Bnb(tryLimit, utxos);
 
-			List<ulong> solution = new();
-
-			var wasSuccessful = bnb.TryGetExactMatch(target, out solution);
+			var bnb = new Bnb(utxos);
+			var wasSuccessful = bnb.TryGetExactMatch(target, out List<ulong> solution);
 
 			Assert.True(wasSuccessful);
 		}
