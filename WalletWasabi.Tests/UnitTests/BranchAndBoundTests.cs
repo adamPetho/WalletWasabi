@@ -11,15 +11,13 @@ namespace WalletWasabi.Tests.UnitTests
 {
 	public class BranchAndBoundTests
 	{
-		private static Random Random = new Random();
-		private static List<Money> AvailableCoins = GenList();
-
-		private static List<Money> GenList()
+		private List<Money> GenerateRandomCoinList()
 		{
+			Random random = new();
 			List<Money> availableCoins = new();
 			for (int i = 0; i < 100; i++)
 			{
-				availableCoins.Add(Random.Next((int)Money.Satoshis(250), (int)Money.Satoshis(100001)));
+				availableCoins.Add(random.Next((int)Money.Satoshis(250), (int)Money.Satoshis(100001)));
 			}
 			return availableCoins;
 		}
@@ -27,10 +25,9 @@ namespace WalletWasabi.Tests.UnitTests
 		[Fact]
 		public void BnBSimpleTest()
 		{
-			var utxos = new List<Money> { Money.Satoshis(12), Money.Satoshis(10), Money.Satoshis(10), Money.Satoshis(5), Money.Satoshis(4) };
-			ulong target = 19;
-
 			var bnb = new Bnb();
+			var utxos = new List<Money> { Money.Satoshis(12), Money.Satoshis(10), Money.Satoshis(10), Money.Satoshis(5), Money.Satoshis(4) };
+			Money target = Money.Satoshis(19);
 
 			var wasSuccessful = bnb.TryGetExactMatch(target, utxos, out List<Money> selectedCoins);
 
@@ -42,9 +39,10 @@ namespace WalletWasabi.Tests.UnitTests
 		public void BnBRandomTest()
 		{
 			var bnb = new Bnb();
+			var utxos = GenerateRandomCoinList();
 			Money target = Money.Satoshis(100000);
 
-			var successful = bnb.TryGetExactMatch(target, AvailableCoins, out List<Money> selectedCoins);
+			var successful = bnb.TryGetExactMatch(target, utxos, out List<Money> selectedCoins);
 
 			Assert.True(successful);
 		}
