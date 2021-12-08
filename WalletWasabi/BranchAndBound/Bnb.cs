@@ -1,3 +1,4 @@
+using NBitcoin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,29 @@ namespace WalletWasabi.BranchAndBound
 {
 	public class Bnb
 	{
-		private readonly ulong _costOfHeader = 0;
-		private readonly ulong _costPerOutput = 0;
+		private Money _costOfHeader = Money.Satoshis(0);
+		private Money _costPerOutput = Money.Satoshis(0);
+		private int _bnbTryLimit = 5;
+		private Random _random = new();
 
-		public Bnb(List<ulong> utxos)
+		private Money[] UtxoSorted { get; set; }
+
+		public bool TryGetExactMatch(Money target, List<Money> availableCoins, out List<Money> selectedCoins)
 		{
-			AvaliableUTXOs = utxos;
-		}
-
-		private int BnbTryLimit { get; set; } = 10000;
-		public List<ulong> AvaliableUTXOs { get; set; }
-
-		public bool TryGetExactMatch(ulong target, out List<ulong> selectedCoins)
-		{
-			selectedCoins = new List<ulong>();
+			selectedCoins = new List<Money>();
+			UtxoSorted = availableCoins.OrderByDescending(x => x.Satoshi).ToArray();
 			try
 			{
-				selectedCoins = SolveX(depth: 0, currentSelection: new List<ulong>(), effValue: 0, target: target);
-				return selectedCoins.Any();
+				for (int i = 0; i < _bnbTryLimit; i++)
+				{
+					selectedCoins = RecursiveSearch(depth: 0, currentSelection: new List<Money>(), effValue: 0, target: target);
+					if (CalcEffectiveValue(selectedCoins) == target + _costOfHeader + _costPerOutput)
+					{
+						return true;
+					}
+				}
+
+				return false;
 			}
 			catch (Exception ex)
 			{
@@ -35,89 +41,77 @@ namespace WalletWasabi.BranchAndBound
 			}
 		}
 
-		private List<ulong>? SolveX(int depth, List<ulong> currentSelection, ulong effValue, ulong target)
+		private List<Money>? RecursiveSearch(int depth, List<Money> currentSelection, Money effValue, Money target)
 		{
-			ulong targetForMatch = target + _costOfHeader + _costPerOutput;
-			ulong matchRange = _costOfHeader + _costPerOutput;
-			var utxoSorted = AvaliableUTXOs.OrderByDescending(x => x).ToArray();
-
-			effValue = CalcEffectiveValue(currentSelection);
-
-			BnbTryLimit--;
+			var targetForMatch = target + _costOfHeader + _costPerOutput;
+			var matchRange = _costOfHeader + _costPerOutput;
 
 			if (effValue > targetForMatch + matchRange)
 			{
-				return null;        // Excessive funds: cut branch
+				return null;        // Excessive funds, cut the branch!
 			}
 			else if (effValue >= targetForMatch)
 			{
-				return currentSelection;  // Match!
+				return currentSelection;        // Match found!
 			}
-			else if (BnbTryLimit <= 0)
-			{
-				return null;        // Search limit reached
-			}
-			else if (depth >= utxoSorted.Length)
+			else if (depth >= UtxoSorted.Length)
 			{
 				return null;        // Leaf reached, no match
 			}
 			else
 			{
-				var random = new Random();
-				var randomBool = random.Next(2) == 1;
-
-				if (randomBool)
+				if (_random.Next(0, 2) == 1)
 				{
-					var clonedCurrentSelection = currentSelection.ToList();
-					clonedCurrentSelection.Add(utxoSorted[depth]);
+					var clonedSelection = currentSelection.ToList();
+					clonedSelection.Add(UtxoSorted[depth]);
 
-					var withThis = SolveX(depth + 1, clonedCurrentSelection, effValue, target);
-
-					if (withThis is not null)
+					var withThis = RecursiveSearch(depth + 1, clonedSelection, effValue + UtxoSorted[depth], target);
+					if (withThis != null)
 					{
-						return withThis;        // Match found
+						return withThis;
 					}
 					else
 					{
-						var withoutThis = SolveX(depth + 1, currentSelection, effValue, target);
-						if (withoutThis is not null)
+						var withoutThis = RecursiveSearch(depth + 1, currentSelection, effValue, target);
+						if (withoutThis != null)
 						{
-							return withoutThis;         // Match found
+							return withoutThis;
 						}
-					}
 
-					return null;
+						return null;
+					}
 				}
 				else
 				{
-					var withoutThis = SolveX(depth + 1, currentSelection, effValue, target);
-					if (withoutThis is not null)
+					var withoutThis = RecursiveSearch(depth + 1, currentSelection, effValue, target);
+					if (withoutThis != null)
 					{
-						return withoutThis;     // Match found
+						return withoutThis;
 					}
 					else
 					{
-						currentSelection.Add(utxoSorted[depth]);
-						var withThis = SolveX(depth + 1, currentSelection, effValue, target);
+						var clonedSelection = currentSelection.ToList();
+						clonedSelection.Add(UtxoSorted[depth]);
 
-						if (withThis is not null)
+						var withThis = RecursiveSearch(depth + 1, clonedSelection, effValue + UtxoSorted[depth], target);
+						if (withThis != null)
 						{
-							return withThis;        // Match found
+							return withThis;
 						}
-					}
 
-					return null;
+						return null;
+					}
 				}
 			}
 		}
 
-		private ulong CalcEffectiveValue(List<ulong> list)
+		private Money CalcEffectiveValue(List<Money> list)
 		{
-			ulong sum = 0;
+			Money sum = Money.Satoshis(0);
 
 			foreach (var item in list)
 			{
-				sum += item;        // TODO effectiveValue = utxo.value − feePerByte × bytesPerInput
+				sum += item.Satoshi;        // TODO: effectiveValue = utxo.value − feePerByte × bytesPerInput
 			}
 
 			return sum;

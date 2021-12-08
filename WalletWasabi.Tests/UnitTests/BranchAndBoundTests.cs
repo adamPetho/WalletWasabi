@@ -1,3 +1,4 @@
+using NBitcoin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,42 @@ namespace WalletWasabi.Tests.UnitTests
 {
 	public class BranchAndBoundTests
 	{
-		[Fact]
-		public void BnBSimpleTest()
+		private static Random Random = new Random();
+		private static List<Money> AvailableCoins = GenList();
+
+		private static List<Money> GenList()
 		{
-			var utxos = new List<ulong> { 10, 5, 8, 11, 2 };
-			ulong target = 19;
-
-			var bnb = new Bnb(utxos);
-
-			var wasSuccessful = bnb.TryGetExactMatch(target, out List<ulong> solution);
-
-			Assert.True(wasSuccessful);
-			Assert.Equal(new List<ulong> { 11, 8 }, solution);
+			List<Money> availableCoins = new();
+			for (int i = 0; i < 100; i++)
+			{
+				availableCoins.Add(Random.Next((int)Money.Satoshis(250), (int)Money.Satoshis(100001)));
+			}
+			return availableCoins;
 		}
 
 		[Fact]
-		public void BnBSimpleWithMoreUTXOTest()
+		public void BnBSimpleTest()
 		{
-			var utxos = new List<ulong> { 1, 1, 2, 5, 10, 2, 5, 3, 11, 7, 4, 3, 8, 9 };
-			ulong target = 33;
+			var utxos = new List<Money> { Money.Satoshis(12), Money.Satoshis(10), Money.Satoshis(10), Money.Satoshis(5), Money.Satoshis(4) };
+			ulong target = 19;
 
-			var bnb = new Bnb(utxos);
-			var wasSuccessful = bnb.TryGetExactMatch(target, out List<ulong> solution);
+			var bnb = new Bnb();
+
+			var wasSuccessful = bnb.TryGetExactMatch(target, utxos, out List<Money> selectedCoins);
 
 			Assert.True(wasSuccessful);
+			Assert.Equal(new List<Money> { Money.Satoshis(10), Money.Satoshis(5), Money.Satoshis(4) }, selectedCoins);
+		}
+
+		[Fact]
+		public void BnBRandomTest()
+		{
+			var bnb = new Bnb();
+			Money target = Money.Satoshis(100000);
+
+			var successful = bnb.TryGetExactMatch(target, AvailableCoins, out List<Money> selectedCoins);
+
+			Assert.True(successful);
 		}
 	}
 }
