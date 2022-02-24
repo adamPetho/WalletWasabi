@@ -99,10 +99,10 @@ public class BranchAndBoundTests
 	[Fact]
 	public void LesserSelection_WithInputCosts()
 	{
-		long[] inputValues = new long[] { 35, 17, 10, 5, 3, 2 };
-		long[] inputCosts = new long[] { 1, 2, 1, 3, 1, 1 };
+		long[] inputValues = new long[] { 35, 17, 10, 5, 4, 2 };
+		long[] inputCosts = new long[] { 1, 1, 1, 1, 1, 1 };
 
-		long target = 32;
+		long target = 10;
 
 		BranchAndBound algorithm = new();
 		LessSelectionStrategy strategy = new(target, inputValues, inputCosts);
@@ -114,7 +114,7 @@ public class BranchAndBoundTests
 		long[] actualSelection = strategy.GetBestSelectionFound()!;
 		Assert.NotNull(actualSelection);
 
-		// Target 32, closest match is 31: (17 + 2) + (5 + 3) + (3 + 1) = 31
-		Assert.Equal(new long[] { 17, 5, 3 }, actualSelection);
+		// Target 10, closest match is 9: (5 + 1) + (2 + 1) = 9
+		Assert.Equal(new long[] { 5, 2 }, actualSelection);
 	}
 }
