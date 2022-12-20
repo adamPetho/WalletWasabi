@@ -9,7 +9,7 @@ using WalletWasabi.WabiSabi.Backend.Statistics;
 
 namespace WalletWasabi.WabiSabi.Backend.Banning;
 
-public record CoinVerifyInfo(bool ShouldBan, Coin Coin);
+public record CoinVerifyInfo(bool ShouldBan, Coin Coin, ApiResponseItem? ApiResponseItem);
 
 public class CoinVerifier
 {
@@ -70,7 +70,7 @@ public class CoinVerifier
 			if (CheckIfAlreadyVerified(coin))
 			{
 				innocentsCounter++;
-				yield return new CoinVerifyInfo(false, coin);
+				yield return new CoinVerifyInfo(false, coin, null);
 			}
 			else
 			{
@@ -91,7 +91,7 @@ public class CoinVerifier
 					Whitelist.Add(coin.Outpoint);
 				}
 
-				yield return new CoinVerifyInfo(shouldBanUtxo, coin);
+				yield return new CoinVerifyInfo(shouldBanUtxo, coin, response.ApiResponseItem);
 			}
 		}
 
