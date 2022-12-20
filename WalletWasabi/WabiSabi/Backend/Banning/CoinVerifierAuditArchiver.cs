@@ -9,53 +9,35 @@ public class CoinVerifierAuditArchiver
 {
 	public CoinVerifierAuditArchiver(string directoryPath)
 	{
+		IoHelpers.EnsureDirectoryExists(directoryPath);
 		BaseDirectoryPath = directoryPath;
 	}
 
 	public string BaseDirectoryPath { get; }
 
-	public async Task<string> SaveAuditAsync(CoinVerifyInfo verifyInfo)
+	public async Task SaveAuditAsync(CoinVerifyInfo verifyInfo)
+	{
+		var details = $"{string.Join(',', verifyInfo.ApiResponseItem.Cscore_section.Cscore_info.Select(x => x.Id).ToArray())};" +
+			$"{string.Join(',', verifyInfo.ApiResponseItem.Cscore_section.Cscore_info.Select(x => x.Name))}";
+
+		await SaveAuditAsync(verifyInfo.Coin, verifyInfo.ShouldBan, Reason.RemoteApi, details).ConfigureAwait(false);
+	}
+
+	public async Task SaveAuditAsync(Coin coin, bool isBanned, Reason reason, string? details)
 	{
 		var currentDate = DateTimeOffset.UtcNow;
 
-		VerifierAudit audit = new(
-			verifyInfo.Coin.Outpoint,
-			verifyInfo.Coin.ScriptPubKey.GetDestinationAddress(Network.Main),
-			verifyInfo.Coin.Amount,
-			verifyInfo.ApiResponseItem.Cscore_section.Cscore_info.First().Name,
-			verifyInfo.ApiResponseItem.Cscore_section.Cscore_info.Select(x => x.Id).ToArray()
-			);
-
-		// Use a date format in the file name to let the files be sorted by date by default.
 		string fileName = $"VerifierAudits.{currentDate:yyyy.MM}.txt";
 		string filePath = Path.Combine(BaseDirectoryPath, fileName);
 		IoHelpers.EnsureDirectoryExists(BaseDirectoryPath);
 
-		await File.AppendAllLinesAsync(filePath, new[] { audit.ToLine() }).ConfigureAwait(false);
-
-		return filePath;
+		await File.AppendAllLinesAsync(filePath, new[] { $"{coin.Outpoint}:{coin.ScriptPubKey.GetDestinationAddress(Network.Main)}:{coin.Amount}:{reason}:{details}" }).ConfigureAwait(false);
 	}
 }
 
-public class VerifierAudit
+public enum Reason
 {
-	public VerifierAudit(OutPoint outPoint, BitcoinAddress address, Money amount, string riskCategory, int[] riskFlagIds)
-	{
-		OutPoint = outPoint;
-		Address = address;
-		Amount = amount;
-		RiskCategory = riskCategory;
-		RiskFlagIds = riskFlagIds;
-	}
-
-	public OutPoint OutPoint { get; }
-	public BitcoinAddress Address { get; }
-	public Money Amount { get; }
-	public string RiskCategory { get; }
-	public int[] RiskFlagIds { get; }
-
-	public string ToLine()
-	{
-		return $"{OutPoint}:{Address}:{Amount}:{RiskCategory}:{RiskFlagIds}";
-	}
+	WhiteList,
+	RemoteApi,
+	Coinjoin
 }

@@ -13,12 +13,13 @@ public record CoinVerifyInfo(bool ShouldBan, Coin Coin, ApiResponseItem? ApiResp
 
 public class CoinVerifier
 {
-	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig)
+	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig, CoinVerifierAuditArchiver coinVerifierAuditArchiver)
 	{
 		CoinJoinIdStore = coinJoinIdStore;
 		CoinVerifierApiClient = apiClient;
 		Whitelist = whitelist;
 		WabiSabiConfig = wabiSabiConfig;
+		CoinVerifierAuditArchiver = coinVerifierAuditArchiver;
 	}
 
 	// Blank constructor used for testing
@@ -32,6 +33,7 @@ public class CoinVerifier
 
 	public Whitelist Whitelist { get; }
 	public WabiSabiConfig WabiSabiConfig { get; }
+	public CoinVerifierAuditArchiver CoinVerifierAuditArchiver { get; }
 	private CoinJoinIdStore CoinJoinIdStore { get; }
 	private CoinVerifierApiClient CoinVerifierApiClient { get; }
 
@@ -40,6 +42,7 @@ public class CoinVerifier
 		// Step 1: Check if address is whitelisted.
 		if (Whitelist.TryGet(coin.Outpoint, out _))
 		{
+			CoinVerifierAuditArchiver.SaveAuditAsync()
 			return true;
 		}
 
