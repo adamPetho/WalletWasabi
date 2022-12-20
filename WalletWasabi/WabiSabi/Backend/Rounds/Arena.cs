@@ -33,7 +33,8 @@ public partial class Arena : PeriodicRunner
 		RoundParameterFactory roundParameterFactory,
 		CoinJoinTransactionArchiver? archiver = null,
 		CoinJoinScriptStore? coinJoinScriptStore = null,
-		CoinVerifier? coinVerifier = null) : base(period)
+		CoinVerifier? coinVerifier = null,
+		CoinVerifierAuditArchiver? coinVerifierAuditArchiver = null) : base(period)
 	{
 		Config = config;
 		Rpc = rpc;
@@ -44,6 +45,7 @@ public partial class Arena : PeriodicRunner
 		RoundParameterFactory = roundParameterFactory;
 		CoinVerifier = coinVerifier;
 		MaxSuggestedAmountProvider = new(Config);
+		CoinVerifierAuditArchiver = coinVerifierAuditArchiver;
 	}
 
 	public event EventHandler<Transaction>? CoinJoinBroadcast;
@@ -60,6 +62,7 @@ public partial class Arena : PeriodicRunner
 	private ICoinJoinIdStore CoinJoinIdStore { get; set; }
 	private RoundParameterFactory RoundParameterFactory { get; }
 	public MaxSuggestedAmountProvider MaxSuggestedAmountProvider { get; }
+	public CoinVerifierAuditArchiver? CoinVerifierAuditArchiver { get; }
 
 	protected override async Task ActionAsync(CancellationToken cancel)
 	{
@@ -121,13 +124,17 @@ public partial class Arena : PeriodicRunner
 
 				if (round is not BlameRound && CoinVerifier is not null)
 				{
+					Exception? exception = null;
+					List<CoinVerifyInfo> checkedCoins = new();
+					var aliceDictionary = round.Alices.Where(x => !x.IsPayingZeroCoordinationFee).ToDictionary(a => a.Coin, a => a);
+					IEnumerable<Coin> coinsToCheck = aliceDictionary.Values.Select(x => x.Coin);
 					try
 					{
 						int banCounter = 0;
-						var aliceDictionary = round.Alices.Where(x => !x.IsPayingZeroCoordinationFee).ToDictionary(a => a.Coin, a => a);
-						IEnumerable<Coin> coinsToCheck = aliceDictionary.Values.Select(x => x.Coin);
 						await foreach (var coinVerifyInfo in CoinVerifier.VerifyCoinsAsync(coinsToCheck, cancel, round.Id.ToString()).ConfigureAwait(false))
 						{
+							checkedCoins.Add(coinVerifyInfo);
+
 							if (coinVerifyInfo.ShouldBan)
 							{
 								banCounter++;
@@ -136,11 +143,35 @@ public partial class Arena : PeriodicRunner
 								round.Alices.Remove(aliceToPunish);
 							}
 						}
+
 						Logger.LogInfo($"{banCounter} utxos were banned from round {round.Id}.");
 					}
 					catch (Exception exc)
 					{
+						exception = exc;
 						Logger.LogError($"{nameof(CoinVerifier)} has failed to verify all Alices({round.Alices.Count}).", exc);
+					}
+					finally
+					{
+						if (CoinVerifierAuditArchiver is not null)
+						{
+							foreach (var checkedCoinInfo in checkedCoins)
+							{
+								await CoinVerifierAuditArchiver.SaveAuditAsync(checkedCoinInfo).ConfigureAwait(false);
+							}
+
+							var missingCoins = coinsToCheck.Except(checkedCoins.Select(x => x.Coin));
+
+							foreach (var coin in missingCoins)
+							{
+								await CoinVerifierAuditArchiver.SaveAuditAsync(coin, isBanned: false, reason: exception is null ? "Timeout" : "Error", exception is not null ? exception.Message : "").ConfigureAwait(false);
+							}
+
+							foreach (var zeroCoordFeeCoin in round.Alices.Where(x => x.IsPayingZeroCoordinationFee).Select(x => x.Coin))
+							{
+								await CoinVerifierAuditArchiver.SaveAuditAsync(zeroCoordFeeCoin, isBanned: false, "ZeroCoordFee").ConfigureAwait(false);
+							}
+						}
 					}
 				}
 
@@ -553,7 +584,7 @@ public partial class Arena : PeriodicRunner
 	{
 		// If timeout we must fill up the outputs to build a reasonable transaction.
 		// This won't be signed by the alice who failed to provide output, so we know who to ban.
-		var estimatedBlameScriptCost = round.Parameters.MiningFeeRate.GetFee(blameScript.EstimateOutputVsize() + coinjoin.UnpaidSharedOverhead); 
+		var estimatedBlameScriptCost = round.Parameters.MiningFeeRate.GetFee(blameScript.EstimateOutputVsize() + coinjoin.UnpaidSharedOverhead);
 		var diffMoney = coinjoin.Balance - coinjoin.EstimatedCost - estimatedBlameScriptCost;
 		if (diffMoney > round.Parameters.AllowedOutputAmounts.Min)
 		{
@@ -581,7 +612,7 @@ public partial class Arena : PeriodicRunner
 					round.LogInfo($"There were some leftover satoshis. Added amount to miner fees: '{diffMoney}'.");
 				}
 				else
-				{ 
+				{
 					round.LogWarning($"Some alices failed to signal ready. There were some leftover satoshis. Added amount to miner fees: '{diffMoney}'.");
 				}
 			}

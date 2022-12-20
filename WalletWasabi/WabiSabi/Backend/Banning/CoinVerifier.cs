@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 using WalletWasabi.Logging;
 using WalletWasabi.WabiSabi.Backend.Rounds.CoinJoinStorage;
 using WalletWasabi.WabiSabi.Backend.Statistics;
 
 namespace WalletWasabi.WabiSabi.Backend.Banning;
 
-public record CoinVerifyInfo(bool ShouldBan, Coin Coin, ApiResponseItem? ApiResponseItem);
+public record CoinVerifyInfo(bool ShouldBan, Coin Coin, ApiResponseItem? ApiResponseItem, CoinVerifierReason Reason);
 
 public class CoinVerifier
 {
-	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig, CoinVerifierAuditArchiver coinVerifierAuditArchiver)
+	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig)
 	{
 		CoinJoinIdStore = coinJoinIdStore;
 		CoinVerifierApiClient = apiClient;
 		Whitelist = whitelist;
 		WabiSabiConfig = wabiSabiConfig;
-		CoinVerifierAuditArchiver = coinVerifierAuditArchiver;
 	}
 
 	// Blank constructor used for testing
@@ -33,27 +33,8 @@ public class CoinVerifier
 
 	public Whitelist Whitelist { get; }
 	public WabiSabiConfig WabiSabiConfig { get; }
-	public CoinVerifierAuditArchiver CoinVerifierAuditArchiver { get; }
 	private CoinJoinIdStore CoinJoinIdStore { get; }
 	private CoinVerifierApiClient CoinVerifierApiClient { get; }
-
-	private bool CheckIfAlreadyVerified(Coin coin)
-	{
-		// Step 1: Check if address is whitelisted.
-		if (Whitelist.TryGet(coin.Outpoint, out _))
-		{
-			CoinVerifierAuditArchiver.SaveAuditAsync()
-			return true;
-		}
-
-		// Step 2: Check if address is from a coinjoin.
-		if (CoinJoinIdStore.Contains(coin.Outpoint.Hash))
-		{
-			return true;
-		}
-
-		return false;
-	}
 
 	public async IAsyncEnumerable<CoinVerifyInfo> VerifyCoinsAsync(IEnumerable<Coin> coinsToCheck, [EnumeratorCancellation] CancellationToken cancellationToken, string roundId = "")
 	{
@@ -70,10 +51,17 @@ public class CoinVerifier
 
 		foreach (var coin in coinsToCheck)
 		{
-			if (CheckIfAlreadyVerified(coin))
+			// Step 1: Check if address is whitelisted.
+			if (Whitelist.TryGet(coin.Outpoint, out _))
 			{
 				innocentsCounter++;
-				yield return new CoinVerifyInfo(false, coin, null);
+				yield return new CoinVerifyInfo(false, coin, ApiResponseItem: null, CoinVerifierReason.Whitelisted);
+			}
+			// Step 2: Check if coin is from a coinjoin.
+			else if (CoinJoinIdStore.Contains(coin.Outpoint.Hash))
+			{
+				innocentsCounter++;
+				yield return new CoinVerifyInfo(false, coin, ApiResponseItem: null, CoinVerifierReason.FromCoinjoin);
 			}
 			else
 			{
@@ -94,7 +82,7 @@ public class CoinVerifier
 					Whitelist.Add(coin.Outpoint);
 				}
 
-				yield return new CoinVerifyInfo(shouldBanUtxo, coin, response.ApiResponseItem);
+				yield return new CoinVerifyInfo(shouldBanUtxo, coin, response.ApiResponseItem, CoinVerifierReason.RemoteApiCheck);
 			}
 		}
 
@@ -128,4 +116,11 @@ public class CoinVerifier
 
 		return shouldBan;
 	}
+}
+
+public enum CoinVerifierReason
+{
+	Whitelisted,
+	FromCoinjoin,
+	RemoteApiCheck,
 }
