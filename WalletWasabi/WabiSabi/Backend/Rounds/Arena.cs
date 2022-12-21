@@ -124,8 +124,8 @@ public partial class Arena : PeriodicRunner
 
 				if (round is not BlameRound && CoinVerifier is not null)
 				{
-					Exception? exception = null;
-					List<CoinVerifyInfo> checkedCoins = new();
+					Exception? possibleException = null;
+					List<CoinVerifyInfo> successfullyCheckedCoins = new();
 					var aliceDictionary = round.Alices.Where(x => !x.IsPayingZeroCoordinationFee).ToDictionary(a => a.Coin, a => a);
 					IEnumerable<Coin> coinsToCheck = aliceDictionary.Values.Select(x => x.Coin);
 					try
@@ -133,7 +133,7 @@ public partial class Arena : PeriodicRunner
 						int banCounter = 0;
 						await foreach (var coinVerifyInfo in CoinVerifier.VerifyCoinsAsync(coinsToCheck, cancel, round.Id.ToString()).ConfigureAwait(false))
 						{
-							checkedCoins.Add(coinVerifyInfo);
+							successfullyCheckedCoins.Add(coinVerifyInfo);
 
 							if (coinVerifyInfo.ShouldBan)
 							{
@@ -148,29 +148,17 @@ public partial class Arena : PeriodicRunner
 					}
 					catch (Exception exc)
 					{
-						exception = exc;
+						possibleException = exc;
 						Logger.LogError($"{nameof(CoinVerifier)} has failed to verify all Alices({round.Alices.Count}).", exc);
 					}
 					finally
 					{
 						if (CoinVerifierAuditArchiver is not null)
 						{
-							foreach (var checkedCoinInfo in checkedCoins)
-							{
-								await CoinVerifierAuditArchiver.SaveAuditAsync(checkedCoinInfo).ConfigureAwait(false);
-							}
+							var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
+							var zeroCoordFeePayingCoins = round.Alices.Where(x => x.IsPayingZeroCoordinationFee).Select(x => x.Coin);
 
-							var missingCoins = coinsToCheck.Except(checkedCoins.Select(x => x.Coin));
-
-							foreach (var coin in missingCoins)
-							{
-								await CoinVerifierAuditArchiver.SaveAuditAsync(coin, isBanned: false, reason: exception is null ? "Timeout" : "Error", exception is not null ? exception.Message : "").ConfigureAwait(false);
-							}
-
-							foreach (var zeroCoordFeeCoin in round.Alices.Where(x => x.IsPayingZeroCoordinationFee).Select(x => x.Coin))
-							{
-								await CoinVerifierAuditArchiver.SaveAuditAsync(zeroCoordFeeCoin, isBanned: false, "ZeroCoordFee").ConfigureAwait(false);
-							}
+							await CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, zeroCoordFeePayingCoins, round.Id, possibleException, cancel).ConfigureAwait(false);
 						}
 					}
 				}

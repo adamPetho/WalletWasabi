@@ -1,6 +1,10 @@
 using NBitcoin;
+using Nito.AsyncEx;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WalletWasabi.WabiSabi.Backend.Banning;
@@ -13,24 +17,57 @@ public class CoinVerifierAuditArchiver
 		BaseDirectoryPath = directoryPath;
 	}
 
-	public string BaseDirectoryPath { get; }
+	private string BaseDirectoryPath { get; }
 
-	public async Task SaveAuditAsync(CoinVerifyInfo verifyInfo)
+	private AsyncLock FileAsyncLock { get; } = new();
+
+	public async Task SaveAuditAsync(List<CoinVerifyInfo> checkedCoins, IEnumerable<Coin> missingCoins, IEnumerable<Coin> zeroCoordFeePayingCoins, uint256 roundId, Exception? exception, CancellationToken cancellationToken)
 	{
-		var details = $"{string.Join(',', verifyInfo.ApiResponseItem.Cscore_section.Cscore_info.Select(x => x.Id).ToArray())};" +
-			$"{string.Join(',', verifyInfo.ApiResponseItem.Cscore_section.Cscore_info.Select(x => x.Name))}";
+		StringBuilder fileContent = new();
 
-		await SaveAuditAsync(verifyInfo.Coin, verifyInfo.ShouldBan, verifyInfo.Reason.ToString(), details).ConfigureAwait(false);
+		foreach (var checkedCoinInfo in checkedCoins)
+		{
+			fileContent.AppendLine(ToLine(checkedCoinInfo, roundId));
+		}
+
+		foreach (var coin in missingCoins)
+		{
+			fileContent.AppendLine(ToLine(coin, isBanned: false, reason: exception is null ? "Timeout" : "Error", roundId, exception is null ? "" : exception.Message));
+		}
+
+		foreach (var zeroCoordFeeCoin in zeroCoordFeePayingCoins)
+		{
+			fileContent.AppendLine(ToLine(zeroCoordFeeCoin, isBanned: false, "ZeroCoordFee", roundId));
+		}
+
+		await SaveToFileAsync(fileContent.ToString(), cancellationToken).ConfigureAwait(false);
 	}
 
-	public async Task SaveAuditAsync(Coin coin, bool isBanned, string reason, string? details = null)
+	private string ToLine(CoinVerifyInfo verifyInfo, uint256 roundId)
+	{
+		var ids = verifyInfo.ApiResponseItem?.Cscore_section.Cscore_info?.Select(x => x.Id);
+		var categories = verifyInfo.ApiResponseItem?.Cscore_section.Cscore_info.Select(x => x.Name);
+
+		var details = $"{(ids is null ? "None" : string.Join(',', ids))}:{(categories is null ? "None" : string.Join(',', categories))}";
+
+		return ToLine(verifyInfo.Coin, verifyInfo.ShouldBan, verifyInfo.Reason.ToString(), roundId, details);
+	}
+
+	private string ToLine(Coin coin, bool isBanned, string reason, uint256 roundId, string? details = null)
+	{
+		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{roundId},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details ?? ""}";
+	}
+
+	private async Task SaveToFileAsync(string fileContent, CancellationToken cancellationToken)
 	{
 		var currentDate = DateTimeOffset.UtcNow;
 
 		string fileName = $"VerifierAudits.{currentDate:yyyy.MM}.txt";
 		string filePath = Path.Combine(BaseDirectoryPath, fileName);
-		IoHelpers.EnsureDirectoryExists(BaseDirectoryPath);
 
-		await File.AppendAllLinesAsync(filePath, new[] { $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff}:{coin.Outpoint}:{coin.ScriptPubKey.GetDestinationAddress(Network.Main)}:{isBanned}:{coin.Amount}:{reason}:{details ?? ""}" }).ConfigureAwait(false);
+		using (await FileAsyncLock.LockAsync(cancellationToken))
+		{
+			await File.AppendAllLinesAsync(filePath, new[] { fileContent.ToString() }, cancellationToken).ConfigureAwait(false);
+		}
 	}
 }
