@@ -33,8 +33,7 @@ public partial class Arena : PeriodicRunner
 		RoundParameterFactory roundParameterFactory,
 		CoinJoinTransactionArchiver? archiver = null,
 		CoinJoinScriptStore? coinJoinScriptStore = null,
-		CoinVerifier? coinVerifier = null,
-		CoinVerifierAuditArchiver? coinVerifierAuditArchiver = null) : base(period)
+		CoinVerifier? coinVerifier = null) : base(period)
 	{
 		Config = config;
 		Rpc = rpc;
@@ -45,7 +44,6 @@ public partial class Arena : PeriodicRunner
 		RoundParameterFactory = roundParameterFactory;
 		CoinVerifier = coinVerifier;
 		MaxSuggestedAmountProvider = new(Config);
-		CoinVerifierAuditArchiver = coinVerifierAuditArchiver;
 	}
 
 	public event EventHandler<Transaction>? CoinJoinBroadcast;
@@ -62,7 +60,6 @@ public partial class Arena : PeriodicRunner
 	private ICoinJoinIdStore CoinJoinIdStore { get; set; }
 	private RoundParameterFactory RoundParameterFactory { get; }
 	public MaxSuggestedAmountProvider MaxSuggestedAmountProvider { get; }
-	public CoinVerifierAuditArchiver? CoinVerifierAuditArchiver { get; }
 
 	protected override async Task ActionAsync(CancellationToken cancel)
 	{
@@ -152,12 +149,12 @@ public partial class Arena : PeriodicRunner
 						Logger.LogError($"{nameof(CoinVerifier)} has failed to verify all Alices({round.Alices.Count}).", exc);
 					}
 
-					if (CoinVerifierAuditArchiver is not null)
+					if (CoinVerifier.CoinVerifierAuditArchiver is not null)
 					{
 						var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
 						var zeroCoordFeePayingCoins = round.Alices.Where(x => x.IsPayingZeroCoordinationFee).Select(x => x.Coin);
 
-						await CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, zeroCoordFeePayingCoins, round.Id.ToString(), possibleException, cancel).ConfigureAwait(false);
+						await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, zeroCoordFeePayingCoins, round.Id.ToString(), possibleException, cancel).ConfigureAwait(false);
 					}
 				}
 

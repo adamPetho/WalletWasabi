@@ -29,7 +29,7 @@ public class CoordinatorRound
 	private RoundPhase _phase;
 	private CoordinatorRoundStatus _status;
 
-	public CoordinatorRound(IRPCClient rpc, UtxoReferee utxoReferee, CoordinatorRoundConfig config, int adjustedConfirmationTarget, int configuredConfirmationTarget, double configuredConfirmationTargetReductionRate, TimeSpan inputRegistrationTimeOut, CoinVerifier? coinVerifier = null, CoinVerifierAuditArchiver? auditArchiver = null)
+	public CoordinatorRound(IRPCClient rpc, UtxoReferee utxoReferee, CoordinatorRoundConfig config, int adjustedConfirmationTarget, int configuredConfirmationTarget, double configuredConfirmationTargetReductionRate, TimeSpan inputRegistrationTimeOut, CoinVerifier? coinVerifier = null)
 	{
 		try
 		{
@@ -40,7 +40,6 @@ public class CoordinatorRound
 			RoundConfig = Guard.NotNull(nameof(config), config);
 
 			CoinVerifier = coinVerifier;
-			CoinVerifierAuditArchiver = auditArchiver;
 			AdjustedConfirmationTarget = adjustedConfirmationTarget;
 			ConfiguredConfirmationTarget = configuredConfirmationTarget;
 			ConfiguredConfirmationTargetReductionRate = configuredConfirmationTargetReductionRate;
@@ -227,7 +226,6 @@ public class CoordinatorRound
 	public RoundNonceProvider NonceProvider { get; }
 
 	public static ConcurrentDictionary<(long roundId, RoundPhase phase), DateTimeOffset> PhaseTimeoutLog { get; } = new ConcurrentDictionary<(long roundId, RoundPhase phase), DateTimeOffset>();
-	public CoinVerifierAuditArchiver? CoinVerifierAuditArchiver { get; }
 
 	private void SetInputRegistrationTimesout()
 	{
@@ -682,11 +680,11 @@ public class CoordinatorRound
 
 		await UtxoReferee.BanUtxosAsync(1, DateTimeOffset.UtcNow, forceNoted: false, RoundId, forceBan: true, inputsToBan.ToArray()).ConfigureAwait(false);
 
-		if (CoinVerifierAuditArchiver is not null)
+		if (CoinVerifier.CoinVerifierAuditArchiver is not null)
 		{
 			var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
 
-			await CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
+			await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
 		}
 	}
 

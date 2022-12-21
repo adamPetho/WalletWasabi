@@ -32,8 +32,6 @@ public class WabiSabiCoordinator : BackgroundService
 		IoHelpers.EnsureContainingDirectoryExists(Parameters.CoinJoinFeeRateStatStoreFilePath);
 		CoinJoinFeeRateStatStore.NewStat += FeeRateStatStore_NewStat;
 
-		CoinVerifierAuditArchiver auditArchiver = new(Path.Combine(parameters.CoordinatorDataDir, "CoinVerifierAudits"));
-
 		IoHelpers.EnsureContainingDirectoryExists(Parameters.CoinJoinScriptStoreFilePath);
 
 		RoundParameterFactory roundParameterFactory = new(Config, rpc.Network);
@@ -46,8 +44,7 @@ public class WabiSabiCoordinator : BackgroundService
 			roundParameterFactory,
 			transactionArchiver,
 			coinJoinScriptStore,
-			coinVerifier,
-			auditArchiver);
+			coinVerifier);
 
 		IoHelpers.EnsureContainingDirectoryExists(Parameters.CoinJoinIdStoreFilePath);
 		Arena.CoinJoinBroadcast += Arena_CoinJoinBroadcast;

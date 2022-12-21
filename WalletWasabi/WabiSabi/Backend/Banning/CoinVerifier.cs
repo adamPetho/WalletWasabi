@@ -14,12 +14,13 @@ public record CoinVerifyInfo(bool ShouldBan, Coin Coin, ApiResponseItem? ApiResp
 
 public class CoinVerifier
 {
-	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig)
+	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig, string archiverDirectoryPath)
 	{
 		CoinJoinIdStore = coinJoinIdStore;
 		CoinVerifierApiClient = apiClient;
 		Whitelist = whitelist;
 		WabiSabiConfig = wabiSabiConfig;
+		CoinVerifierAuditArchiver = new CoinVerifierAuditArchiver(archiverDirectoryPath);
 	}
 
 	// Blank constructor used for testing
@@ -33,6 +34,7 @@ public class CoinVerifier
 
 	public Whitelist Whitelist { get; }
 	public WabiSabiConfig WabiSabiConfig { get; }
+	public CoinVerifierAuditArchiver CoinVerifierAuditArchiver { get; }
 	private CoinJoinIdStore CoinJoinIdStore { get; }
 	private CoinVerifierApiClient CoinVerifierApiClient { get; }
 
