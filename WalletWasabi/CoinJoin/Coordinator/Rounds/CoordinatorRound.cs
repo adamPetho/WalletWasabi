@@ -679,10 +679,15 @@ public class CoordinatorRound
 		}
 
 		await UtxoReferee.BanUtxosAsync(1, DateTimeOffset.UtcNow, forceNoted: false, RoundId, forceBan: true, inputsToBan.ToArray()).ConfigureAwait(false);
-
-		var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
-
-		await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
+		try
+		{
+			var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
+			await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
+		}
+		catch (Exception ex)
+		{
+			Logger.LogError("Something went wrong while saving audits.", ex);
+		}
 	}
 
 	private async Task MoveToInputRegistrationAsync()
