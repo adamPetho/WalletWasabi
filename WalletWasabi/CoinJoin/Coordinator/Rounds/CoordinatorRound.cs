@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using WalletWasabi.BitcoinCore.Rpc;
 using WalletWasabi.CoinJoin.Common.Models;
@@ -17,6 +18,7 @@ using WalletWasabi.Extensions;
 using WalletWasabi.Helpers;
 using WalletWasabi.Logging;
 using WalletWasabi.WabiSabi.Backend.Banning;
+using WalletWasabi.WabiSabi.Backend.Rounds;
 using static WalletWasabi.Crypto.SchnorrBlinding;
 
 namespace WalletWasabi.CoinJoin.Coordinator.Rounds;
@@ -27,7 +29,7 @@ public class CoordinatorRound
 	private RoundPhase _phase;
 	private CoordinatorRoundStatus _status;
 
-	public CoordinatorRound(IRPCClient rpc, UtxoReferee utxoReferee, CoordinatorRoundConfig config, int adjustedConfirmationTarget, int configuredConfirmationTarget, double configuredConfirmationTargetReductionRate, TimeSpan inputRegistrationTimeOut, CoinVerifier? coinVerifier = null)
+	public CoordinatorRound(IRPCClient rpc, UtxoReferee utxoReferee, CoordinatorRoundConfig config, int adjustedConfirmationTarget, int configuredConfirmationTarget, double configuredConfirmationTargetReductionRate, TimeSpan inputRegistrationTimeOut, CoinVerifier? coinVerifier = null, CoinVerifierAuditArchiver? auditArchiver = null)
 	{
 		try
 		{
@@ -38,6 +40,7 @@ public class CoordinatorRound
 			RoundConfig = Guard.NotNull(nameof(config), config);
 
 			CoinVerifier = coinVerifier;
+			CoinVerifierAuditArchiver = auditArchiver;
 			AdjustedConfirmationTarget = adjustedConfirmationTarget;
 			ConfiguredConfirmationTarget = configuredConfirmationTarget;
 			ConfiguredConfirmationTargetReductionRate = configuredConfirmationTargetReductionRate;
@@ -224,6 +227,7 @@ public class CoordinatorRound
 	public RoundNonceProvider NonceProvider { get; }
 
 	public static ConcurrentDictionary<(long roundId, RoundPhase phase), DateTimeOffset> PhaseTimeoutLog { get; } = new ConcurrentDictionary<(long roundId, RoundPhase phase), DateTimeOffset>();
+	public CoinVerifierAuditArchiver? CoinVerifierAuditArchiver { get; }
 
 	private void SetInputRegistrationTimesout()
 	{
@@ -643,12 +647,19 @@ public class CoordinatorRound
 		{
 			return;
 		}
+
 		List<OutPoint> inputsToBan = new();
+		Exception? possibleException = null;
+		List<CoinVerifyInfo> successfullyCheckedCoins = new();
+
+		var coinsToCheck = Alices.SelectMany(a => a.Inputs);
+
 		try
 		{
-			var coinsToCheck = Alices.SelectMany(a => a.Inputs);
 			await foreach (var info in CoinVerifier.VerifyCoinsAsync(coinsToCheck, CancellationToken.None, RoundId.ToString()))
 			{
+				successfullyCheckedCoins.Add(info);
+
 				if (info.ShouldBan)
 				{
 					inputsToBan.Add(info.Coin.Outpoint);
@@ -657,16 +668,26 @@ public class CoordinatorRound
 		}
 		catch (Exception exc)
 		{
+			possibleException = exc;
 			Logger.LogError($"{nameof(CoinVerifier)} has failed to verify all Alices({Alices.Count}).", exc);
 		}
 
 		var alicesToRemove = Alices.Where(alice => inputsToBan.Any(outpoint => alice.Inputs.Select(input => input.Outpoint).Contains(outpoint))).ToArray();
 		Logger.LogInfo($"Alices({alicesToRemove.Length}) was force banned in round '{RoundId}'.");
+
 		foreach (var alice in alicesToRemove)
 		{
 			Alices.Remove(alice);
 		}
+
 		await UtxoReferee.BanUtxosAsync(1, DateTimeOffset.UtcNow, forceNoted: false, RoundId, forceBan: true, inputsToBan.ToArray()).ConfigureAwait(false);
+
+		if (CoinVerifierAuditArchiver is not null)
+		{
+			var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
+
+			await CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
+		}
 	}
 
 	private async Task MoveToInputRegistrationAsync()

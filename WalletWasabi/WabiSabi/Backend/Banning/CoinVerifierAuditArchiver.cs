@@ -21,7 +21,7 @@ public class CoinVerifierAuditArchiver
 
 	private AsyncLock FileAsyncLock { get; } = new();
 
-	public async Task SaveAuditAsync(List<CoinVerifyInfo> checkedCoins, IEnumerable<Coin> missingCoins, IEnumerable<Coin> zeroCoordFeePayingCoins, uint256 roundId, Exception? exception, CancellationToken cancellationToken)
+	public async Task SaveAuditAsync(List<CoinVerifyInfo> checkedCoins, IEnumerable<Coin> missingCoins, IEnumerable<Coin> zeroCoordFeePayingCoins, string roundId, Exception? exception, CancellationToken cancellationToken)
 	{
 		StringBuilder fileContent = new();
 
@@ -43,7 +43,7 @@ public class CoinVerifierAuditArchiver
 		await SaveToFileAsync(fileContent.ToString(), cancellationToken).ConfigureAwait(false);
 	}
 
-	private string ToLine(CoinVerifyInfo verifyInfo, uint256 roundId)
+	private string ToLine(CoinVerifyInfo verifyInfo, string roundId)
 	{
 		var ids = verifyInfo.ApiResponseItem?.Cscore_section.Cscore_info?.Select(x => x.Id);
 		var categories = verifyInfo.ApiResponseItem?.Cscore_section.Cscore_info.Select(x => x.Name);
@@ -53,7 +53,7 @@ public class CoinVerifierAuditArchiver
 		return ToLine(verifyInfo.Coin, verifyInfo.ShouldBan, verifyInfo.Reason.ToString(), roundId, details);
 	}
 
-	private string ToLine(Coin coin, bool isBanned, string reason, uint256 roundId, string? details = null)
+	private string ToLine(Coin coin, bool isBanned, string reason, string roundId, string? details = null)
 	{
 		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{roundId},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details ?? ""}";
 	}
