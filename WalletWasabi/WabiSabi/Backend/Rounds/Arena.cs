@@ -149,13 +149,10 @@ public partial class Arena : PeriodicRunner
 						Logger.LogError($"{nameof(CoinVerifier)} has failed to verify all Alices({round.Alices.Count}).", exc);
 					}
 
-					if (CoinVerifier.CoinVerifierAuditArchiver is not null)
-					{
-						var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
-						var zeroCoordFeePayingCoins = round.Alices.Where(x => x.IsPayingZeroCoordinationFee).Select(x => x.Coin);
+					var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
+					var zeroCoordFeePayingCoins = round.Alices.Where(x => x.IsPayingZeroCoordinationFee).Select(x => x.Coin);
 
-						await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, zeroCoordFeePayingCoins, round.Id.ToString(), possibleException, cancel).ConfigureAwait(false);
-					}
+					await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, zeroCoordFeePayingCoins, round.Id.ToString(), possibleException, cancel).ConfigureAwait(false);
 				}
 
 				if (round.InputCount < Config.MinInputCountByRound)

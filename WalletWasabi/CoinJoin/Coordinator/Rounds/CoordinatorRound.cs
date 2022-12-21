@@ -680,12 +680,9 @@ public class CoordinatorRound
 
 		await UtxoReferee.BanUtxosAsync(1, DateTimeOffset.UtcNow, forceNoted: false, RoundId, forceBan: true, inputsToBan.ToArray()).ConfigureAwait(false);
 
-		if (CoinVerifier.CoinVerifierAuditArchiver is not null)
-		{
-			var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
+		var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
 
-			await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
-		}
+		await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
 	}
 
 	private async Task MoveToInputRegistrationAsync()
