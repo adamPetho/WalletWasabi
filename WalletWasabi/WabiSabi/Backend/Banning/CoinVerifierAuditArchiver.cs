@@ -55,7 +55,7 @@ public class CoinVerifierAuditArchiver
 
 	private string ToLine(Coin coin, bool isBanned, string reason, string roundId, string? details = null)
 	{
-		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{roundId},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details ?? ""}";
+		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{roundId},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details ?? "None"}";
 	}
 
 	private async Task SaveToFileAsync(string fileContent, CancellationToken cancellationToken)
