@@ -53,9 +53,9 @@ public class CoinVerifierAuditArchiver
 		return ToLine(verifyInfo.Coin, verifyInfo.ShouldBan, verifyInfo.Reason.ToString(), roundId, details);
 	}
 
-	private string ToLine(Coin coin, bool isBanned, string reason, string roundId, string? details = null)
+	private string ToLine(Coin coin, bool isBanned, string reason, string roundId, string details = "None")
 	{
-		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{roundId},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details ?? "None"}";
+		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{roundId},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details}";
 	}
 
 	private async Task SaveToFileAsync(string fileContent, CancellationToken cancellationToken)
@@ -67,7 +67,7 @@ public class CoinVerifierAuditArchiver
 
 		using (await FileAsyncLock.LockAsync(cancellationToken))
 		{
-			await File.AppendAllLinesAsync(filePath, new[] { fileContent.ToString() }, cancellationToken).ConfigureAwait(false);
+			await File.AppendAllLinesAsync(filePath, new[] { fileContent }, cancellationToken).ConfigureAwait(false);
 		}
 	}
 }

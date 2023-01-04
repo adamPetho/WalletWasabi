@@ -14,22 +14,23 @@ public record CoinVerifyInfo(bool ShouldBan, Coin Coin, ApiResponseItem? ApiResp
 
 public class CoinVerifier
 {
-	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig, string archiverDirectoryPath)
+	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig, string auditsDirectoryPath)
 	{
 		CoinJoinIdStore = coinJoinIdStore;
 		CoinVerifierApiClient = apiClient;
 		Whitelist = whitelist;
 		WabiSabiConfig = wabiSabiConfig;
-		CoinVerifierAuditArchiver = new CoinVerifierAuditArchiver(archiverDirectoryPath);
+		CoinVerifierAuditArchiver = new CoinVerifierAuditArchiver(auditsDirectoryPath);
 	}
 
 	// Blank constructor used for testing
-	internal CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, WabiSabiConfig wabiSabiConfig)
+	internal CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, WabiSabiConfig wabiSabiConfig, CoinVerifierAuditArchiver? auditArchiver = null)
 	{
 		CoinJoinIdStore = coinJoinIdStore;
 		CoinVerifierApiClient = apiClient;
 		Whitelist = new();
 		WabiSabiConfig = wabiSabiConfig;
+		CoinVerifierAuditArchiver = auditArchiver ?? new("test/directory/path");
 	}
 
 	public Whitelist Whitelist { get; }
@@ -53,17 +54,17 @@ public class CoinVerifier
 
 		foreach (var coin in coinsToCheck)
 		{
-			// Step 1: Check if address is whitelisted.
+			// Step 1: Check if the address is whitelisted.
 			if (Whitelist.TryGet(coin.Outpoint, out _))
 			{
 				innocentsCounter++;
-				yield return new CoinVerifyInfo(false, coin, ApiResponseItem: null, CoinVerifierReason.Whitelisted);
+				yield return new CoinVerifyInfo(ShouldBan: false, coin, ApiResponseItem: null, CoinVerifierReason.Whitelisted);
 			}
-			// Step 2: Check if coin is from a coinjoin.
+			// Step 2: Check if the coin is from a coinjoin transaction.
 			else if (CoinJoinIdStore.Contains(coin.Outpoint.Hash))
 			{
 				innocentsCounter++;
-				yield return new CoinVerifyInfo(false, coin, ApiResponseItem: null, CoinVerifierReason.FromCoinjoin);
+				yield return new CoinVerifyInfo(ShouldBan: false, coin, ApiResponseItem: null, CoinVerifierReason.FromCoinjoin);
 			}
 			else
 			{
@@ -72,7 +73,7 @@ public class CoinVerifier
 		}
 
 		Logger.LogInfo($"{innocentsCounter} out of {coinsToCheck.Count()} utxo is already verified in Round({roundId}).");
-		await foreach (var response in CoinVerifierApiClient.VerifyScriptsAsync(scriptsToCheck, linkedCts.Token))
+		await foreach (var response in CoinVerifierApiClient.VerifyScriptsAsync(scriptsToCheck, linkedCts.Token).ConfigureAwait(false))
 		{
 			bool shouldBanUtxo = CheckForFlags(response.ApiResponseItem);
 
