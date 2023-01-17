@@ -154,7 +154,7 @@ public partial class Arena : PeriodicRunner
 						var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
 						var zeroCoordFeePayingCoins = round.Alices.Where(x => x.IsPayingZeroCoordinationFee).Select(x => x.Coin);
 
-						await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, zeroCoordFeePayingCoins, round.Id.ToString(), possibleException, cancel).ConfigureAwait(false);
+						await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, zeroCoordFeePayingCoins, possibleException, cancel).ConfigureAwait(false);
 					}
 					catch (Exception ex)
 					{

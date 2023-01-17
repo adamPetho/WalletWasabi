@@ -682,7 +682,7 @@ public class CoordinatorRound
 		try
 		{
 			var failedToCheckCoins = coinsToCheck.Except(successfullyCheckedCoins.Select(x => x.Coin));
-			await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), RoundId.ToString(), possibleException, CancellationToken.None).ConfigureAwait(false);
+			await CoinVerifier.CoinVerifierAuditArchiver.SaveAuditAsync(successfullyCheckedCoins, failedToCheckCoins, Array.Empty<Coin>(), possibleException, CancellationToken.None).ConfigureAwait(false);
 		}
 		catch (Exception ex)
 		{

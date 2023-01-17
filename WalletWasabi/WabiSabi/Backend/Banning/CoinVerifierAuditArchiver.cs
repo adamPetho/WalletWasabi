@@ -21,29 +21,29 @@ public class CoinVerifierAuditArchiver
 
 	private AsyncLock FileAsyncLock { get; } = new();
 
-	public async Task SaveAuditAsync(List<CoinVerifyInfo> checkedCoins, IEnumerable<Coin> missingCoins, IEnumerable<Coin> zeroCoordFeePayingCoins, string roundId, Exception? exception, CancellationToken cancellationToken)
+	public async Task SaveAuditAsync(List<CoinVerifyInfo> checkedCoins, IEnumerable<Coin> missingCoins, IEnumerable<Coin> zeroCoordFeePayingCoins, Exception? exception, CancellationToken cancellationToken)
 	{
 		StringBuilder fileContent = new();
 
 		foreach (var checkedCoinInfo in checkedCoins)
 		{
-			fileContent.AppendLine(ToLine(checkedCoinInfo, roundId));
+			fileContent.AppendLine(ToLine(checkedCoinInfo));
 		}
 
 		foreach (var coin in missingCoins)
 		{
-			fileContent.AppendLine(ToLine(coin, isBanned: false, reason: exception is null ? "Timeout" : "Error", roundId, exception is null ? "" : exception.Message));
+			fileContent.AppendLine(ToLine(coin, isBanned: false, reason: exception is null ? "Timeout" : "Error", exception is null ? "" : exception.Message));
 		}
 
 		foreach (var zeroCoordFeeCoin in zeroCoordFeePayingCoins)
 		{
-			fileContent.AppendLine(ToLine(zeroCoordFeeCoin, isBanned: false, "ZeroCoordFee", roundId));
+			fileContent.AppendLine(ToLine(zeroCoordFeeCoin, isBanned: false, "ZeroCoordFee"));
 		}
 
 		await SaveToFileAsync(fileContent.ToString(), cancellationToken).ConfigureAwait(false);
 	}
 
-	private string ToLine(CoinVerifyInfo verifyInfo, string roundId)
+	private string ToLine(CoinVerifyInfo verifyInfo)
 	{
 		var reportId = verifyInfo.ApiResponseItem?.Report_info_section.Report_id;
 		var ids = verifyInfo.ApiResponseItem?.Cscore_section.Cscore_info?.Select(x => x.Id);
@@ -51,12 +51,12 @@ public class CoinVerifierAuditArchiver
 
 		var details = $"{reportId ?? "ReportID None"}:{(ids is null ? "None" : string.Join(',', ids))}:{(categories is null ? "None" : string.Join(',', categories))}";
 
-		return ToLine(verifyInfo.Coin, verifyInfo.ShouldBan, verifyInfo.Reason.ToString(), roundId, details);
+		return ToLine(verifyInfo.Coin, verifyInfo.ShouldBan, verifyInfo.Reason.ToString(), details);
 	}
 
-	private string ToLine(Coin coin, bool isBanned, string reason, string roundId, string details = "None")
+	private string ToLine(Coin coin, bool isBanned, string reason, string details = "None")
 	{
-		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{roundId},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details}";
+		return $"{DateTimeOffset.UtcNow.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff},{coin.Outpoint},{coin.ScriptPubKey.GetDestinationAddress(Network.Main)},{isBanned},{coin.Amount},{reason},{details}";
 	}
 
 	private async Task SaveToFileAsync(string fileContent, CancellationToken cancellationToken)
