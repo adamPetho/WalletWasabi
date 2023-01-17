@@ -45,10 +45,11 @@ public class CoinVerifierAuditArchiver
 
 	private string ToLine(CoinVerifyInfo verifyInfo, string roundId)
 	{
+		var reportId = verifyInfo.ApiResponseItem?.Report_info_section.Report_id;
 		var ids = verifyInfo.ApiResponseItem?.Cscore_section.Cscore_info?.Select(x => x.Id);
 		var categories = verifyInfo.ApiResponseItem?.Cscore_section.Cscore_info.Select(x => x.Name);
 
-		var details = $"{(ids is null ? "None" : string.Join(',', ids))}:{(categories is null ? "None" : string.Join(',', categories))}";
+		var details = $"{reportId ?? "ReportID None"}:{(ids is null ? "None" : string.Join(',', ids))}:{(categories is null ? "None" : string.Join(',', categories))}";
 
 		return ToLine(verifyInfo.Coin, verifyInfo.ShouldBan, verifyInfo.Reason.ToString(), roundId, details);
 	}
