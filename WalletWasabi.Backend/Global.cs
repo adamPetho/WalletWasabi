@@ -114,9 +114,9 @@ public class Global : IDisposable
 
 				HttpClient.BaseAddress = url;
 
-				var coinVerifierApiClient = new CoinVerifierApiClient(CoordinatorParameters.RuntimeCoordinatorConfig.CoinVerifierApiAuthToken, RpcClient.Network, HttpClient);
+				var coinVerifierApiClient = new CoinVerifierApiClient(wabiSabiConfig.CoinVerifierApiAuthToken, RpcClient.Network, HttpClient);
 				var whitelist = await Whitelist.CreateAndLoadFromFileAsync(CoordinatorParameters.WhitelistFilePath, wabiSabiConfig, cancel).ConfigureAwait(false);
-				coinVerifier = new(CoinJoinIdStore, coinVerifierApiClient, whitelist, CoordinatorParameters.RuntimeCoordinatorConfig);
+				coinVerifier = new(CoinJoinIdStore, coinVerifierApiClient, whitelist, wabiSabiConfig, auditsDirectoryPath: Path.Combine(CoordinatorParameters.CoordinatorDataDir, "CoinVerifierAudits"));
 				CoinVerifier = coinVerifier;
 				WhiteList = whitelist;
 				Logger.LogInfo("CoinVerifier created successfully.");
