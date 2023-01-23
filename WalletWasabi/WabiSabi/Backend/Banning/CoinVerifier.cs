@@ -15,25 +15,28 @@ public class CoinVerifier
 	// This should be much bigger than the possible input-reg period.
 	private TimeSpan AbsoluteScheduleSanityTimeout { get; } = TimeSpan.FromDays(2);
 
-	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig)
+	public CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, Whitelist whitelist, WabiSabiConfig wabiSabiConfig, string auditsDirectoryPath)
 	{
 		CoinJoinIdStore = coinJoinIdStore;
 		CoinVerifierApiClient = apiClient;
 		Whitelist = whitelist;
 		WabiSabiConfig = wabiSabiConfig;
+		VerifierAuditArchiver = new CoinVerifierAuditArchiver(auditsDirectoryPath);
 	}
 
 	// Constructor used for testing
-	internal CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, WabiSabiConfig wabiSabiConfig)
+	internal CoinVerifier(CoinJoinIdStore coinJoinIdStore, CoinVerifierApiClient apiClient, WabiSabiConfig wabiSabiConfig, CoinVerifierAuditArchiver? auditArchiver = null)
 	{
 		CoinJoinIdStore = coinJoinIdStore;
 		CoinVerifierApiClient = apiClient;
 		Whitelist = new(Enumerable.Empty<Innocent>(), string.Empty, wabiSabiConfig);
 		WabiSabiConfig = wabiSabiConfig;
+		VerifierAuditArchiver = auditArchiver ?? new("test/directory/path");
 	}
 
-	public Whitelist Whitelist { get; }
-	public WabiSabiConfig WabiSabiConfig { get; }
+	private Whitelist Whitelist { get; }
+	private WabiSabiConfig WabiSabiConfig { get; }
+	private CoinVerifierAuditArchiver VerifierAuditArchiver { get; }
 	private CoinJoinIdStore CoinJoinIdStore { get; }
 	private CoinVerifierApiClient CoinVerifierApiClient { get; }
 	private ConcurrentDictionary<Coin, (DateTimeOffset ScheduleTime, TaskCompletionSource<CoinVerifyResult> TaskCompletionSource, CancellationTokenSource AbortCts)> CoinVerifyItems { get; } = new();
@@ -45,8 +48,8 @@ public class CoinVerifier
 		using CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(30));
 		using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationTokenSource.Token, cancellationToken);
 
-        // Booting up the results with the default value - ban: no, remove: yes.
-        Dictionary<Coin, CoinVerifyResult> coinVerifyItems = coinsToCheck.ToDictionary(coin => coin, coin => new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true));
+		// Booting up the results with the default value - ban: no, remove: yes.
+		Dictionary<Coin, CoinVerifyResult> coinVerifyItems = coinsToCheck.ToDictionary(coin => coin, coin => new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason: null));
 
 		// Building up the task list.
 		List<Task<CoinVerifyResult>> tasks = new();
@@ -102,9 +105,11 @@ public class CoinVerifier
 
 		CleanUp();
 
-        await Whitelist.WriteToFileIfChangedAsync().ConfigureAwait(false);
+		await Whitelist.WriteToFileIfChangedAsync().ConfigureAwait(false);
 
-        return coinVerifyItems.Values.ToArray();
+		await VerifierAuditArchiver.SaveAuditsAsync(coinVerifyItems.Values, cancellationToken).ConfigureAwait(false);
+
+		return coinVerifyItems.Values.ToArray();
 	}
 
 	private void CleanUp()
@@ -171,19 +176,19 @@ public class CoinVerifier
 
 		if (oneHop)
 		{
-			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false));
+			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.OneHop));
 			return;
 		}
 
 		if (Whitelist.TryGet(coin.Outpoint, out _))
 		{
-			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false));
+			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Whitelisted));
 			return;
 		}
 
 		if (CoinJoinIdStore.Contains(coin.Outpoint.Hash))
 		{
-			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false));
+			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Remix));
 			return;
 		}
 
@@ -191,7 +196,7 @@ public class CoinVerifier
 		{
 			if (confirmations is null || confirmations < WabiSabiConfig.CoinVerifierRequiredConfirmation)
 			{
-				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true));
+				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason.Inmature));
 				return;
 			}
 		}
@@ -235,11 +240,11 @@ public class CoinVerifier
 					Whitelist.Add(coin.Outpoint);
 				}
 
-				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: shouldBan, ShouldRemove: shouldBan));
+				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: shouldBan, ShouldRemove: shouldBan, Reason.RemoteApiChecked, apiResponseItem));
 			}
 			catch (Exception ex)
 			{
-				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true));
+				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason.Exception));
 				Logger.LogError($"Coin verification was failed with '{ex}' for coin '{coin.Outpoint}'.");
 
 				// Do not throw an exception here - unobserverved exception prevention.
