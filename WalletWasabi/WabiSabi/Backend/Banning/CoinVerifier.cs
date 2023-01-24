@@ -50,7 +50,7 @@ public class CoinVerifier
 		using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(timeoutCancellationTokenSource.Token, cancellationToken);
 
 		// Booting up the results with the default value - ban: no, remove: yes.
-		Dictionary<Coin, CoinVerifyResult> coinVerifyItems = coinsToCheck.ToDictionary(coin => coin, coin => new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason: null));
+		Dictionary<Coin, CoinVerifyResult> coinVerifyItems = coinsToCheck.ToDictionary(coin => coin, coin => new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason.NotChecked));
 
 		// Building up the task list.
 		List<Task<CoinVerifyResult>> tasks = new();
@@ -181,28 +181,28 @@ public class CoinVerifier
 		if (oneHop)
 		{
 			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.OneHop));
-            return true;
-        }
+			return true;
+		}
 
 		if (Whitelist.TryGet(coin.Outpoint, out _))
 		{
 			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Whitelisted));
-            return true;
-        }
+			return true;
+		}
 
 		if (CoinJoinIdStore.Contains(coin.Outpoint.Hash))
 		{
 			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Remix));
-            return true;
-        }
+			return true;
+		}
 
 		if (coin.Amount >= WabiSabiConfig.CoinVerifierRequiredConfirmationAmount)
 		{
 			if (confirmations is null || confirmations < WabiSabiConfig.CoinVerifierRequiredConfirmations)
 			{
 				item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason.Inmature));
-                return true;
-            }
+				return true;
+			}
 		}
 
 		_ = Task.Run(
