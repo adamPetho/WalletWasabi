@@ -11,7 +11,7 @@ public class CoinVerifyItem : IDisposable
 	{
 	}
 
-	public DateTimeOffset ScheduleTime { get; } = DateTimeOffset.Now;
+	public DateTimeOffset ScheduleTime { get; } = DateTimeOffset.UtcNow;
 	private TaskCompletionSource<CoinVerifyResult> TaskCompletionSource { get; } = new();
 	private CancellationTokenSource AbortCts { get; } = new();
 	public Task<CoinVerifyResult> Task => TaskCompletionSource.Task;
@@ -29,6 +29,7 @@ public class CoinVerifyItem : IDisposable
 		{
 			if (disposing)
 			{
+				AbortCts.Cancel();
 				AbortCts.Dispose();
 			}
 
@@ -42,12 +43,12 @@ public class CoinVerifyItem : IDisposable
 		GC.SuppressFinalize(this);
 	}
 
-	internal void SetResult(CoinVerifyResult coinVerifyResult)
+	public void SetResult(CoinVerifyResult coinVerifyResult)
 	{
 		TaskCompletionSource.SetResult(coinVerifyResult);
 	}
 
-	internal void ThrowIfCancellationRequested()
+	public void ThrowIfCancellationRequested()
 	{
 		AbortCts.Token.ThrowIfCancellationRequested();
 	}

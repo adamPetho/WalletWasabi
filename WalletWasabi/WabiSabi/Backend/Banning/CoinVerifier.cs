@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WalletWasabi.Logging;
 using WalletWasabi.WabiSabi.Backend.Rounds.CoinJoinStorage;
 using WalletWasabi.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WalletWasabi.WabiSabi.Backend.Banning;
 
@@ -45,8 +46,8 @@ public class CoinVerifier
 
 	public async Task<IEnumerable<CoinVerifyResult>> VerifyCoinsAsync(IEnumerable<Coin> coinsToCheck, CancellationToken cancellationToken)
 	{
-		using CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(30));
-		using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationTokenSource.Token, cancellationToken);
+		using CancellationTokenSource timeoutCancellationTokenSource = new(TimeSpan.FromSeconds(30));
+		using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(timeoutCancellationTokenSource.Token, cancellationToken);
 
 		// Booting up the results with the default value - ban: no, remove: yes.
 		Dictionary<Coin, CoinVerifyResult> coinVerifyItems = coinsToCheck.ToDictionary(coin => coin, coin => new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason: null));
@@ -60,9 +61,8 @@ public class CoinVerifier
 				// If the coin was not scheduled try to quickly schedule it - it should not happen.
 				Logger.LogWarning($"Trying to re-schedule coin '{coin.Outpoint}' for verification.");
 
-				// Quickly re-scheduling the missing items.
-				ScheduleVerification(coin, cancellationToken, TimeSpan.Zero);
-				if (!CoinVerifyItems.TryGetValue(coin, out item))
+				// Quickly re-scheduling the missing items - we do not want to cancel the verification after the local timeout, so passing cancellationToken.
+				if (!TryScheduleVerification(coin, out item, cancellationToken, TimeSpan.Zero))
 				{
 					// This should not happen.
 					Logger.LogError($"Coin '{coin.Outpoint}' cannot be re-scheduled for verification. The coin will be removed from the round.");
@@ -93,12 +93,12 @@ public class CoinVerifier
 		}
 		catch (OperationCanceledException ex)
 		{
-			if (cancellationTokenSource.IsCancellationRequested)
+			if (timeoutCancellationTokenSource.IsCancellationRequested)
 			{
 				Logger.LogError(ex);
 			}
 
-			// Otherwise just return.
+			// Otherwise just continue - the whole round was cancelled.
 		}
 		catch (Exception ex)
 		{
@@ -157,56 +157,59 @@ public class CoinVerifier
 		return shouldBan;
 	}
 
-	public void ScheduleVerification(Coin coin, DateTimeOffset inputRegistrationEndTime, CancellationToken cancellationToken, bool oneHop = false, int? confirmations = null)
+	public bool TryScheduleVerification(Coin coin, DateTimeOffset inputRegistrationEndTime, [NotNullWhen(true)] out CoinVerifyItem? coinVerifyItem, CancellationToken cancellationToken, bool oneHop = false, int? confirmations = null)
 	{
 		var startTime = inputRegistrationEndTime - WabiSabiConfig.CoinVerifierStartBefore;
 		var delayUntilStart = startTime - DateTimeOffset.UtcNow;
-		ScheduleVerification(coin, cancellationToken, delayUntilStart, oneHop, confirmations);
+		return TryScheduleVerification(coin, out coinVerifyItem, cancellationToken, delayUntilStart, oneHop, confirmations);
 	}
 
-	public void ScheduleVerification(Coin coin, CancellationToken cancellationToken, TimeSpan? delayedStart = null, bool oneHop = false, int? confirmations = null)
+	public bool TryScheduleVerification(Coin coin, [NotNullWhen(true)] out CoinVerifyItem? coinVerifyItem, CancellationToken verificationCancellationToken, TimeSpan? delayedStart = null, bool oneHop = false, int? confirmations = null)
 	{
 		var item = new CoinVerifyItem();
+		coinVerifyItem = null;
 
 		if (!CoinVerifyItems.TryAdd(coin, item))
 		{
 			Logger.LogWarning("Coin was already scheduled for verification.");
 			item.Dispose();
-			return;
+			return false;
 		}
+
+		coinVerifyItem = item;
 
 		if (oneHop)
 		{
 			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.OneHop));
-			return;
-		}
+            return true;
+        }
 
 		if (Whitelist.TryGet(coin.Outpoint, out _))
 		{
 			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Whitelisted));
-			return;
-		}
+            return true;
+        }
 
 		if (CoinJoinIdStore.Contains(coin.Outpoint.Hash))
 		{
 			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Remix));
-			return;
-		}
+            return true;
+        }
 
 		if (coin.Amount >= WabiSabiConfig.CoinVerifierRequiredConfirmationAmount)
 		{
 			if (confirmations is null || confirmations < WabiSabiConfig.CoinVerifierRequiredConfirmations)
 			{
 				item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason.Inmature));
-				return;
-			}
+                return true;
+            }
 		}
 
 		_ = Task.Run(
 			async () =>
 			{
 				using CancellationTokenSource absoluteTimeoutCts = new(AbsoluteScheduleSanityTimeout);
-				using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, absoluteTimeoutCts.Token, item.Token);
+				using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(verificationCancellationToken, absoluteTimeoutCts.Token, item.Token);
 
 				try
 				{
@@ -252,7 +255,9 @@ public class CoinVerifier
 					// Do not throw an exception here - unobserverved exception prevention.
 				}
 			},
-			cancellationToken);
+			verificationCancellationToken);
+
+		return true;
 	}
 
 	public void CancelSchedule(Coin coin)
