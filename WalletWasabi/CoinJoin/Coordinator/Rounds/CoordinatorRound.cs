@@ -643,7 +643,10 @@ public class CoordinatorRound
 			{
 				foreach (var coin in alice.Inputs)
 				{
-					coinDictionary.Add(coin, alice);
+					if (!coinDictionary.TryAdd(coin, alice))
+					{
+						Logger.LogWarning($"Duplicated coins were found during the build of {nameof(coinDictionary)}.");
+					}
 				}
 			}
 
@@ -660,7 +663,7 @@ public class CoordinatorRound
 		{
 			Logger.LogError($"{nameof(CoinVerifier)} has failed to verify all Alices({Alices.Count}).", exc);
 
-			//Fail hard in case of any exception - there shouldn't be, VerifyCoinsAsync should handle everything.
+			// Fail hard as VerifyCoinsAsync should handle all exceptions.
 			throw;
 		}
 	}

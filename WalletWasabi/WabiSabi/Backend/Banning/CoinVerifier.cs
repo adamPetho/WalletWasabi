@@ -39,11 +39,10 @@ public class CoinVerifier
 	private CoinVerifierAuditArchiver VerifierAuditArchiver { get; }
 	private CoinJoinIdStore CoinJoinIdStore { get; }
 	private CoinVerifierApiClient CoinVerifierApiClient { get; }
-	private ConcurrentDictionary<Coin, (DateTimeOffset ScheduleTime, TaskCompletionSource<CoinVerifyResult> TaskCompletionSource, CancellationTokenSource AbortCts)> CoinVerifyItems { get; } = new();
+	private ConcurrentDictionary<Coin, CoinVerifyItem> CoinVerifyItems { get; } = new();
+    public event EventHandler<Coin>? CoinBlackListed;
 
-	public event EventHandler<Coin>? CoinBlackListed;
-
-	public async Task<IEnumerable<CoinVerifyResult>> VerifyCoinsAsync(IEnumerable<Coin> coinsToCheck, CancellationToken cancellationToken)
+    public async Task<IEnumerable<CoinVerifyResult>> VerifyCoinsAsync(IEnumerable<Coin> coinsToCheck, CancellationToken cancellationToken)
 	{
 		using CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(30));
 		using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationTokenSource.Token, cancellationToken);
@@ -70,7 +69,7 @@ public class CoinVerifier
 				}
 			}
 
-			tasks.Add(item.TaskCompletionSource.Task);
+			tasks.Add(item.Task);
 		}
 
 		try
@@ -82,8 +81,10 @@ public class CoinVerifier
 				var result = await completedTask.WaitAsync(linkedCts.Token).ConfigureAwait(false);
 
 				// The verification task fulfilled its purpose - clean up.
-				CoinVerifyItems.TryRemove(result.Coin, out var item);
-				item.AbortCts.Dispose();
+				if (CoinVerifyItems.TryRemove(result.Coin, out var item))
+				{
+					item.Dispose();
+				}
 
 				// Update the default value with the real result.
 				coinVerifyItems[result.Coin] = result;
@@ -123,12 +124,12 @@ public class CoinVerifier
 				CoinVerifyItems.TryRemove(coin, out var _);
 
 				// This should never happen.
-				if (!item.TaskCompletionSource.Task.IsCompleted)
+				if (!item.Task.IsCompleted)
 				{
 					Logger.LogError($"Unfinished task was removed for coin: '{coin.Outpoint}'.");
 				}
 
-				item.AbortCts.Dispose();
+				item.Dispose();
 			}
 		}
 	}
@@ -164,99 +165,100 @@ public class CoinVerifier
 
 	public void ScheduleVerification(Coin coin, CancellationToken cancellationToken, TimeSpan? delayedStart = null, bool oneHop = false, int? confirmations = null)
 	{
-		TaskCompletionSource<CoinVerifyResult> taskCompletionSource = new();
-		var abortCts = new CancellationTokenSource();
+		var item = new CoinVerifyItem();
 
-		if (!CoinVerifyItems.TryAdd(coin, (DateTimeOffset.UtcNow, taskCompletionSource, abortCts)))
+		if (!CoinVerifyItems.TryAdd(coin, item))
 		{
 			Logger.LogWarning("Coin was already scheduled for verification.");
-			abortCts.Dispose();
+			item.Dispose();
 			return;
 		}
 
 		if (oneHop)
 		{
-			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.OneHop));
+			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false));
 			return;
 		}
 
 		if (Whitelist.TryGet(coin.Outpoint, out _))
 		{
-			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Whitelisted));
+			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false));
 			return;
 		}
 
 		if (CoinJoinIdStore.Contains(coin.Outpoint.Hash))
 		{
-			taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false, Reason.Remix));
+			item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: false));
 			return;
 		}
 
 		if (coin.Amount >= WabiSabiConfig.CoinVerifierRequiredConfirmationAmount)
 		{
-			if (confirmations is null || confirmations < WabiSabiConfig.CoinVerifierRequiredConfirmation)
+			if (confirmations is null || confirmations < WabiSabiConfig.CoinVerifierRequiredConfirmations)
 			{
-				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason.Inmature));
+				item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true));
 				return;
 			}
 		}
 
-		_ = Task.Run(async () =>
-		{
-			using CancellationTokenSource absoluteTimeoutCts = new(AbsoluteScheduleSanityTimeout);
-			using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, absoluteTimeoutCts.Token, abortCts.Token);
-
-			try
+		_ = Task.Run(
+			async () =>
 			{
-				var delay = delayedStart.GetValueOrDefault(TimeSpan.Zero);
+				using CancellationTokenSource absoluteTimeoutCts = new(AbsoluteScheduleSanityTimeout);
+				using CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, absoluteTimeoutCts.Token, item.Token);
 
-				// Sanity check.
-				if (delay > AbsoluteScheduleSanityTimeout)
+				try
 				{
-					Logger.LogError($"Start delay '{delay}' was more than the abolute maximum '{AbsoluteScheduleSanityTimeout}' for coin '{coin.Outpoint}'.");
-					delay = AbsoluteScheduleSanityTimeout;
-				}
+					var delay = delayedStart.GetValueOrDefault(TimeSpan.Zero);
 
-				if (delay > TimeSpan.Zero)
+					// Sanity check.
+					if (delay > AbsoluteScheduleSanityTimeout)
+					{
+						Logger.LogError($"Start delay '{delay}' was more than the absolute maximum '{AbsoluteScheduleSanityTimeout}' for coin '{coin.Outpoint}'.");
+						delay = AbsoluteScheduleSanityTimeout;
+					}
+
+					if (delay > TimeSpan.Zero)
+					{
+						// We only abort and throw from the delay. If the API request already started, we will go with it.
+						using CancellationTokenSource delayCts = CancellationTokenSource.CreateLinkedTokenSource(linkedCts.Token, item.Token);
+						await Task.Delay(delay, delayCts.Token).ConfigureAwait(false);
+					}
+
+					// This is the last chance to abort with abortCts.
+					item.ThrowIfCancellationRequested();
+
+					var apiResponseItem = await CoinVerifierApiClient.SendRequestAsync(coin.ScriptPubKey, linkedCts.Token).ConfigureAwait(false);
+					var shouldBan = CheckForFlags(apiResponseItem);
+
+					// We got a definitive answer.
+					if (shouldBan)
+					{
+						CoinBlacklisted?.SafeInvoke(this, coin);
+					}
+					else
+					{
+						Whitelist.Add(coin.Outpoint);
+					}
+
+					item.SetResult(new CoinVerifyResult(coin, ShouldBan: shouldBan, ShouldRemove: shouldBan));
+				}
+				catch (Exception ex)
 				{
-					// We only abort and throw from the delay. If the API request already started, we will go with it.
-					using CancellationTokenSource delayCts = CancellationTokenSource.CreateLinkedTokenSource(linkedCts.Token, abortCts.Token);
-					await Task.Delay(delay, delayCts.Token).ConfigureAwait(false);
+					item.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true));
+					Logger.LogError($"Coin verification was failed with '{ex}' for coin '{coin.Outpoint}'.");
+
+					// Do not throw an exception here - unobserverved exception prevention.
 				}
-
-				// This is the last chance to abort with abortCts.
-				abortCts.Token.ThrowIfCancellationRequested();
-
-				var apiResponseItem = await CoinVerifierApiClient.SendRequestAsync(coin.ScriptPubKey, linkedCts.Token).ConfigureAwait(false);
-				var shouldBan = CheckForFlags(apiResponseItem);
-
-				// We got a definetive answer.
-				if (shouldBan)
-				{
-					CoinBlackListed?.SafeInvoke(this, coin);
-				}
-				else
-				{
-					Whitelist.Add(coin.Outpoint);
-				}
-
-				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: shouldBan, ShouldRemove: shouldBan, Reason.RemoteApiChecked, apiResponseItem));
-			}
-			catch (Exception ex)
-			{
-				taskCompletionSource.SetResult(new CoinVerifyResult(coin, ShouldBan: false, ShouldRemove: true, Reason.Exception));
-				Logger.LogError($"Coin verification was failed with '{ex}' for coin '{coin.Outpoint}'.");
-
-				// Do not throw an exception here - unobserverved exception prevention.
-			}
-		}, cancellationToken);
+			},
+			cancellationToken);
 	}
 
 	public void CancelSchedule(Coin coin)
 	{
-		if (CoinVerifyItems.TryGetValue(coin, out var item) && !item.AbortCts.IsCancellationRequested)
+		if (CoinVerifyItems.TryGetValue(coin, out var item) && !item.IsCancellationRequested)
 		{
-			item.AbortCts.Cancel();
+			item.Cancel();
 		}
 	}
 }
