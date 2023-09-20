@@ -5,13 +5,30 @@ using System.Threading;
 using System.Threading.Tasks;
 using WalletWasabi.Tor.Http.Extensions;
 using System.Net.Http;
+using WalletWasabi.WebClients.Wasabi;
+using WalletWasabi.Tor.Socks5.Pool.Circuits;
 
 namespace WalletWasabi.WebClients.MempoolSpace;
 public class MempoolSpaceApiClient
 {
-	public MempoolSpaceApiClient(IHttpClient httpClient, Network network)
+	public MempoolSpaceApiClient(WasabiHttpClientFactory httpClientFactory, Network network)
 	{
-		HttpClient = httpClient;
+		string uriString;
+
+		if (httpClientFactory.IsTorEnabled)
+		{
+			uriString = network == Network.TestNet
+				? "http://mempoolhqx4isw62xs7abwphsq7ldayuidyx2v2oethdhhj6mlo2r6ad.onion/testnet"
+				: "http://mempoolhqx4isw62xs7abwphsq7ldayuidyx2v2oethdhhj6mlo2r6ad.onion/";
+		}
+		else
+		{
+			uriString = network == Network.TestNet
+				? "https://mempool.space/testnet"
+				: "https://mempool.space/";
+		}
+
+		HttpClient = httpClientFactory.NewHttpClient(() => new Uri(uriString), Mode.NewCircuitPerRequest);
 	}
 
 	private IHttpClient HttpClient { get; }

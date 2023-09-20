@@ -1,10 +1,13 @@
 using Microsoft.Extensions.Hosting;
+using NBitcoin;
+using Nito.AsyncEx.Synchronous;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WalletWasabi.BitcoinCore.Monitoring;
 using WalletWasabi.Logging;
 using WalletWasabi.Nito.AsyncEx;
+using WalletWasabi.WebClients.MempoolSpace;
 
 namespace WalletWasabi.Blockchain.Analysis.FeesEstimation;
 
@@ -14,15 +17,21 @@ namespace WalletWasabi.Blockchain.Analysis.FeesEstimation;
 /// </summary>
 public class HybridFeeProvider : IHostedService
 {
-	public HybridFeeProvider(IThirdPartyFeeProvider thirdPartyFeeProvider, RpcFeeProvider? rpcFeeProvider)
+	public HybridFeeProvider(IThirdPartyFeeProvider thirdPartyFeeProvider, RpcFeeProvider? rpcFeeProvider, MempoolSpaceApiClient? mempoolSpaceApiClient)
 	{
 		ThirdPartyFeeProvider = thirdPartyFeeProvider;
 		RpcFeeProvider = rpcFeeProvider;
+		MempoolSpaceApiClient = mempoolSpaceApiClient;
+	}
+
+	public HybridFeeProvider(IThirdPartyFeeProvider thirdPartyFeeProvider, RpcFeeProvider? rpcFeeProvider) : this(thirdPartyFeeProvider, rpcFeeProvider, null)
+	{
 	}
 
 	public event EventHandler<AllFeeEstimate>? AllFeeEstimateChanged;
 
 	public RpcFeeProvider? RpcFeeProvider { get; }
+	public MempoolSpaceApiClient? MempoolSpaceApiClient { get; }
 	public IThirdPartyFeeProvider ThirdPartyFeeProvider { get; }
 	private object Lock { get; } = new();
 	public AllFeeEstimate? AllFeeEstimate { get; private set; }
@@ -157,5 +166,24 @@ public class HybridFeeProvider : IHostedService
 		}
 		AllFeeEstimate = fees;
 		return true;
+	}
+	public int? FetchTransactionFee(uint256 txid)
+	{
+		MempoolSpaceApiResponseItem? response;
+
+		using CancellationTokenSource cts = new(TimeSpan.FromSeconds(15));
+		if (MempoolSpaceApiClient is not null)
+		{
+			var task = Task.Run(async () => await (MempoolSpaceApiClient?.GetTransactionInfosAsync(txid, cts.Token)).ConfigureAwait(false));
+
+			response = task.WaitAndUnwrapException();
+
+			if (response != null)
+			{
+				return response.Fee;
+			}
+		}
+
+		return null;
 	}
 }
