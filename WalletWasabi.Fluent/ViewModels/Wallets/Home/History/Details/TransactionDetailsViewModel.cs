@@ -60,27 +60,29 @@ public partial class TransactionDetailsViewModel : RoutableViewModel
 		BlockHeight = transactionSummary.Height.Type == HeightType.Chain ? transactionSummary.Height.Value : 0;
 		Confirmations = transactionSummary.GetConfirmations();
 
-		/*TransactionFeeHelper.TryEstimateConfirmationTime(_walletVm.Wallet, transactionSummary.Transaction, out TimeSpan? estimate);
+		TransactionFeeHelper.TryEstimateConfirmationTime(_walletVm.Wallet, transactionSummary.Transaction, out TimeSpan? estimate);
 
 		if (estimate.HasValue)
 		{
+			// We could calculate the estimated confirmation, no need to fetch the fee.
 			ConfirmationTime = estimate;
-		}*/
-
-		int? txFeeInSats = _walletVm.Wallet.FeeProvider.FetchTransactionFee(transactionSummary.TransactionId);
-		if (txFeeInSats is null)
-		{
-			ConfirmationTime = null;
 		}
 		else
 		{
-			int vSize = transactionSummary.Transaction.Transaction.GetVirtualSize();
+			if (!_walletVm.Wallet.FeeProvider.TryFetchTransactionFee(transactionSummary.TransactionId, out var txFeeInSats))
+			{
+				// Something went wrong while fetching the fee. We can't show the ConfirmationTime.
+				ConfirmationTime = null;
+			}
+			else
+			{
+				int vSize = transactionSummary.Transaction.Transaction.GetVirtualSize();
 
-			TransactionFeeHelper.TryEstimateConfirmationTimeWithFeeAndVsize(_walletVm.Wallet, (int)txFeeInSats, vSize, out TimeSpan? estimate);
+				TransactionFeeHelper.TryEstimateConfirmationTimeWithFeeAndVsize(_walletVm.Wallet, (int)txFeeInSats, vSize, out estimate);
 
-			ConfirmationTime = estimate;
+				ConfirmationTime = estimate;
+			}
 		}
-		
 
 		IsConfirmed = Confirmations > 0;
 

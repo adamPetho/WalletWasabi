@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Hosting;
 using NBitcoin;
 using Nito.AsyncEx.Synchronous;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -167,9 +168,10 @@ public class HybridFeeProvider : IHostedService
 		AllFeeEstimate = fees;
 		return true;
 	}
-	public int? FetchTransactionFee(uint256 txid)
+	public bool TryFetchTransactionFee(uint256 txid, [NotNullWhen(true)] out int? fee)
 	{
 		MempoolSpaceApiResponseItem response;
+		fee = null;
 
 		using CancellationTokenSource cts = new(TimeSpan.FromSeconds(20));
 		if (MempoolSpaceApiClient is not null)
@@ -182,7 +184,8 @@ public class HybridFeeProvider : IHostedService
 
 				if (response is not null)
 				{
-					return response.Fee;
+					fee = response.Fee;
+					return true;
 				}
 			}
 			catch (Exception ex)
@@ -192,6 +195,6 @@ public class HybridFeeProvider : IHostedService
 			
 		}
 
-		return null;
+		return false;
 	}
 }
