@@ -49,7 +49,7 @@ public partial class TransactionDetailsViewModel : RoutableViewModel
 	public ICollection<BitcoinAddress> DestinationAddresses { get; }
 
 	public bool IsFeeVisible { get; }
-	
+
 	public Money? Fee { get; }
 
 	private void UpdateValues(TransactionSummary transactionSummary)
@@ -60,8 +60,27 @@ public partial class TransactionDetailsViewModel : RoutableViewModel
 		BlockHeight = transactionSummary.Height.Type == HeightType.Chain ? transactionSummary.Height.Value : 0;
 		Confirmations = transactionSummary.GetConfirmations();
 
-		TransactionFeeHelper.TryEstimateConfirmationTime(_walletVm.Wallet, transactionSummary.Transaction, out var estimate);
-		ConfirmationTime = estimate;
+		/*TransactionFeeHelper.TryEstimateConfirmationTime(_walletVm.Wallet, transactionSummary.Transaction, out TimeSpan? estimate);
+
+		if (estimate.HasValue)
+		{
+			ConfirmationTime = estimate;
+		}*/
+
+		int? txFeeInSats = _walletVm.Wallet.FeeProvider.FetchTransactionFee(transactionSummary.TransactionId);
+		if (txFeeInSats is null)
+		{
+			ConfirmationTime = null;
+		}
+		else
+		{
+			int vSize = transactionSummary.Transaction.Transaction.GetVirtualSize();
+
+			TransactionFeeHelper.TryEstimateConfirmationTimeWithFeeAndVsize(_walletVm.Wallet, (int)txFeeInSats, vSize, out TimeSpan? estimate);
+
+			ConfirmationTime = estimate;
+		}
+		
 
 		IsConfirmed = Confirmations > 0;
 
@@ -78,7 +97,7 @@ public partial class TransactionDetailsViewModel : RoutableViewModel
 
 		BlockHash = transactionSummary.BlockHash?.ToString();
 
-		IsConfirmationTimeVisible = ConfirmationTime.HasValue && ConfirmationTime != TimeSpan.Zero;
+		IsConfirmationTimeVisible = ConfirmationTime.HasValue && ConfirmationTime != TimeSpan.Zero && Confirmations <= 0;
 		IsLabelsVisible = Labels.HasValue && Labels.Value.Any();
 	}
 
