@@ -74,6 +74,19 @@ public static class TransactionFeeHelper
 		return estimate is not null;
 	}
 
+	public static bool TryEstimateConfirmationTimeWithFeeAndVsize(Wallet wallet, int txFeeInSatoshi, int vSize, [NotNullWhen(true)] out TimeSpan? estimate)
+	{
+		estimate = null;
+		var feeRate = new FeeRate(Money.Satoshis(txFeeInSatoshi), vSize);
+
+		if (TryGetFeeEstimates(wallet, out var feeEstimates))
+		{
+			estimate = feeEstimates.EstimateConfirmationTime(feeRate);
+		}
+
+		return estimate is not null;
+	}
+
 	public static bool TryGetFeeEstimates(Wallet wallet, [NotNullWhen(true)] out AllFeeEstimate? estimates)
 		=> TryGetFeeEstimates(wallet.FeeProvider, wallet.Network, out estimates);
 
