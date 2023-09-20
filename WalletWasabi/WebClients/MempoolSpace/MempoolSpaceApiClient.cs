@@ -32,7 +32,7 @@ public class MempoolSpaceApiClient
 	}
 
 	private IHttpClient HttpClient { get; }
-	public async Task<MempoolSpaceApiResponseItem?> GetTransactionInfosAsync(uint256 txid, CancellationToken cancel)
+	public async Task<MempoolSpaceApiResponseItem> GetTransactionInfosAsync(uint256 txid, CancellationToken cancel)
 	{
 		HttpResponseMessage response;
 
@@ -44,11 +44,7 @@ public class MempoolSpaceApiClient
 		if (!response.IsSuccessStatusCode)
 		{
 			// Tx was not found in mempool.space's node.
-			if (response.StatusCode == HttpStatusCode.NotFound)
-			{
-				return null;
-			}
-			throw new InvalidOperationException($"There was an unexpected error with request to mempool.space. {nameof(HttpStatusCode)} was {response?.StatusCode}.");
+			await response.ThrowRequestExceptionFromContentAsync(cancel).ConfigureAwait(false);
 		}
 
 		return await response.Content.ReadAsJsonAsync<MempoolSpaceApiResponseItem>().ConfigureAwait(false);

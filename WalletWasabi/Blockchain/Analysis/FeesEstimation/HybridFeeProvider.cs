@@ -169,19 +169,27 @@ public class HybridFeeProvider : IHostedService
 	}
 	public int? FetchTransactionFee(uint256 txid)
 	{
-		MempoolSpaceApiResponseItem? response;
+		MempoolSpaceApiResponseItem response;
 
-		using CancellationTokenSource cts = new(TimeSpan.FromSeconds(15));
+		using CancellationTokenSource cts = new(TimeSpan.FromSeconds(20));
 		if (MempoolSpaceApiClient is not null)
 		{
-			var task = Task.Run(async () => await (MempoolSpaceApiClient?.GetTransactionInfosAsync(txid, cts.Token)).ConfigureAwait(false));
-
-			response = task.WaitAndUnwrapException();
-
-			if (response != null)
+			try
 			{
-				return response.Fee;
+				var task = Task.Run(async () => await MempoolSpaceApiClient.GetTransactionInfosAsync(txid, cts.Token).ConfigureAwait(false));
+
+				response = task.WaitAndUnwrapException();
+
+				if (response is not null)
+				{
+					return response.Fee;
+				}
 			}
+			catch (Exception ex)
+			{
+				Logger.LogWarning($"Failed to fetch transaction fee. {ex}");
+			}
+			
 		}
 
 		return null;
