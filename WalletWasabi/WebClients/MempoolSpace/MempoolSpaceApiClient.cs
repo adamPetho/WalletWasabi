@@ -18,13 +18,13 @@ public class MempoolSpaceApiClient
 		if (httpClientFactory.IsTorEnabled)
 		{
 			uriString = network == Network.TestNet
-				? "http://mempoolhqx4isw62xs7abwphsq7ldayuidyx2v2oethdhhj6mlo2r6ad.onion/testnet"
+				? "http://mempoolhqx4isw62xs7abwphsq7ldayuidyx2v2oethdhhj6mlo2r6ad.onion/testnet/"
 				: "http://mempoolhqx4isw62xs7abwphsq7ldayuidyx2v2oethdhhj6mlo2r6ad.onion/";
 		}
 		else
 		{
 			uriString = network == Network.TestNet
-				? "https://mempool.space/testnet"
+				? "https://mempool.space/testnet/"
 				: "https://mempool.space/";
 		}
 
@@ -39,9 +39,8 @@ public class MempoolSpaceApiClient
 		// Ensure not being banned by Mempool.space's API
 		await Task.Delay(1000, cancel).ConfigureAwait(false);
 
-		using var request = new HttpRequestMessage(HttpMethod.Get, $"api/tx/{txid}");
-		response = await HttpClient.SendAsync(request, cancel).ConfigureAwait(false);
-		
+		response = await HttpClient.SendAsync(HttpMethod.Get, $"api/tx/{txid}", null, cancel).ConfigureAwait(false);
+
 		if (!response.IsSuccessStatusCode)
 		{
 			// Tx was not found in mempool.space's node.
