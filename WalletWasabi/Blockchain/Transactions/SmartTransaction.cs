@@ -12,6 +12,7 @@ using WalletWasabi.Helpers;
 using WalletWasabi.JsonConverters;
 using WalletWasabi.Logging;
 using WalletWasabi.Models;
+using WalletWasabi.WebClients.MempoolSpace;
 
 namespace WalletWasabi.Blockchain.Transactions;
 
@@ -479,8 +480,15 @@ public class SmartTransaction : IEquatable<SmartTransaction>
 	{
 		if (ForeignInputs.Any())
 		{
-			fee = null;
-			return false;
+			if (Confirmed)
+			{
+				fee = null;
+				return false;
+			}
+			else
+			{
+				return TransactionFeeFetcher.TryFetchTransactionFee(Transaction.GetHash(), out fee);
+			}
 		}
 		else
 		{

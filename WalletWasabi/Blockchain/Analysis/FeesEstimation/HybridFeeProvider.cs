@@ -18,21 +18,15 @@ namespace WalletWasabi.Blockchain.Analysis.FeesEstimation;
 /// </summary>
 public class HybridFeeProvider : IHostedService
 {
-	public HybridFeeProvider(IThirdPartyFeeProvider thirdPartyFeeProvider, RpcFeeProvider? rpcFeeProvider, MempoolSpaceApiClient? mempoolSpaceApiClient)
+	public HybridFeeProvider(IThirdPartyFeeProvider thirdPartyFeeProvider, RpcFeeProvider? rpcFeeProvider)
 	{
 		ThirdPartyFeeProvider = thirdPartyFeeProvider;
 		RpcFeeProvider = rpcFeeProvider;
-		MempoolSpaceApiClient = mempoolSpaceApiClient;
-	}
-
-	public HybridFeeProvider(IThirdPartyFeeProvider thirdPartyFeeProvider, RpcFeeProvider? rpcFeeProvider) : this(thirdPartyFeeProvider, rpcFeeProvider, null)
-	{
 	}
 
 	public event EventHandler<AllFeeEstimate>? AllFeeEstimateChanged;
 
 	public RpcFeeProvider? RpcFeeProvider { get; }
-	public MempoolSpaceApiClient? MempoolSpaceApiClient { get; }
 	public IThirdPartyFeeProvider ThirdPartyFeeProvider { get; }
 	private object Lock { get; } = new();
 	public AllFeeEstimate? AllFeeEstimate { get; private set; }
@@ -167,34 +161,5 @@ public class HybridFeeProvider : IHostedService
 		}
 		AllFeeEstimate = fees;
 		return true;
-	}
-	public bool TryFetchTransactionFee(uint256 txid, [NotNullWhen(true)] out int? fee)
-	{
-		MempoolSpaceApiResponseItem response;
-		fee = null;
-
-		using CancellationTokenSource cts = new(TimeSpan.FromSeconds(20));
-		if (MempoolSpaceApiClient is not null)
-		{
-			try
-			{
-				var task = Task.Run(async () => await MempoolSpaceApiClient.GetTransactionInfosAsync(txid, cts.Token).ConfigureAwait(false));
-
-				response = task.WaitAndUnwrapException();
-
-				if (response is not null)
-				{
-					fee = response.Fee;
-					return true;
-				}
-			}
-			catch (Exception ex)
-			{
-				Logger.LogWarning($"Failed to fetch transaction fee. {ex}");
-			}
-			
-		}
-
-		return false;
 	}
 }

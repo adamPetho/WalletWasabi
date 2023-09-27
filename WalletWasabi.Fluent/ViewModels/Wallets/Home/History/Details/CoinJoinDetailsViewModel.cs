@@ -1,11 +1,13 @@
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using NBitcoin;
 using ReactiveUI;
 using WalletWasabi.Fluent.Extensions;
+using WalletWasabi.Fluent.Helpers;
 using WalletWasabi.Fluent.ViewModels.Navigation;
 using WalletWasabi.Fluent.ViewModels.Wallets.Home.History.HistoryItems;
 
@@ -24,7 +26,7 @@ public partial class CoinJoinDetailsViewModel : RoutableViewModel
 	[AutoNotify] private bool _isConfirmed;
 	[AutoNotify] private int _confirmations;
 
-	public CoinJoinDetailsViewModel(CoinJoinHistoryItemViewModel coinJoin, IObservable<Unit> updateTrigger)
+	public CoinJoinDetailsViewModel(CoinJoinHistoryItemViewModel coinJoin, IObservable<Unit> updateTrigger, TimeSpan? estimate)
 	{
 		_coinJoin = coinJoin;
 		_updateTrigger = updateTrigger;
@@ -40,7 +42,11 @@ public partial class CoinJoinDetailsViewModel : RoutableViewModel
 			}
 		});
 
-		ConfirmationTime = TimeSpan.Zero; // TODO: Calculate confirmation time
+		if (estimate.HasValue)
+		{
+			ConfirmationTime = estimate;
+		}
+
 		IsConfirmationTimeVisible = ConfirmationTime.HasValue && ConfirmationTime != TimeSpan.Zero;
 
 		Update();

@@ -25,9 +25,11 @@ public partial class CoinJoinHistoryItemViewModel : HistoryItemViewModelBase
 
 		SetAmount(transactionSummary.Amount, transactionSummary.GetFee());
 
+		TransactionFeeHelper.TryEstimateConfirmationTime(walletVm.Wallet, transactionSummary.Transaction, out TimeSpan? estimate);
+
 		ShowDetailsCommand = ReactiveCommand.Create(() =>
 			UiContext.Navigate(NavigationTarget.DialogScreen).To(
-				new CoinJoinDetailsViewModel(this, walletVm.UiTriggers.TransactionsUpdateTrigger)));
+				new CoinJoinDetailsViewModel(this, walletVm.UiTriggers.TransactionsUpdateTrigger, estimate)));
 
 		DateString = Date.ToLocalTime().ToUserFacingString();
 	}

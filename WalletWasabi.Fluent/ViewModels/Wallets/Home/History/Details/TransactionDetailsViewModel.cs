@@ -67,22 +67,6 @@ public partial class TransactionDetailsViewModel : RoutableViewModel
 			// We could calculate the estimated confirmation, no need to fetch the fee.
 			ConfirmationTime = estimate;
 		}
-		else
-		{
-			if (!_walletVm.Wallet.FeeProvider.TryFetchTransactionFee(transactionSummary.TransactionId, out var txFeeInSats))
-			{
-				// Something went wrong while fetching the fee. We can't show the ConfirmationTime.
-				ConfirmationTime = null;
-			}
-			else
-			{
-				int vSize = transactionSummary.Transaction.Transaction.GetVirtualSize();
-
-				TransactionFeeHelper.TryEstimateConfirmationTimeWithFeeAndVsize(_walletVm.Wallet, (int)txFeeInSats, vSize, out estimate);
-
-				ConfirmationTime = estimate;
-			}
-		}
 
 		IsConfirmed = Confirmations > 0;
 
