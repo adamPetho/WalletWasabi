@@ -1,6 +1,4 @@
 using NBitcoin;
-using Nito.AsyncEx.Synchronous;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using WalletWasabi.Logging;
@@ -16,25 +14,17 @@ public static class TransactionFeeFetcher
 		MempoolSpaceApiClient = mempoolSpaceApiClient;
 	}
 
-	public static bool TryFetchTransactionFee(uint256 txid, [NotNullWhen(true)] out Money? fee)
+	public static async Task<int?> FetchTransactionFeeAsync(uint256 txid)
 	{
-		MempoolSpaceApiResponseItem response;
-		fee = null;
-
 		using CancellationTokenSource cts = new(TimeSpan.FromSeconds(20));
 		if (MempoolSpaceApiClient is not null)
 		{
 			try
 			{
-				var task = Task.Run(async () => await MempoolSpaceApiClient.GetTransactionInfosAsync(txid, cts.Token).ConfigureAwait(false));
+				var response = await MempoolSpaceApiClient.GetTransactionInfosAsync(txid, cts.Token).ConfigureAwait(false);
 
-				response = task.WaitAndUnwrapException();
+				return response.Fee;
 
-				if (response is not null)
-				{
-					fee = Money.Satoshis(response.Fee);
-					return true;
-				}
 			}
 			catch (Exception ex)
 			{
@@ -42,6 +32,6 @@ public static class TransactionFeeFetcher
 			}
 		}
 
-		return false;
+		return null;
 	}
 }
