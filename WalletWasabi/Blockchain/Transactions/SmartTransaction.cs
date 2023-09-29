@@ -480,15 +480,8 @@ public class SmartTransaction : IEquatable<SmartTransaction>
 	{
 		if (ForeignInputs.Any())
 		{
-			if (Confirmed)
-			{
-				fee = null;
-				return false;
-			}
-			else
-			{
-				return TransactionFeeFetcher.TryFetchTransactionFee(Transaction.GetHash(), out fee);
-			}
+			fee = null;
+			return false;
 		}
 		else
 		{

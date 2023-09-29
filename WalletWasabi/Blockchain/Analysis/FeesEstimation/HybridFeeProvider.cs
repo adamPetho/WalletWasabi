@@ -1,14 +1,10 @@
 using Microsoft.Extensions.Hosting;
-using NBitcoin;
-using Nito.AsyncEx.Synchronous;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WalletWasabi.BitcoinCore.Monitoring;
 using WalletWasabi.Logging;
 using WalletWasabi.Nito.AsyncEx;
-using WalletWasabi.WebClients.MempoolSpace;
 
 namespace WalletWasabi.Blockchain.Analysis.FeesEstimation;
 
