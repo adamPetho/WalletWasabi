@@ -542,6 +542,18 @@ public class WasabiJsonRpcService : IJsonRpcService
 			.ToImmutableArray();
 	}
 
+	[JsonRpcMethod("getunconfirmedchain")]
+	public async Task<UnconfirmedTransactionChainItem[]> GetUnconfirmedTransactionChainItemsAsync(string requestedTxId)
+	{
+		var activeWallet = Guard.NotNull(nameof(ActiveWallet), ActiveWallet);
+		AssertWalletIsLoaded();
+
+		using CancellationTokenSource cts = new(TimeSpan.FromMinutes(2));
+
+		uint256 txID = new(requestedTxId);
+		return await activeWallet.UnconfirmedTransactionChainProvider.FetchUnconfirmedTransactionChainAsync(txID, cts.Token);
+	}
+
 	[JsonRpcMethod(IJsonRpcService.StopRpcCommand, initializable: false)]
 	public Task StopAsync()
 	{

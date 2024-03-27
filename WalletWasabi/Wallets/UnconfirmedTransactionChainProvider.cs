@@ -31,7 +31,7 @@ public class UnconfirmedTransactionChainProvider : BackgroundService
 	private SemaphoreSlim Semaphore { get; } = new(initialCount: 0, maxCount: MaximumRequestsInParallel);
 	private IHttpClient HttpClient { get; }
 
-	private async Task FetchUnconfirmedTransactionChainAsync(uint256 txid, CancellationToken cancellationToken)
+	public async Task<UnconfirmedTransactionChainItem[]> FetchUnconfirmedTransactionChainAsync(uint256 txid, CancellationToken cancellationToken)
 	{
 		const int MaxAttempts = 3;
 
@@ -59,17 +59,21 @@ public class UnconfirmedTransactionChainProvider : BackgroundService
 				{
 					throw new InvalidOperationException($"Failed to cache unconfirmed tx chain for {txid}");
 				}
+
+				return unconfirmedChain;
 			}
 			catch (Exception ex)
 			{
 				if (cancellationToken.IsCancellationRequested)
 				{
-					return;
+					return [];
 				}
 
 				Logger.LogWarning($"Attempt: {i}. Failed to fetch transaction fee. {ex}");
 			}
 		}
+
+		return [];
 	}
 
 	public void BeginRequestUnconfirmedChain(SmartTransaction tx)
