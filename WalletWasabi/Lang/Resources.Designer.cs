@@ -1959,6 +1959,12 @@ namespace WalletWasabi.Lang {
             }
         }
 
+        public static string RecoveryWordsViewModel_Caption {
+	        get {
+		        return ResourceManager.GetString("RecoveryWordsViewModel_Caption", resourceCulture);
+	        }
+        }
+
         public static string RecoveryWordsViewModel_Title {
             get {
                 return ResourceManager.GetString("RecoveryWordsViewModel_Title", resourceCulture);

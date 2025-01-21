@@ -1594,4 +1594,7 @@
   <data name="Donate_SendViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Send, Action, Donate</value>
   </data>
+  <data name="RecoveryWordsViewModel_Caption" xml:space="preserve">
+    <value>Write down the recovery words in the correct order and store them in a safe place. They are needed to recover your wallet.</value>
+  </data>
 </root>
