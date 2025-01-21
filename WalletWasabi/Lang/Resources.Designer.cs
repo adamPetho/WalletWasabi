@@ -1977,6 +1977,12 @@ namespace WalletWasabi.Lang {
             }
         }
 
+        public static string RecoveryWordsViewModel_UserWarning {
+	        get {
+		        return ResourceManager.GetString("RecoveryWordsViewModel_UserWarning", resourceCulture);
+	        }
+        }
+
         public static string OpenFileViewModel_Error_Generic_Title {
             get {
                 return ResourceManager.GetString("OpenFileViewModel_Error_Generic_Title", resourceCulture);

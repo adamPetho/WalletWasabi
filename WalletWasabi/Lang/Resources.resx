@@ -1600,4 +1600,7 @@
   <data name="ConnectHardwareWalletView_Caption" xml:space="preserve">
     <value>Connect your hardware wallet to the PC.</value>
   </data>
+  <data name="RecoveryWordsViewModel_UserWarning" xml:space="preserve">
+    <value>You will not be able to see these words again once the wallet is created.</value>
+  </data>
 </root>

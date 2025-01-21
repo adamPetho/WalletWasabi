@@ -56,7 +56,7 @@
       <InfoMessage Opacity="0.5"
                      HorizontalAlignment="Center"
                      Grid.Row="4">
-        <TextBlock Text="You will not be able to see these words again once the wallet is created." />
+        <TextBlock Text="{x:Static lang:Resources.RecoveryWordsViewModel_UserWarning}" />
       </InfoMessage>
     </Grid>
   </ContentArea>
