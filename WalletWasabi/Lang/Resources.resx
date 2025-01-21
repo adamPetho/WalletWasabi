@@ -1621,4 +1621,7 @@
   <data name="Sentences_Recover_a_Wallet" xml:space="preserve">
     <value>Recover a wallet</value>
   </data>
+  <data name="Sentences_Type_Recovery_Words_in_Correct_Order" xml:space="preserve">
+    <value>Type in your recovery words in the correct order</value>
+  </data>
 </root>

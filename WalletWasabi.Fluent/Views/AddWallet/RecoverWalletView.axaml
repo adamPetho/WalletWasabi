@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:recoverWallet="using:WalletWasabi.Fluent.ViewModels.AddWallet"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="recoverWallet:RecoverWalletViewModel"
              x:CompileBindings="True"
@@ -28,7 +29,7 @@
                    RestrictInputToSuggestions="True"
                    Items="{Binding Mnemonics}"
                    Suggestions="{Binding Suggestions}"
-                   Watermark="Type in your recovery words in the correct order"
+                   Watermark="{x:Static lang:Resources.Sentences_Type_Recovery_Words_in_Correct_Order}"
                    AllowDuplication="True"
                    EnableCounter="True"
                    EnableDelete="False">

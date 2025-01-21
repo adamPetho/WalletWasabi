@@ -2876,5 +2876,11 @@ namespace WalletWasabi.Lang {
 		        return ResourceManager.GetString("Sentences_Recover_a_Wallet", resourceCulture);
 	        }
         }
+
+        public static string Sentences_Type_Recovery_Words_in_Correct_Order {
+	        get {
+		        return ResourceManager.GetString("Sentences_Type_Recovery_Words_in_Correct_Order", resourceCulture);
+	        }
+        }
     }
 }
