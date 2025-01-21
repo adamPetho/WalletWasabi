@@ -178,7 +178,7 @@
     <value>Cancel</value>
   </data>
   <data name="Words_Change" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Change</value>
   </data>
   <data name="Words_Clearnet" xml:space="preserve">
     <value>Clearnet</value>
@@ -1571,5 +1571,8 @@
   </data>
   <data name="HardwareWalletAuthDialogView_Caption" xml:space="preserve">
     <value>Connect your hardware wallet, press Continue and then follow the instructions on the device.</value>
+  </data>
+  <data name="Words_Passphrase" xml:space="preserve">
+    <value>Passphrase</value>
   </data>
 </root>

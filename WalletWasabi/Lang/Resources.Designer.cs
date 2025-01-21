@@ -3352,7 +3352,7 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Change.
         /// </summary>
         public static string Words_Change {
             get {
@@ -4032,6 +4032,15 @@ namespace WalletWasabi.Lang {
         public static string Words_P2P {
             get {
                 return ResourceManager.GetString("Words_P2P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrase.
+        /// </summary>
+        public static string Words_Passphrase {
+            get {
+                return ResourceManager.GetString("Words_Passphrase", resourceCulture);
             }
         }
         
