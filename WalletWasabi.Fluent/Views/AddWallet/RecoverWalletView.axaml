@@ -29,7 +29,7 @@
                    RestrictInputToSuggestions="True"
                    Items="{Binding Mnemonics}"
                    Suggestions="{Binding Suggestions}"
-                   Watermark="{x:Static lang:Resources.Sentences_Type_Recovery_Words_in_Correct_Order}"
+                   Watermark="{x:Static lang:Resources.RecoverWalletView_Watermark}"
                    AllowDuplication="True"
                    EnableCounter="True"
                    EnableDelete="False">

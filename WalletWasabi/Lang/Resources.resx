@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -58,20 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-
-  <!--......................................................-->
-  <!--.........................Utils........................-->
-  <!--......................................................-->
   <data name="Utils_Empty" xml:space="preserve">
-    <value/>
+    <value />
   </data>
   <data name="Utils_GenericPlural" xml:space="preserve">
     <value>s</value>
   </data>
-  <!--......................................................-->
-  <!--.....................Single Words.....................-->
-  <!-- This is the reference to ensure consistency of usage -->
-  <!--......................................................-->
   <data name="Words_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -468,10 +519,6 @@
   <data name="Words_Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-
-  <!--......................................................-->
-  <!--................Common Short Sentences................-->
-  <!--......................................................-->
   <data name="Sentences_Amount_sent" xml:space="preserve">
     <value>Amount sent</value>
   </data>
@@ -532,11 +579,6 @@
   <data name="Sentences_Yesterday_at" xml:space="preserve">
     <value>Yesterday at</value>
   </data>
-
-  <!--......................................................-->
-  <!--.................Localized View Models................-->
-  <!--.........Must have Title, Caption and Keywords........-->
-  <!--......................................................-->
   <data name="AboutViewModel_Title" xml:space="preserve">
     <value>About Wasabi</value>
   </data>
@@ -548,7 +590,6 @@
 			User, Support, Bug, Report, FAQ, Questions, Docs, Documentation, License, Advanced, Information,
 			Hardware, Wallet</value>
   </data>
-
   <data name="AddWalletPageViewModel_Title" xml:space="preserve">
     <value>Add Wallet</value>
   </data>
@@ -567,7 +608,6 @@
   <data name="AddWalletPageViewModel_Error_UnableImport_Caption" xml:space="preserve">
     <value>Wasabi was unable to import your wallet.</value>
   </data>
-
   <data name="AdvancedSettingsTabViewModel_Title" xml:space="preserve">
     <value>Advanced</value>
   </data>
@@ -577,7 +617,6 @@
   <data name="AdvancedSettingsTabViewModel_Keywords" xml:space="preserve">
     <value>Settings, Advanced, Enable, GPU, Backend, URI</value>
   </data>
-
   <data name="BitcoinTabSettingsViewModel_Title" xml:space="preserve">
     <value>Bitcoin</value>
   </data>
@@ -597,7 +636,6 @@
   <data name="BitcoinTabSettingsViewModel_Error_InvalidDustThreahold" xml:space="preserve">
     <value>Invalid dust threshold.</value>
   </data>
-
   <data name="BroadcasterViewModel_Title" xml:space="preserve">
     <value>Broadcaster</value>
   </data>
@@ -607,7 +645,6 @@
   <data name="BroadcasterViewModel_Keywords" xml:space="preserve">
     <value>Id, Input, Output, Amount, Network, Fee, Count, BTC, Signed, Paste, Import, Broadcast, Transaction</value>
   </data>
-
   <data name="BugReportLinkViewModel_Title" xml:space="preserve">
     <value>Report a Bug</value>
   </data>
@@ -617,7 +654,6 @@
   <data name="BugReportLinkViewModel_Keywords" xml:space="preserve">
     <value>Support, Website, Bug, Report</value>
   </data>
-
   <data name="BuyViewModel_Title" xml:space="preserve">
     <value>Buy Anything</value>
   </data>
@@ -627,7 +663,6 @@
   <data name="BuyViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Buy, Action</value>
   </data>
-
   <data name="DocsLinkViewModel_Title" xml:space="preserve">
     <value>User Guide/Docs</value>
   </data>
@@ -637,7 +672,6 @@
   <data name="DocsLinkViewModel_Keywords" xml:space="preserve">
     <value>User, Support, WebsitGeneralSettingsTabViewModel_Keywordse, Docs, Documentation, Guide</value>
   </data>
-
   <data name="GeneralSettingsTabViewModel_Title" xml:space="preserve">
     <value>General</value>
   </data>
@@ -654,42 +688,36 @@
   <data name="GeneralSettingsTabViewModel_Error_CouldntSaveChanges_Caption" xml:space="preserve">
     <value>"Error occurred.</value>
   </data>
-
   <data name="OpenConfigFileViewModel_Title" xml:space="preserve">
     <value>Config File</value>
   </data>
   <data name="OpenConfigFileViewModel_Keywords" xml:space="preserve">
     <value>Browse, Open, Config, File</value>
   </data>
-
   <data name="OpenDataFolderViewModel_Title" xml:space="preserve">
     <value>Data Folder</value>
   </data>
   <data name="OpenDataFolderViewModel_Keywords" xml:space="preserve">
     <value>Browse, Open, Data, Folder</value>
   </data>
-
   <data name="OpenLogsViewModel_Title" xml:space="preserve">
     <value>Logs</value>
   </data>
   <data name="OpenLogsViewModel_Keywords" xml:space="preserve">
     <value>Browse, Open, Logs</value>
   </data>
-
   <data name="OpenTorLogsViewModel_Title" xml:space="preserve">
     <value>Tor Logs</value>
   </data>
   <data name="OpenTorLogsViewModel_Keywords" xml:space="preserve">
     <value>Browse, Open, Tor, Logs</value>
   </data>
-
   <data name="OpenWalletsFolderViewModel_Title" xml:space="preserve">
     <value>Wallet Folder</value>
   </data>
   <data name="OpenWalletsFolderViewModel_Keywords" xml:space="preserve">
     <value>Browse, Open, Wallet, Folder</value>
   </data>
-
   <data name="ReceiveViewModel_Title" xml:space="preserve">
     <value>Receive</value>
   </data>
@@ -699,7 +727,6 @@
   <data name="ReceiveViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Receive, Action</value>
   </data>
-
   <data name="SendViewModel_Title" xml:space="preserve">
     <value>Send</value>
   </data>
@@ -724,7 +751,6 @@
   <data name="SendViewModel_Error_Payjoin_HardwareWalletNotPossible_Message" xml:space="preserve">
     <value>Payjoin is not possible with hardware wallets.</value>
   </data>
-
   <data name="SettingsPageViewModel_Title" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -737,7 +763,6 @@
   <data name="SettingsPageViewModel_Restart" xml:space="preserve">
     <value>To apply the new setting, Wasabi Wallet needs to be restarted</value>
   </data>
-
   <data name="UserSupportViewModel_Title" xml:space="preserve">
     <value>User Support</value>
   </data>
@@ -747,7 +772,6 @@
   <data name="UserSupportViewModel_Keywords" xml:space="preserve">
     <value>User, Support, Website</value>
   </data>
-
   <data name="WalletCoinJoinSettingsViewModel_Title" xml:space="preserve">
     <value>Coinjoin Settings</value>
   </data>
@@ -757,7 +781,6 @@
   <data name="WalletCoinJoinSettingsViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Settings</value>
   </data>
-
   <data name="WalletCoinsViewModel_Title" xml:space="preserve">
     <value>Wallet Coins</value>
   </data>
@@ -767,7 +790,6 @@
   <data name="WalletCoinsViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Coins, UTXO</value>
   </data>
-
   <data name="WalletInfoViewModel_Title" xml:space="preserve">
     <value>Wallet Info</value>
   </data>
@@ -777,7 +799,6 @@
   <data name="WalletInfoViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Info</value>
   </data>
-
   <data name="WalletSettingsViewModel_Title" xml:space="preserve">
     <value>Wallet Settings</value>
   </data>
@@ -787,7 +808,6 @@
   <data name="WalletSettingsViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Settings</value>
   </data>
-
   <data name="WalletStatsViewModel_Title" xml:space="preserve">
     <value>Wallet Stats</value>
   </data>
@@ -797,7 +817,6 @@
   <data name="WalletStatsViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Stats</value>
   </data>
-
   <data name="FindCoordinatorLinkViewModel_Title" xml:space="preserve">
     <value>Find a Coordinator</value>
   </data>
@@ -807,7 +826,6 @@
   <data name="FindCoordinatorLinkViewModel_Keywords" xml:space="preserve">
     <value>Find, Coordinator, Coinjoin, Docs, Documentation, Guide</value>
   </data>
-
   <data name="CoordinatorTabSettingsViewModel_Title" xml:space="preserve">
     <value>Coordinator</value>
   </data>
@@ -823,37 +841,27 @@
   <data name="CoordinatorTabSettingsViewModel_Error_AbsoluteMinInputCountTooLow" xml:space="preserve">
     <value>Absolute min input count should be at least {0}</value>
   </data>
-
-  <!--......................................................-->
-  <!--...............Non Localized View Models..............-->
-  <!--......................................................-->
   <data name="AboutAdvancedInfoViewModel_Title" xml:space="preserve">
     <value>About</value>
   </data>
-
   <data name="AddedWalletPageViewModel_Title" xml:space="preserve">
     <value>Success</value>
   </data>
-
   <data name="AddressLabelEditViewModel_Title" xml:space="preserve">
     <value>Edit Labels</value>
   </data>
-
   <data name="AuthorizationDialogBase_AuthorizationFailed_Message" xml:space="preserve">
     <value>The Authorization has failed, please try again.</value>
   </data>
-
   <data name="AdvancedRecoveryOptionsViewModel_Title" xml:space="preserve">
     <value>Advanced Recovery Options</value>
   </data>
-
   <data name="BroadcastTransactionViewModel_Title" xml:space="preserve">
     <value>Broadcast Transaction</value>
   </data>
   <data name="BroadcastTransactionViewModel_Error_Generic_Caption" xml:space="preserve">
     <value>It was not possible to broadcast the transaction.</value>
   </data>
-
   <data name="CancelTransactionDialogViewModel_Title" xml:space="preserve">
     <value>Cancel Transaction</value>
   </data>
@@ -869,27 +877,21 @@
   <data name="CancelTransactionDialogViewModel_Error_AlreadyConfirmed_Message" xml:space="preserve">
     <value>The transaction is already confirmed.</value>
   </data>
-
   <data name="CoinJoinDetailsViewModel_Title" xml:space="preserve">
     <value>Coinjoin Details</value>
   </data>
-
   <data name="CoinJoinProfilesViewModel_Title" xml:space="preserve">
     <value>Coinjoin Strategy</value>
   </data>
-
   <data name="CoinJoinsDetailsViewModel_Title" xml:space="preserve">
     <value>Coinjoins</value>
   </data>
-
   <data name="ConfirmDeleteOrderDialogViewModel_Title" xml:space="preserve">
     <value>Delete Order</value>
   </data>
-
   <data name="ConfirmHideAddressViewModel_Title" xml:space="preserve">
     <value>Hide Address</value>
   </data>
-
   <data name="ConfirmRecoveryWordsViewModel_Title" xml:space="preserve">
     <value>Confirm Recovery Words</value>
   </data>
@@ -901,7 +903,6 @@
       It's needed to open and to recover your wallet.\n
       It's a recovery words extension for more security.</value>
   </data>
-
   <data name="ConnectHardwareWalletViewModel_Title" xml:space="preserve">
     <value>Hardware Wallet</value>
   </data>
@@ -929,7 +930,6 @@
   <data name="ConnectHardwareWalletViewModel_EvaluateDetection_PinRequested" xml:space="preserve">
     <value>Enter your PIN on your device.</value>
   </data>
-
   <data name="CustomFeeRateDialogViewModel_Title" xml:space="preserve">
     <value>Advanced</value>
   </data>
@@ -942,21 +942,18 @@
   <data name="CustomFeeRateDialogViewModel_Error_FeeEntered_TooHigh" xml:space="preserve">
     <value>The entered fee is too high.</value>
   </data>
-
   <data name="DetectedHardwareWalletViewModel_Title" xml:space="preserve">
     <value>Hardware Wallet</value>
   </data>
   <data name="DetectedHardwareWalletViewModel_Error_AddingWallet_Caption" xml:space="preserve">
     <value>Error occurred while adding your wallet.</value>
   </data>
-
   <data name="EconomicCoinJoinProfileViewModel_Title" xml:space="preserve">
     <value>Minimize Costs</value>
   </data>
   <data name="EconomicCoinJoinProfileViewModel_Description" xml:space="preserve">
     <value>For savers. Only participates in coinjoins during the cheapest parts of the week.</value>
   </data>
-
   <data name="ExcludedCoinsViewModel_Title" xml:space="preserve">
     <value>Exclude Coins</value>
   </data>
@@ -966,40 +963,33 @@
   <data name="ExcludedCoinsViewModel_Keywords" xml:space="preserve">
     <value>Wallet, Exclude, Coins, Coinjoin, Freeze, UTXO</value>
   </data>
-
   <data name="InputsCoinViewModel_Tip_AllInputs" xml:space="preserve">
     <value>All inputs belong to one of your opened wallets.</value>
   </data>
   <data name="InputsCoinViewModel_Tip_SubsetInputs" xml:space="preserve">
     <value>Only inputs belonging to one of your opened wallets can be shown.</value>
   </data>
-
-
   <data name="HardwareWalletViewModel_ImportTransaction_Title" xml:space="preserve">
     <value>Import Transaction</value>
   </data>
   <data name="HardwareWalletViewModel_Error_LoadTransaction_Caption" xml:space="preserve">
     <value>It was not possible to load the transaction.</value>
   </data>
-
   <data name="HardwareWalletAuthDialogViewModel_Title" xml:space="preserve">
     <value>Authorize with Hardware Wallet</value>
   </data>
   <data name="HardwareWalletAuthDialogViewModel_Error_AuthorizationFailed" xml:space="preserve">
     <value>Authorization failed.\nPlease, check your device and try again.</value>
   </data>
-
   <data name="LabelSelectionViewModel_NoInformation_Tip" xml:space="preserve">
     <value>There is no information about these people, only use it when necessary!</value>
   </data>
-
   <data name="LoadingViewModel_PercentCompleted" xml:space="preserve">
     <value>{0}% completed</value>
   </data>
   <data name="LoadingViewModel_TimeRemaining" xml:space="preserve">
     <value>- {0} remaining</value>
   </data>
-
   <data name="LoadTransactionViewModel_Title" xml:space="preserve">
     <value>Transaction Broadcaster</value>
   </data>
@@ -1012,71 +1002,57 @@
   <data name="LoadTransactionViewModel_Error_PasteTransaction_Caption" xml:space="preserve">
     <value>It was not possible to paste the transaction.</value>
   </data>
-
   <data name="LoginViewModel_Error_PassphraseIncorrect_Message" xml:space="preserve">
     <value>The passphrase is incorrect! Please try again.</value>
   </data>
   <data name="LoginViewModel_Error_CompatibilityPasswordUsed_Caption" xml:space="preserve">
     <value>Compatibility password was used</value>
   </data>
-
   <data name="ManualCoinJoinProfileDialogViewModel_Title" xml:space="preserve">
     <value>Coinjoin Strategy Settings</value>
   </data>
-
   <data name="ManualCoinJoinProfileViewModel_Title" xml:space="preserve">
     <value>Custom</value>
   </data>
-
   <data name="ManualControlDialogViewModel_Title" xml:space="preserve">
     <value>Manual Control</value>
   </data>
-
   <data name="NewCoordinatorConfirmationDialogViewModel_Title" xml:space="preserve">
     <value>Coordinator Detected</value>
   </data>
-
   <data name="NewWalletAdvancedOptionsDialogViewModel_Title" xml:space="preserve">
     <value>Advanced options</value>
   </data>
-
   <data name="PasswordAuthDialogViewModel_Title" xml:space="preserve">
     <value>Advanced options</value>
   </data>
   <data name="PasswordAuthDialogViewModel_Error_AuthorizationFailed_Message" xml:space="preserve">
     <value>The passphrase is incorrect.\nPlease try again.</value>
   </data>
-
   <data name="PrivacyControlViewModel_Title" xml:space="preserve">
     <value>Privacy Control</value>
   </data>
-
   <data name="PrivacyModeViewModel_Title" xml:space="preserve">
     <value>Discreet Mode</value>
   </data>
-
   <data name="PrivacyRingViewModel_Title" xml:space="preserve">
     <value>Privacy Progress</value>
   </data>
-
   <data name="PrivateCoinJoinProfileViewModel_Title" xml:space="preserve">
     <value>Maximize Privacy</value>
   </data>
   <data name="PrivateCoinJoinProfileViewModel_Description" xml:space="preserve">
     <value>Choice of the paranoid. Optimizes for privacy at all costs.</value>
   </data>
-
   <data name="ReceiveAddressesViewModel_Title" xml:space="preserve">
     <value>Addresses Awaiting Payment</value>
   </data>
-
   <data name="ReceiveAddressViewModel_Title" xml:space="preserve">
     <value>Receive Address</value>
   </data>
   <data name="ReceiveAddressViewModel_Error_UnableToSendAddressToDevice_Caption" xml:space="preserve">
     <value>Unable to send the address to the device</value>
   </data>
-
   <data name="RecoverWalletViewModel_Title" xml:space="preserve">
     <value>Recovery Words</value>
   </data>
@@ -1092,18 +1068,15 @@
   <data name="RecoverWalletViewModel_Error_InvalidSet_Message" xml:space="preserve">
     <value>Invalid set. Make sure you typed all your recovery words in the correct order.</value>
   </data>
-
   <data name="RecoveryWordsViewModel_Title" xml:space="preserve">
     <value>Recovery Words</value>
   </data>
-
   <data name="OpenFileViewModel_Error_Generic_Title" xml:space="preserve">
     <value>Open</value>
   </data>
   <data name="OpenFileViewModel_Error_Generic_Caption" xml:space="preserve">
     <value>Wasabi was unable to open the file.</value>
   </data>
-
   <data name="PocketViewModel_Confirmed_Yes" xml:space="preserve">
     <value>All coins are confirmed</value>
   </data>
@@ -1113,11 +1086,9 @@
   <data name="PocketViewModel_Banned_Yes" xml:space="preserve">
     <value>Some coins can't participate in coinjoin</value>
   </data>
-
   <data name="SelectCoinsDialogViewModel_Title" xml:space="preserve">
     <value>Coin Control</value>
   </data>
-
   <data name="SendFeeViewModel_Title" xml:space="preserve">
     <value>Send</value>
   </data>
@@ -1127,25 +1098,21 @@
   <data name="SendFeeViewModel_Error_TransactionFee_Message" xml:space="preserve">
     <value>Transaction fee estimations are not available at the moment. Try again later or you can enter the fee rate manually.</value>
   </data>
-
   <data name="SendSuccessViewModel_Title" xml:space="preserve">
     <value>Payment successful</value>
   </data>
   <data name="SendSuccessViewModel_Caption" xml:space="preserve">
     <value>Your transaction has been successfully sent.</value>
   </data>
-
   <data name="ShowQrCameraDialogViewModel_Title" xml:space="preserve">
     <value>Camera</value>
   </data>
   <data name="ShowQrCameraDialogViewModel_Error_Generic_Caption" xml:space="preserve">
     <value>Something went wrong</value>
   </data>
-
   <data name="ShuttingDownViewModel_Title" xml:space="preserve">
     <value>Please wait to shut down...</value>
   </data>
-
   <data name="SpeedUpTransactionDialogViewModel_Title" xml:space="preserve">
     <value>Speed Up Transaction</value>
   </data>
@@ -1161,29 +1128,24 @@
   <data name="SpeedUpTransactionDialogViewModel_Error_AlreadyConfirmed_Message" xml:space="preserve">
     <value>The transaction is already confirmed.</value>
   </data>
-
   <data name="SpeedyCoinJoinProfile_Title" xml:space="preserve">
     <value>Maximize Speed</value>
   </data>
   <data name="SpeedyCoinJoinProfile_Description" xml:space="preserve">
     <value>Getting things done. Geared towards speed and convenience.</value>
   </data>
-
   <data name="SuccessViewModel_Title" xml:space="preserve">
     <value>Success</value>
   </data>
-
   <data name="StatusIconViewModel_NewVersion_ReadyToInstall" xml:space="preserve">
     <value>Version {0} is now ready to install</value>
   </data>
   <data name="StatusIconViewModel_NewVersion_Available" xml:space="preserve">
     <value>Version {0} is now available</value>
   </data>
-
   <data name="TransactionDetailsViewModel_Title" xml:space="preserve">
     <value>Transaction Details</value>
   </data>
-
   <data name="TransactionHistoryItemViewModel_Error_SpeedUp_Title" xml:space="preserve">
     <value>Speed Up failed</value>
   </data>
@@ -1196,7 +1158,6 @@
   <data name="TransactionHistoryItemViewModel_Error_Cancel_Caption" xml:space="preserve">
     <value>Wasabi could not initiate the cancelling process.</value>
   </data>
-
   <data name="TransactionPreviewViewModel_Title" xml:space="preserve">
     <value>Transaction Preview</value>
   </data>
@@ -1224,7 +1185,6 @@
   <data name="TransactionPreviewViewModel_Standard_Error_InsufficientFundsForFee_Message" xml:space="preserve">
     <value>There are not enough funds to cover the transaction fee.</value>
   </data>
-
   <data name="WalletNamePageViewModel_Title" xml:space="preserve">
     <value>Wallet Name</value>
   </data>
@@ -1234,7 +1194,6 @@
   <data name="WalletNamePageViewModel_Error_UnableImport_Caption" xml:space="preserve">
     <value>"Wasabi was unable to import your wallet.</value>
   </data>
-
   <data name="WalletRenameViewModel_Error_InvalidName_Title" xml:space="preserve">
     <value>Invalid name</value>
   </data>
@@ -1244,7 +1203,6 @@
   <data name="WalletRenameViewModel_Error_InvalidName_Caption" xml:space="preserve">
     <value>Cannot rename the wallet</value>
   </data>
-
   <data name="WalletVerifyRecoveryWordsViewModel_Title" xml:space="preserve">
     <value>Verify Recovery Words</value>
   </data>
@@ -1263,10 +1221,6 @@
   <data name="WalletVerifyRecoveryWordsViewModel_Error_Invalid" xml:space="preserve">
     <value>Recovery Words are not valid."</value>
   </data>
-
-  <!--......................................................-->
-  <!--.......................Music Box......................-->
-  <!--......................................................-->
   <data name="MusicBox_CountDownMessage" xml:space="preserve">
     <value>Awaiting auto-start of coinjoin</value>
   </data>
@@ -1351,10 +1305,6 @@
   <data name="MusicBox_WaitingForResponse" xml:space="preserve">
     <value>Waiting for response</value>
   </data>
-
-  <!--......................................................-->
-  <!--.......................CLI Help.......................-->
-  <!--......................................................-->
   <data name="CLI_NetworkSettingsHint" xml:space="preserve">
     <value>The Bitcoin network to use: main, testnet, or regtest</value>
   </data>
@@ -1445,10 +1395,6 @@
   <data name="CLI_LanguageSettingsHint" xml:space="preserve">
     <value>The display language of all texts in the graphical interface</value>
   </data>
-
-  <!--......................................................-->
-  <!--......................Exceptions......................-->
-  <!--......................................................-->
   <data name="Exception_Generic_Friendly" xml:space="preserve">
     <value>An unexpected error occurred. Please try again or contact support.</value>
   </data>
@@ -1458,10 +1404,6 @@
   <data name="Exception_UnauthorizedAccess_Friendly" xml:space="preserve">
     <value>Wasabi was unable to perform this action due to a lack of permission.</value>
   </data>
-
-  <!--......................................................-->
-  <!--..........................HWI.........................-->
-  <!--......................................................-->
   <data name="HWI_Error_DeviceConn" xml:space="preserve">
     <value>Could not find the hardware wallet. Make sure it is connected.</value>
   </data>
@@ -1471,10 +1413,6 @@
   <data name="HWI_Error_Unknown" xml:space="preserve">
     <value>Unknown Error. Make sure the device is connected and isn't busy, then try again.</value>
   </data>
-
-  <!--......................................................-->
-  <!--.......................Password.......................-->
-  <!--......................................................-->
   <data name="Password_Message_CompatibilityPasswordWarn" xml:space="preserve">
     <value>Compatibility passphrase was used! Please consider generating a new wallet to ensure recoverability!</value>
   </data>
@@ -1490,10 +1428,6 @@
   <data name="Password_Message_TooLong" xml:space="preserve">
     <value>Passphrase is too long.</value>
   </data>
-
-  <!--......................................................-->
-  <!--........................Status........................-->
-  <!--......................................................-->
   <data name="Status_Tor_Running" xml:space="preserve">
     <value>is running</value>
   </data>
@@ -1503,21 +1437,15 @@
   <data name="Status_Tor_TurnedOff" xml:space="preserve">
     <value>is turned off</value>
   </data>
-
   <data name="Status_Backend_Connected" xml:space="preserve">
     <value>is connected</value>
   </data>
   <data name="Status_Backend_NotConnected" xml:space="preserve">
     <value>is not connected</value>
   </data>
-
   <data name="Status_Peers_ConnectedCount" xml:space="preserve">
     <value>{0} connected</value>
   </data>
-
-  <!--......................................................-->
-  <!--....................Search Category....................-->
-  <!--......................................................-->
   <data name="SearchCategory_NoCategory" xml:space="preserve">
     <value>No Category</value>
   </data>
@@ -1539,49 +1467,36 @@
   <data name="SearchCategory_Transactions" xml:space="preserve">
     <value>Transactions</value>
   </data>
-
-  <!--......................................................-->
-  <!--.......................Settings.......................-->
-  <!--......................................................-->
   <data name="Settings_DarkModeEnabled_Name" xml:space="preserve">
     <value>Dark mode</value>
   </data>
   <data name="Settings_DarkModeEnabled_Keywords" xml:space="preserve">
     <value>Black, White, Theme, Dark, Light</value>
   </data>
-
   <data name="Settings_AutoCopy_Name" xml:space="preserve">
     <value>Auto copy addresses</value>
   </data>
-
   <data name="Settings_AutoPaste_Name" xml:space="preserve">
     <value>Auto paste addresses</value>
   </data>
-
   <data name="Settings_HideOnClose_Name" xml:space="preserve">
     <value>Run in background when closed</value>
   </data>
-
   <data name="Settings_RunOnSystemStartup_Name" xml:space="preserve">
     <value>Run Wasabi when computer starts</value>
   </data>
-
   <data name="Settings_EnableGpu_Name" xml:space="preserve">
     <value>Enable GPU</value>
   </data>
-
   <data name="Settings_UseTor_Name" xml:space="preserve">
     <value>Network anonymization (Tor)</value>
   </data>
-
   <data name="Settings_TerminateTorOnExit_Name" xml:space="preserve">
     <value>Terminate Tor when Wasabi shuts down</value>
   </data>
-
   <data name="Settings_StartLocalBitcoinCoreOnStartup_Name" xml:space="preserve">
     <value>Run Bitcoin Knots on startup</value>
   </data>
-
   <data name="Settings_StopLocalBitcoinCoreOnShutdown_Name" xml:space="preserve">
     <value>Stop Bitcoin Knots on shutdown</value>
   </data>
@@ -1621,16 +1536,16 @@
   <data name="Sentences_Recover_a_Wallet" xml:space="preserve">
     <value>Recover a wallet</value>
   </data>
-  <data name="Sentences_Type_Recovery_Words_in_Correct_Order" xml:space="preserve">
+  <data name="RecoverWalletView_Watermark" xml:space="preserve">
     <value>Type in your recovery words in the correct order</value>
   </data>
   <data name="WalletNamePageView_Watermark" xml:space="preserve">
     <value>Type in a wallet name</value>
   </data>
-  <data name="WelcomePageView_Welcome" xml:space="preserve">
+  <data name="WelcomePageView_Main" xml:space="preserve">
     <value>Welcome to Wasabi Wallet</value>
   </data>
-  <data name="Sentences_easy_to_use_privacy_wallet" xml:space="preserve">
+  <data name="WelcomePageView_Secondary" xml:space="preserve">
     <value>An easy to use, privacy focused, open source bitcoin wallet.</value>
   </data>
 </root>
