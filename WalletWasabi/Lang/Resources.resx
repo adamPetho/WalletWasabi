@@ -1627,4 +1627,10 @@
   <data name="WalletNamePageView_Watermark" xml:space="preserve">
     <value>Type in a wallet name</value>
   </data>
+  <data name="WelcomePageView_Welcome" xml:space="preserve">
+    <value>Welcome to Wasabi Wallet</value>
+  </data>
+  <data name="Sentences_easy_to_use_privacy_wallet" xml:space="preserve">
+    <value>An easy to use, privacy focused, open source bitcoin wallet.</value>
+  </data>
 </root>

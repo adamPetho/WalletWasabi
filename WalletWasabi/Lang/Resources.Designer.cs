@@ -2888,5 +2888,17 @@ namespace WalletWasabi.Lang {
 		        return ResourceManager.GetString("WalletNamePageView_Watermark", resourceCulture);
 	        }
         }
+
+        public static string WelcomePageView_Welcome {
+	        get {
+		        return ResourceManager.GetString("WelcomePageView_Welcome", resourceCulture);
+	        }
+        }
+
+        public static string Sentences_easy_to_use_privacy_wallet {
+	        get {
+		        return ResourceManager.GetString("Sentences_easy_to_use_privacy_wallet", resourceCulture);
+	        }
+        }
     }
 }

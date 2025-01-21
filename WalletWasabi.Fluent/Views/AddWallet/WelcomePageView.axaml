@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:addWallet="clr-namespace:WalletWasabi.Fluent.ViewModels.AddWallet"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800"
              x:Class="WalletWasabi.Fluent.Views.AddWallet.WelcomePageView"
              x:DataType="addWallet:WelcomePageViewModel"
@@ -115,9 +116,9 @@
         <!-- Get started -->
         <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
           <StackPanel DockPanel.Dock="Bottom" Spacing="10">
-            <TextBlock Text="Welcome to Wasabi Wallet" FontSize="30" HorizontalAlignment="Center" />
+            <TextBlock Text="{x:Static lang:Resources.WelcomePageView_Welcome}" FontSize="30" HorizontalAlignment="Center" />
 
-            <TextBlock TextAlignment="Center" Text="An easy to use, privacy focused, open source bitcoin wallet." FontWeight="Light" />
+            <TextBlock TextAlignment="Center" Text="{x:Static lang:Resources.Sentences_easy_to_use_privacy_wallet}" FontWeight="Light" />
           </StackPanel>
           <Panel Height="120" HorizontalAlignment="Center" DockPanel.Dock="Bottom" Margin="0 0 0 20">
             <ExperimentalAcrylicBorder Margin="2">
