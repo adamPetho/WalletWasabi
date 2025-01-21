@@ -3,13 +3,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:hardwareWallet="using:WalletWasabi.Fluent.ViewModels.AddWallet.HardwareWallet"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="hardwareWallet:ConnectHardwareWalletViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.AddWallet.HardwareWallet.ConnectHardwareWalletView">
 
   <ContentArea Title="{Binding Title}"
-                 Caption="Connect your hardware wallet to the PC"
+                 Caption="{x:Static lang:Resources.ConnectHardwareWalletView_Caption}"
                  CancelContent="Cancel"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}"

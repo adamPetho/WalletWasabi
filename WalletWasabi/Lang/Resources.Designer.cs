@@ -1629,6 +1629,12 @@ namespace WalletWasabi.Lang {
             }
         }
 
+        public static string ConnectHardwareWalletView_Caption {
+	        get {
+		        return ResourceManager.GetString("ConnectHardwareWalletView_Caption", resourceCulture);
+	        }
+        }
+
         public static string ConnectHardwareWalletViewModel_Title {
             get {
                 return ResourceManager.GetString("ConnectHardwareWalletViewModel_Title", resourceCulture);

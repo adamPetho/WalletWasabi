@@ -1597,4 +1597,7 @@
   <data name="RecoveryWordsViewModel_Caption" xml:space="preserve">
     <value>Write down the recovery words in the correct order and store them in a safe place. They are needed to recover your wallet.</value>
   </data>
+  <data name="ConnectHardwareWalletView_Caption" xml:space="preserve">
+    <value>Connect your hardware wallet to the PC.</value>
+  </data>
 </root>
