@@ -1606,4 +1606,19 @@
   <data name="ConnectHardwareWalletView_InfoMessage" xml:space="preserve">
     <value>Enter your passphrase on the hardware wallet if needed.</value>
   </data>
+  <data name="Sentences_Create_new_wallet" xml:space="preserve">
+    <value>Create a new wallet</value>
+  </data>
+  <data name="Words_or" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="Sentences_Connect_to_Hardware_Wallet" xml:space="preserve">
+    <value>Connect to hardware wallet</value>
+  </data>
+  <data name="Sentences_Import_a_Wallet" xml:space="preserve">
+    <value>Import a wallet</value>
+  </data>
+  <data name="Sentences_Recover_a_Wallet" xml:space="preserve">
+    <value>Recover a wallet</value>
+  </data>
 </root>

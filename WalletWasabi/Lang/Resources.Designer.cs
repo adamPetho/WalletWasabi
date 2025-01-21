@@ -2846,5 +2846,35 @@ namespace WalletWasabi.Lang {
                 return ResourceManager.GetString("Settings_StopLocalBitcoinCoreOnShutdown_Name", resourceCulture);
             }
         }
+
+        public static string Sentences_Create_new_wallet {
+	        get {
+		        return ResourceManager.GetString("Sentences_Create_new_wallet", resourceCulture);
+	        }
+        }
+
+        public static string Words_or {
+	        get {
+		        return ResourceManager.GetString("Words_or", resourceCulture);
+	        }
+        }
+
+        public static string Sentences_Connect_to_Hardware_Wallet {
+	        get {
+		        return ResourceManager.GetString("Sentences_Connect_to_Hardware_Wallet", resourceCulture);
+	        }
+        }
+
+        public static string Sentences_Import_a_Wallet {
+	        get {
+		        return ResourceManager.GetString("Sentences_Import_a_Wallet", resourceCulture);
+	        }
+        }
+
+        public static string Sentences_Recover_a_Wallet {
+	        get {
+		        return ResourceManager.GetString("Sentences_Recover_a_Wallet", resourceCulture);
+	        }
+        }
     }
 }
