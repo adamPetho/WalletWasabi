@@ -1603,4 +1603,7 @@
   <data name="RecoveryWordsViewModel_UserWarning" xml:space="preserve">
     <value>You will not be able to see these words again once the wallet is created.</value>
   </data>
+  <data name="ConnectHardwareWalletView_InfoMessage" xml:space="preserve">
+    <value>Enter your passphrase on the hardware wallet if needed.</value>
+  </data>
 </root>
