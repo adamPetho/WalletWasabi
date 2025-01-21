@@ -1548,4 +1548,7 @@
   <data name="WelcomePageView_Secondary" xml:space="preserve">
     <value>An easy to use, privacy focused, open source bitcoin wallet.</value>
   </data>
+  <data name="ConfirmRecoveryWordsView_Caption" xml:space="preserve">
+    <value>Click the recovery word #{0}</value>
+  </data>
 </root>

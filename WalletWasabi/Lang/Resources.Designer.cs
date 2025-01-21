@@ -730,6 +730,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click the recovery word #{0}.
+        /// </summary>
+        public static string ConfirmRecoveryWordsView_Caption {
+            get {
+                return ResourceManager.GetString("ConfirmRecoveryWordsView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Store your passphrase safely, it cannot be reset if lost.\n
         ///      It&apos;s needed to open and to recover your wallet.\n
         ///      It&apos;s a recovery words extension for more security..
