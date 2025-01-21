@@ -1575,4 +1575,19 @@
   <data name="Words_Passphrase" xml:space="preserve">
     <value>Passphrase</value>
   </data>
+  <data name="AboutAdvancedInfoView_Title" xml:space="preserve">
+    <value>Advanced Information</value>
+  </data>
+  <data name="AboutAdvancedInfoView_Compatible_Coordinator_Versions" xml:space="preserve">
+    <value>Compatible Coordinator Versions</value>
+  </data>
+  <data name="AboutAdvancedInfoView_Current_Coordinator_Version" xml:space="preserve">
+    <value>Current Coordinator Version</value>
+  </data>
+  <data name="AboutAdvancedInfoView_Compatible_Bitcoin_Core_and_Bitcoin_Knots_Version" xml:space="preserve">
+    <value>Compatible Bitcoin Core and Bitcoin Knots Version</value>
+  </data>
+  <data name="AboutAdvancedInfoView_Compatible_Hardware_Wallet_Interface_Version" xml:space="preserve">
+    <value>Compatible Hardware Wallet Interface Version</value>
+  </data>
 </root>

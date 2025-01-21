@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dialogs="using:WalletWasabi.Fluent.ViewModels.Dialogs"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="dialogs:AboutAdvancedInfoViewModel"
              x:CompileBindings="True"
@@ -17,31 +18,31 @@
       <Setter Property="Margin" Value="0 4 0 0" />
     </Style>
   </UserControl.Styles>
-  <ContentArea Title="Advanced Information"
+  <ContentArea Title="{x:Static lang:Resources.AboutAdvancedInfoView_Title}"
                         EnableCancel="{Binding EnableCancel}"
                         EnableBack="{Binding EnableBack}"
                         EnableNext="True" NextContent="OK">
     <StackPanel HorizontalAlignment="Center" Spacing="20">
       <StackPanel>
-        <TextBlock Classes="Header" Text="Compatible Coordinator Versions" />
+        <TextBlock Classes="Header" Text="{x:Static lang:Resources.AboutAdvancedInfoView_Compatible_Coordinator_Versions}" />
         <TextBox Classes="Content"
                  Theme="{DynamicResource SelectableTextBlockTextBox}"
                  Text="{Binding BackendCompatibleVersions}" />
       </StackPanel>
       <StackPanel>
-        <TextBlock Classes="Header" Text="Current Coordinator Version" />
+        <TextBlock Classes="Header" Text="{x:Static lang:Resources.AboutAdvancedInfoView_Current_Coordinator_Version}" />
         <TextBox Classes="Content"
                  Theme="{DynamicResource SelectableTextBlockTextBox}"
                  Text="{Binding CurrentBackendMajorVersion}" />
       </StackPanel>
       <StackPanel>
-        <TextBlock Classes="Header" Text="Compatible Bitcoin Core and Bitcoin Knots Version" />
+        <TextBlock Classes="Header" Text="{x:Static lang:Resources.AboutAdvancedInfoView_Compatible_Bitcoin_Core_and_Bitcoin_Knots_Version}" />
         <TextBox Classes="Content"
                  Theme="{DynamicResource SelectableTextBlockTextBox}"
                  Text="{Binding BitcoinCoreVersion}" />
       </StackPanel>
       <StackPanel>
-        <TextBlock Classes="Header" Text="Compatible Hardware Wallet Interface Version" />
+        <TextBlock Classes="Header" Text="{x:Static lang:Resources.AboutAdvancedInfoView_Compatible_Hardware_Wallet_Interface_Version}" />
         <TextBox Classes="Content"
                  Theme="{DynamicResource SelectableTextBlockTextBox}"
                  Text="{Binding HwiVersion}" />

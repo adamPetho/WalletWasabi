@@ -61,6 +61,51 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compatible Bitcoin Core and Bitcoin Knots Version.
+        /// </summary>
+        public static string AboutAdvancedInfoView_Compatible_Bitcoin_Core_and_Bitcoin_Knots_Version {
+            get {
+                return ResourceManager.GetString("AboutAdvancedInfoView_Compatible_Bitcoin_Core_and_Bitcoin_Knots_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compatible Coordinator Versions.
+        /// </summary>
+        public static string AboutAdvancedInfoView_Compatible_Coordinator_Versions {
+            get {
+                return ResourceManager.GetString("AboutAdvancedInfoView_Compatible_Coordinator_Versions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compatible Hardware Wallet Interface Version.
+        /// </summary>
+        public static string AboutAdvancedInfoView_Compatible_Hardware_Wallet_Interface_Version {
+            get {
+                return ResourceManager.GetString("AboutAdvancedInfoView_Compatible_Hardware_Wallet_Interface_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Coordinator Version.
+        /// </summary>
+        public static string AboutAdvancedInfoView_Current_Coordinator_Version {
+            get {
+                return ResourceManager.GetString("AboutAdvancedInfoView_Current_Coordinator_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Information.
+        /// </summary>
+        public static string AboutAdvancedInfoView_Title {
+            get {
+                return ResourceManager.GetString("AboutAdvancedInfoView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string AboutAdvancedInfoViewModel_Title {
