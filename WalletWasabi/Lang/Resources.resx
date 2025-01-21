@@ -1566,4 +1566,7 @@
   <data name="Words_Sorting" xml:space="preserve">
     <value>Sorting</value>
   </data>
+  <data name="CoinJoinProfilesView_Caption" xml:space="preserve">
+    <value>Wasabi takes care of your financial privacy by automatically starting to coinjoin all your funds. Select a coinjoin strategy that fits you best!</value>
+  </data>
 </root>
