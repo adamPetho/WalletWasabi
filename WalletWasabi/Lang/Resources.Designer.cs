@@ -2882,5 +2882,11 @@ namespace WalletWasabi.Lang {
 		        return ResourceManager.GetString("Sentences_Type_Recovery_Words_in_Correct_Order", resourceCulture);
 	        }
         }
+
+        public static string WalletNamePageView_Watermark {
+	        get {
+		        return ResourceManager.GetString("WalletNamePageView_Watermark", resourceCulture);
+	        }
+        }
     }
 }

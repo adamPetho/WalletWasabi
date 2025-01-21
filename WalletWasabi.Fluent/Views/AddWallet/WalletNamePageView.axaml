@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels.AddWallet"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="vm:WalletNamePageViewModel"
              x:CompileBindings="True"
@@ -13,7 +14,7 @@
                  IsBusy="{Binding IsBusy}"
                  EnableNext="True" NextContent="Continue">
     <StackPanel DockPanel.Dock="Top">
-      <TextBox MaxLength="{StaticResource WalletNameMaxLength}" Text="{Binding WalletName}" Watermark="Type in a wallet name">
+      <TextBox MaxLength="{StaticResource WalletNameMaxLength}" Text="{Binding WalletName}" Watermark="{x:Static lang:Resources.WalletNamePageView_Watermark}">
         <Interaction.Behaviors>
           <FocusOnAttachedBehavior />
           <TextBoxSelectAllTextBehavior />
