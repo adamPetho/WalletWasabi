@@ -4180,6 +4180,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string Words_Sorting {
+            get {
+                return ResourceManager.GetString("Words_Sorting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Source.
         /// </summary>
         public static string Words_Source {

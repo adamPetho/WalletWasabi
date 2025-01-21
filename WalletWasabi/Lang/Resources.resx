@@ -1563,4 +1563,7 @@
   <data name="Words_Excluded_From_Coinjoining" xml:space="preserve">
     <value>Excluded from coinjoins</value>
   </data>
+  <data name="Words_Sorting" xml:space="preserve">
+    <value>Sorting</value>
+  </data>
 </root>
