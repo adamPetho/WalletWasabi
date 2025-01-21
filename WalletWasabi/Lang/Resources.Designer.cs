@@ -3370,6 +3370,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coinjoining.
+        /// </summary>
+        public static string Words_Coinjoining {
+            get {
+                return ResourceManager.GetString("Words_Coinjoining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coins.
         /// </summary>
         public static string Words_Coins {
@@ -3600,6 +3609,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Exclude {
             get {
                 return ResourceManager.GetString("Words_Exclude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excluded from coinjoins.
+        /// </summary>
+        public static string Words_Excluded_From_Coinjoining {
+            get {
+                return ResourceManager.GetString("Words_Excluded_From_Coinjoining", resourceCulture);
             }
         }
         
@@ -3933,6 +3951,15 @@ namespace WalletWasabi.Lang {
         public static string Words_NonPrivate {
             get {
                 return ResourceManager.GetString("Words_NonPrivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not coinjoining.
+        /// </summary>
+        public static string Words_Not_Coinjoining {
+            get {
+                return ResourceManager.GetString("Words_Not_Coinjoining", resourceCulture);
             }
         }
         

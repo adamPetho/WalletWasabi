@@ -1554,4 +1554,13 @@
   <data name="AnonymityScoreCellView_ToolTip" xml:space="preserve">
     <value>Anonymity Score</value>
   </data>
+  <data name="Words_Coinjoining" xml:space="preserve">
+    <value>Coinjoining</value>
+  </data>
+  <data name="Words_Not_Coinjoining" xml:space="preserve">
+    <value>Not coinjoining</value>
+  </data>
+  <data name="Words_Excluded_From_Coinjoining" xml:space="preserve">
+    <value>Excluded from coinjoins</value>
+  </data>
 </root>
