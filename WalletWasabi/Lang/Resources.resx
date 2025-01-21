@@ -1569,4 +1569,7 @@
   <data name="CoinJoinProfilesView_Caption" xml:space="preserve">
     <value>Wasabi takes care of your financial privacy by automatically starting to coinjoin all your funds. Select a coinjoin strategy that fits you best!</value>
   </data>
+  <data name="HardwareWalletAuthDialogView_Caption" xml:space="preserve">
+    <value>Connect your hardware wallet, press Continue and then follow the instructions on the device.</value>
+  </data>
 </root>

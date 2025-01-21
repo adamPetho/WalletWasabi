@@ -1183,6 +1183,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connect your hardware wallet, press Continue and then follow the instructions on the device..
+        /// </summary>
+        public static string HardwareWalletAuthDialogView_Caption {
+            get {
+                return ResourceManager.GetString("HardwareWalletAuthDialogView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authorization failed.\nPlease, check your device and try again..
         /// </summary>
         public static string HardwareWalletAuthDialogViewModel_Error_AuthorizationFailed {
