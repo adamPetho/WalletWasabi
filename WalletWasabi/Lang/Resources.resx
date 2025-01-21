@@ -1551,4 +1551,7 @@
   <data name="ConfirmRecoveryWordsView_Caption" xml:space="preserve">
     <value>Click the recovery word #{0}</value>
   </data>
+  <data name="AnonymityScoreCellView_ToolTip" xml:space="preserve">
+    <value>Anonymity Score</value>
+  </data>
 </root>

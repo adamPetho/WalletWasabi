@@ -207,6 +207,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anonymity Score.
+        /// </summary>
+        public static string AnonymityScoreCellView_ToolTip {
+            get {
+                return ResourceManager.GetString("AnonymityScoreCellView_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Authorization has failed, please try again..
         /// </summary>
         public static string AuthorizationDialogBase_AuthorizationFailed_Message {
