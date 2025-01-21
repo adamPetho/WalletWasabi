@@ -1585,4 +1585,13 @@
   <data name="Settings_StopLocalBitcoinCoreOnShutdown_Name" xml:space="preserve">
     <value>Stop Bitcoin Knots on shutdown</value>
   </data>
+  <data name="Donate_SendViewModel_Title" xml:space="preserve">
+    <value>Donate</value>
+  </data>
+  <data name="Donate_SendViewModel_Caption" xml:space="preserve">
+    <value>Donate to The Wasabi Wallet Developers</value>
+  </data>
+  <data name="Donate_SendViewModel_Keywords" xml:space="preserve">
+    <value>Wallet, Send, Action, Donate</value>
+  </data>
 </root>

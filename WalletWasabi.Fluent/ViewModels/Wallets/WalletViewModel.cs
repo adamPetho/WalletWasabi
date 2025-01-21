@@ -237,12 +237,6 @@ public partial class WalletViewModel : RoutableViewModel, IWalletViewModel
 
 	public ICommand NavigateToExcludedCoinsCommand { get; }
 
-	public override string Title
-	{
-		get => _title;
-		protected set => this.RaiseAndSetIfChanged(ref _title, value);
-	}
-
 	public void SelectTransaction(uint256 txid)
 	{
 		RxApp.MainThreadScheduler.Schedule(async () =>
@@ -294,7 +288,7 @@ public partial class WalletViewModel : RoutableViewModel, IWalletViewModel
 
 	private ISearchItem CreateDonateItem()
 	{
-		return new ActionableItem("Donate", "Donate to The Wasabi Wallet Developers", () => { DonateCommand.ExecuteIfCan(); return Task.CompletedTask; }, "Wallet", new[] { "Wallet", "Send", "Action", "Donate" }) { Icon = "gift", IsDefault = true, Priority = 4 };
+		return new ActionableItem(Lang.Resources.Donate_SendViewModel_Title, Lang.Resources.Donate_SendViewModel_Caption, () => { DonateCommand.ExecuteIfCan(); return Task.CompletedTask; }, SearchCategory.Wallet, Lang.Keywords.ConstructKeywords("Donate_SendViewModel_Keywords")) { Icon = "gift", IsDefault = true, Priority = 4 };
 	}
 
 	private IEnumerable<ActivatableViewModel> GetTiles()
