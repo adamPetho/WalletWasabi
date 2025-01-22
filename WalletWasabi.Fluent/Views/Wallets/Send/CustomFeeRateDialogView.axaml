@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels.Wallets.Send"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:CustomFeeRateDialogViewModel"
              x:CompileBindings="True"
@@ -10,11 +11,11 @@
   <ContentArea Title="{Binding Title}" Caption=""
                  EnableBack="{Binding EnableBack}"
                  EnableNext="True"
-                 NextContent="Done"
+                 NextContent="{x:Static lang:Resources.Words_Done}"
                  EnableCancel="{Binding EnableCancel}"
                  IsBusy="{Binding IsBusy}">
     <StackPanel Orientation="Horizontal" Spacing="20" VerticalAlignment="Top">
-      <Label Content="_Transaction fee rate:" Target="CustomFee" />
+      <Label Content="{x:Static lang:Resources.CustomFeeRateView_LabelContent}" Target="CustomFee" />
       <CurrencyEntryBox Text="{Binding CustomFee}" CurrencyCode="sat/vByte"
                           Width="220" MaxDecimals="2" Classes="standalone"
                           Watermark="1 sat/vByte" x:Name="CustomFee">

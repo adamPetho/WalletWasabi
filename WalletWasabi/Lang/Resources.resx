@@ -2073,4 +2073,7 @@
   <data name="ReceiveView_Instructions" xml:space="preserve">
     <value>Enter the names of the persons or companies who you will give this address to</value>
   </data>
+  <data name="CustomFeeRateView_LabelContent" xml:space="preserve">
+    <value>Transaction fee rate:</value>
+  </data>
 </root>

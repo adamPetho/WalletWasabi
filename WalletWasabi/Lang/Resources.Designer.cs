@@ -1443,6 +1443,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction fee rate:.
+        /// </summary>
+        public static string CustomFeeRateView_LabelContent {
+            get {
+                return ResourceManager.GetString("CustomFeeRateView_LabelContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error occurred while adding your wallet..
         /// </summary>
         public static string DetectedHardwareWalletViewModel_Error_AddingWallet_Caption {
