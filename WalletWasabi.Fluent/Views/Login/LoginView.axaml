@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:login="using:WalletWasabi.Fluent.ViewModels.Login"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="login:LoginViewModel"
              x:CompileBindings="True"
@@ -50,7 +51,7 @@
           <DockPanel DockPanel.Dock="Top"
                      VerticalAlignment="Bottom"
                      IsVisible="{Binding IsPasswordNeeded}">
-            <CopyablePasswordTextBox DockPanel.Dock="Top" Text="{Binding Password}" Watermark="Passphrase" PasswordChar="•"
+            <CopyablePasswordTextBox DockPanel.Dock="Top" Text="{Binding Password}" Watermark="{x:Static lang:Resources.Words_Passphrase}" PasswordChar="•"
                                      Classes="revealPasswordButton copyablePasswordTextBox"
                                      x:Name="Password">
               <Interaction.Behaviors>
