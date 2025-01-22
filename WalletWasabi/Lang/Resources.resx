@@ -2064,4 +2064,13 @@
   <data name="ReceiveAddressView_ShowOnHardwareWallet_ToolTip" xml:space="preserve">
     <value>Show on the hardware wallet</value>
   </data>
+  <data name="ReceiveView_Button_Content" xml:space="preserve">
+    <value>Addresses Awaiting Payment</value>
+  </data>
+  <data name="ReceiveView_InfoMessage_ToolTip" xml:space="preserve">
+    <value>Separate with , or by pressing Enter</value>
+  </data>
+  <data name="ReceiveView_Instructions" xml:space="preserve">
+    <value>Enter the names of the persons or companies who you will give this address to</value>
+  </data>
 </root>

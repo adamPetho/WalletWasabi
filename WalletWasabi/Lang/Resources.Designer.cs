@@ -2758,6 +2758,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Addresses Awaiting Payment.
+        /// </summary>
+        public static string ReceiveView_Button_Content {
+            get {
+                return ResourceManager.GetString("ReceiveView_Button_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Separate with , or by pressing Enter.
+        /// </summary>
+        public static string ReceiveView_InfoMessage_ToolTip {
+            get {
+                return ResourceManager.GetString("ReceiveView_InfoMessage_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the names of the persons or companies who you will give this address to.
+        /// </summary>
+        public static string ReceiveView_Instructions {
+            get {
+                return ResourceManager.GetString("ReceiveView_Instructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display wallet receive dialog.
         /// </summary>
         public static string ReceiveViewModel_Caption {
