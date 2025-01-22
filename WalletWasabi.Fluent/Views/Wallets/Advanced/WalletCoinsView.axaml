@@ -6,18 +6,19 @@
              xmlns:coins="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Coins"
              xmlns:advanced="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Advanced"
              xmlns:sorting="clr-namespace:WalletWasabi.Fluent.Controls.Sorting"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:DataType="advanced:WalletCoinsViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Advanced.WalletCoinsView">
   <ContentArea Title="{Binding Title}"
-               Caption="A list of coins that you own."
-               EnableNext="True" NextContent="Done"
+               Caption="{x:Static lang:Resources.WalletCoinsView_Caption}"
+               EnableNext="True" NextContent="{x:Static lang:Resources.Words_Done}"
                EnableCancel="{Binding EnableCancel}"
                EnableBack="{Binding EnableBack}"
                ScrollViewer.VerticalScrollBarVisibility="Disabled"
                ScrollViewer.HorizontalScrollBarVisibility="Disabled">
     <ContentArea.TopContent>
-      <Button DockPanel.Dock="Right" Theme="{StaticResource DialogSortButton}"  ToolTip.Tip="Sorting">
+      <Button DockPanel.Dock="Right" Theme="{StaticResource DialogSortButton}"  ToolTip.Tip="{x:Static lang:Resources.Words_Sorting}">
         <Button.Flyout>
           <Flyout Placement="BottomEdgeAlignedRight">
             <sorting:SortControl Sortables="{Binding CoinList.Sortables}" />

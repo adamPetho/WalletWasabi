@@ -3577,6 +3577,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A list of coins that you own..
+        /// </summary>
+        public static string WalletCoinsView_Caption {
+            get {
+                return ResourceManager.GetString("WalletCoinsView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display wallet coins.
         /// </summary>
         public static string WalletCoinsViewModel_Caption {

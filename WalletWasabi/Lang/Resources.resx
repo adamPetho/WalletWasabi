@@ -1803,4 +1803,7 @@
   <data name="LoadTransactionView_Paste_From_Clipboard" xml:space="preserve">
     <value>Paste from clipboard</value>
   </data>
+  <data name="WalletCoinsView_Caption" xml:space="preserve">
+    <value>A list of coins that you own.</value>
+  </data>
 </root>
