@@ -6,19 +6,20 @@
              xmlns:conv="clr-namespace:WalletWasabi.Fluent.Converters"
              xmlns:inputs="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Transactions.Inputs"
              xmlns:outputs="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Transactions.Outputs"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="details:TransactionDetailsViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.History.Details.TransactionDetailsView">
   <ContentArea Title="{Binding Title}"
-                 NextContent="Done" EnableNext="True"
+                 NextContent="{x:Static lang:Resources.Words_Done}" EnableNext="True"
                  EnableCancel="{Binding EnableCancel}">
 
     <StackPanel Spacing="15">
 
       <!-- Date -->
       <PreviewItem Icon="{StaticResource timer_regular}"
-                     Label="Date / Time"
+                     Label="{x:Static lang:Resources.TransactionDetailsView_Date_Time}"
                      CopyableContent="{Binding DateString, Mode=OneWay}">
         <TextBlock Text="{Binding DateString, Mode=OneWay}" Classes="monoSpaced" />
       </PreviewItem>
@@ -38,7 +39,7 @@
 
       <!-- Destination Address -->
       <PreviewItem Name="DestinationSection" Icon="{StaticResource transceive_regular}" CopyableContent="{Binding SingleAddress}"
-                     Label="Destination addresses" IsVisible="{Binding !!DestinationAddresses.Count}">
+                     Label="{x:Static lang:Resources.TransactionDetailsView_Destination_Addresses}" IsVisible="{Binding !!DestinationAddresses.Count}">
         <ItemsControl ItemsSource="{Binding DestinationAddresses}">
           <ItemsControl.ItemTemplate>
             <DataTemplate>
@@ -59,7 +60,7 @@
       <!-- Fee -->
       <PreviewItem IsVisible="{Binding IsFeeVisible}"
                      Icon="{StaticResource paper_cash_regular}"
-                     Label="Fee"
+                     Label="{x:Static lang:Resources.Words_Fee}"
                      CopyableContent="{Binding Fee.Btc, Converter={x:Static conv:MoneyConverters.ToFeeWithoutUnit}}">
         <PrivacyContentControl>
           <AmountControl Classes="WithUsd" Amount="{Binding Fee}" />
@@ -71,7 +72,7 @@
       <!-- Fee Rate-->
       <PreviewItem IsVisible="{Binding IsFeeRateVisible}"
                      Icon="{StaticResource paper_cash_regular}"
-                     Label="Fee Rate"
+                     Label="{x:Static lang:Resources.Words_Fee_Rate}"
                      CopyableContent="{Binding FeeRate.SatoshiPerByte}">
         <PrivacyContentControl>
           <TextBlock Text="{Binding FeeRate.SatoshiPerByte, StringFormat='{}{0:0.##} sat/vByte'}" />
@@ -82,13 +83,13 @@
 
       <!-- Status -->
       <PreviewItem Icon="{StaticResource copy_confirmed}"
-                     Label="Status">
+                     Label="{x:Static lang:Resources.Words_Status}">
         <StackPanel Orientation="Horizontal">
           <Panel>
-            <TextBlock Text="Confirmed" IsVisible="{Binding IsConfirmed}" />
-            <TextBlock Text="Pending" IsVisible="{Binding !IsConfirmed}" />
+            <TextBlock Text="{x:Static lang:Resources.Words_Confirmed}" IsVisible="{Binding IsConfirmed}" />
+            <TextBlock Text="{x:Static lang:Resources.Words_Pending}" IsVisible="{Binding !IsConfirmed}" />
           </Panel>
-          <TextBlock IsVisible="{Binding IsConfirmed}" Margin="4 0 0 0 " Text="{Binding Confirmations, StringFormat='({0} confirmations)'}" />
+          <TextBlock IsVisible="{Binding IsConfirmed}" Margin="4 0 0 0 " Text="{Binding Confirmations, StringFormat='{x:Static lang:Resources.TransactionDetailsView_Confirmations_Text}'}" />
         </StackPanel>
       </PreviewItem>
 
@@ -97,8 +98,8 @@
       <!-- Confirmation Time -->
       <PreviewItem IsVisible="{Binding IsConfirmationTimeVisible}"
                      Icon="{StaticResource timer_regular}"
-                     Label="Expected confirmation time"
-                     ToolTip.Tip="This is just an estimation based on some data for transactions and blocks. The confirmation time might change.">
+                     Label="{x:Static lang:Resources.TransactionDetailsView_Expected_Confirmation_Time}"
+                     ToolTip.Tip="{x:Static lang:Resources.TransactionDetailsView_Expected_Confirmation_Time_ToolTip}">
         <PrivacyContentControl>
           <TextBlock Text="{Binding ConfirmationTime, Converter={x:Static conv:TimeSpanConverter.ToEstimatedConfirmationTime}}" Classes="monoSpaced" />
         </PrivacyContentControl>
@@ -108,7 +109,7 @@
 
       <!-- Transaction ID -->
       <PreviewItem Icon="{StaticResource transaction_id}"
-                     Label="Transaction ID"
+                     Label="{x:Static lang:Resources.TransactionDetailsView_Transaction_ID}"
                      CopyableContent="{Binding TransactionId}">
         <PrivacyContentControl>
           <TextBlock Text="{Binding TransactionId}" Classes="monoSpaced" />
@@ -135,7 +136,7 @@
 
       <!-- Block hash -->
       <PreviewItem Icon="{StaticResource block_id}"
-                     Label="Block hash"
+                     Label="{x:Static lang:Resources.TransactionDetailsView_Block_Hash}"
                      CopyableContent="{Binding BlockHash}"
                      IsVisible="{Binding IsConfirmed}">
         <TextBlock Text="{Binding BlockHash}" />
@@ -144,7 +145,7 @@
 
       <!-- Block height -->
       <PreviewItem Icon="{StaticResource block_height}"
-                     Label="Block height"
+                     Label="{x:Static lang:Resources.TransactionDetailsView_Block_Height}"
                      CopyableContent="{Binding BlockHeight}"
                      IsVisible="{Binding IsConfirmed}">
         <TextBlock Text="{Binding BlockHeight}" />
@@ -154,7 +155,7 @@
       <Separator IsVisible="{Binding IsLabelsVisible}" />
       <PreviewItem IsVisible="{Binding IsLabelsVisible}"
                      Icon="{StaticResource entities_regular}"
-                     Label="Labels"
+                     Label="{x:Static lang:Resources.Words_Labels}"
                      CopyableContent="{Binding Labels}">
         <PrivacyContentControl VerticalContentAlignment="Center">
           <LabelsItemsPresenter ItemsSource="{Binding Labels}" />
@@ -164,9 +165,9 @@
       <!-- Hex -->
       <Separator />
       <PreviewItem Icon="{StaticResource binary_file}"
-                   Label="Hex"
+                   Label="{x:Static lang:Resources.Words_Hex}"
                    CopyableContent="{Binding TransactionHex}">
-        <TextBlock Text="Copy" />
+        <TextBlock Text="{x:Static lang:Resources.Words_Copy}" />
       </PreviewItem>
     </StackPanel>
   </ContentArea>

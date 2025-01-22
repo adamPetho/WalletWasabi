@@ -3478,6 +3478,78 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Block hash.
+        /// </summary>
+        public static string TransactionDetailsView_Block_Hash {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Block_Hash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block height.
+        /// </summary>
+        public static string TransactionDetailsView_Block_Height {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Block_Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ({0} confirmations).
+        /// </summary>
+        public static string TransactionDetailsView_Confirmations_Text {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Confirmations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date / Time.
+        /// </summary>
+        public static string TransactionDetailsView_Date_Time {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Date_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination addresses.
+        /// </summary>
+        public static string TransactionDetailsView_Destination_Addresses {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Destination_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected confirmation time.
+        /// </summary>
+        public static string TransactionDetailsView_Expected_Confirmation_Time {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Expected_Confirmation_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is just an estimation based on some data for transactions and blocks. The confirmation time might change..
+        /// </summary>
+        public static string TransactionDetailsView_Expected_Confirmation_Time_ToolTip {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Expected_Confirmation_Time_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction ID.
+        /// </summary>
+        public static string TransactionDetailsView_Transaction_ID {
+            get {
+                return ResourceManager.GetString("TransactionDetailsView_Transaction_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transaction Details.
         /// </summary>
         public static string TransactionDetailsViewModel_Title {
@@ -4878,6 +4950,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Label {
             get {
                 return ResourceManager.GetString("Words_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Labels.
+        /// </summary>
+        public static string Words_Labels {
+            get {
+                return ResourceManager.GetString("Words_Labels", resourceCulture);
             }
         }
         

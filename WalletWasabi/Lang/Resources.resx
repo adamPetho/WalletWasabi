@@ -342,6 +342,9 @@
   <data name="Words_Label" xml:space="preserve">
     <value>Label</value>
   </data>
+  <data name="Words_Labels" xml:space="preserve">
+    <value>Labels</value>
+  </data>
   <data name="Words_Ledger" xml:space="preserve">
     <value>Ledger</value>
   </data>
@@ -1926,10 +1929,19 @@
   <data name="CoinJoinDetailsView_Transaction_ID" xml:space="preserve">
     <value>Transaction ID</value>
   </data>
+  <data name="TransactionDetailsView_Transaction_ID" xml:space="preserve">
+    <value>Transaction ID</value>
+  </data>
   <data name="CoinJoinDetailsView_Expected_Confirmation_Time" xml:space="preserve">
     <value>Expected confirmation time</value>
   </data>
+  <data name="TransactionDetailsView_Expected_Confirmation_Time" xml:space="preserve">
+    <value>Expected confirmation time</value>
+  </data>
   <data name="CoinJoinDetailsView_Expected_Confirmation_Time_ToolTip" xml:space="preserve">
+    <value>This is just an estimation based on some data for transactions and blocks. The confirmation time might change.</value>
+  </data>
+  <data name="TransactionDetailsView_Expected_Confirmation_Time_ToolTip" xml:space="preserve">
     <value>This is just an estimation based on some data for transactions and blocks. The confirmation time might change.</value>
   </data>
   <data name="Words_Hex" xml:space="preserve">
@@ -1940,5 +1952,20 @@
   </data>
   <data name="CoinJoinsDetailsView_Transaction_IDs" xml:space="preserve">
     <value>Transaction IDs</value>
+  </data>
+  <data name="TransactionDetailsView_Date_Time" xml:space="preserve">
+    <value>Date / Time</value>
+  </data>
+  <data name="TransactionDetailsView_Destination_Addresses" xml:space="preserve">
+    <value>Destination addresses</value>
+  </data>
+  <data name="TransactionDetailsView_Confirmations_Text" xml:space="preserve">
+    <value>({0} confirmations)</value>
+  </data>
+  <data name="TransactionDetailsView_Block_Hash" xml:space="preserve">
+    <value>Block hash</value>
+  </data>
+  <data name="TransactionDetailsView_Block_Height" xml:space="preserve">
+    <value>Block height</value>
   </data>
 </root>
