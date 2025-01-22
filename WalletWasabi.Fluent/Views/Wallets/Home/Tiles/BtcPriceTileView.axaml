@@ -9,7 +9,7 @@
              x:CompileBindings="True" x:DataType="vm:BtcPriceTileViewModel"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.Tiles.BtcPriceTileView">
 
-  <TileControl Title="{x:Static lang:Resources.BtcPriceTileView_EXCHANGE_RATE}" IsBottomContentVisible="False">
+  <TileControl Title="{x:Static lang:Resources.BtcPriceTileView_Title}" IsBottomContentVisible="False">
     <TextBlock Margin="0 3"
                Classes="h2 monoSpaced bold"
                VerticalAlignment="Center" HorizontalAlignment="Center"

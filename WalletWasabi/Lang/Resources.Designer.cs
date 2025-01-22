@@ -615,9 +615,9 @@ namespace WalletWasabi.Lang {
         /// <summary>
         ///   Looks up a localized string similar to EXCHANGE RATE.
         /// </summary>
-        public static string BtcPriceTileView_EXCHANGE_RATE {
+        public static string BtcPriceTileView_Title {
             get {
-                return ResourceManager.GetString("BtcPriceTileView_EXCHANGE_RATE", resourceCulture);
+                return ResourceManager.GetString("BtcPriceTileView_Title", resourceCulture);
             }
         }
         
@@ -2547,6 +2547,60 @@ namespace WalletWasabi.Lang {
         public static string PrivacyBarView_Show_Details_ToolTip {
             get {
                 return ResourceManager.GetString("PrivacyBarView_Show_Details_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRIVATE.
+        /// </summary>
+        public static string PrivacyControlTileView_Bottom_Text {
+            get {
+                return ResourceManager.GetString("PrivacyControlTileView_Bottom_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Details.
+        /// </summary>
+        public static string PrivacyControlTileView_Button_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyControlTileView_Button_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non-private funds.
+        /// </summary>
+        public static string PrivacyControlTileView_Non_Private_Funds_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyControlTileView_Non_Private_Funds_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private funds.
+        /// </summary>
+        public static string PrivacyControlTileView_Private_Funds_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyControlTileView_Private_Funds_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Semi-private funds.
+        /// </summary>
+        public static string PrivacyControlTileView_Semi_Private_Funds_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyControlTileView_Semi_Private_Funds_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRIVACY PROGRESS.
+        /// </summary>
+        public static string PrivacyControlTileView_Title {
+            get {
+                return ResourceManager.GetString("PrivacyControlTileView_Title", resourceCulture);
             }
         }
         

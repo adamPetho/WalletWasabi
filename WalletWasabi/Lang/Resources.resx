@@ -1914,6 +1914,9 @@
   <data name="PrivacyBarView_Show_Details_ToolTip" xml:space="preserve">
     <value>Show Details</value>
   </data>
+  <data name="PrivacyControlTileView_Button_ToolTip" xml:space="preserve">
+    <value>Show Details</value>
+  </data>
   <data name="ActionsColumnView_Cancel_Transaction_ToolTip" xml:space="preserve">
     <value>Cancel Transaction</value>
   </data>
@@ -2019,7 +2022,22 @@
   <data name="PrivacyRingView_Caption" xml:space="preserve">
     <value>Hover over the ring segments to see coin details</value>
   </data>
-  <data name="BtcPriceTileView_EXCHANGE_RATE" xml:space="preserve">
+  <data name="BtcPriceTileView_Title" xml:space="preserve">
     <value>EXCHANGE RATE</value>
+  </data>
+  <data name="PrivacyControlTileView_Title" xml:space="preserve">
+    <value>PRIVACY PROGRESS</value>
+  </data>
+  <data name="PrivacyControlTileView_Non_Private_Funds_ToolTip" xml:space="preserve">
+    <value>Non-private funds</value>
+  </data>
+  <data name="PrivacyControlTileView_Semi_Private_Funds_ToolTip" xml:space="preserve">
+    <value>Semi-private funds</value>
+  </data>
+  <data name="PrivacyControlTileView_Private_Funds_ToolTip" xml:space="preserve">
+    <value>Private funds</value>
+  </data>
+  <data name="PrivacyControlTileView_Bottom_Text" xml:space="preserve">
+    <value>PRIVATE</value>
   </data>
 </root>
