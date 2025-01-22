@@ -1443,6 +1443,78 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto copy addresses.
+        /// </summary>
+        public static string GeneralSettingsTabView_Auto_Copy_Addresses {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Auto_Copy_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto download new version.
+        /// </summary>
+        public static string GeneralSettingsTabView_Auto_Download_New_Version {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Auto_Download_New_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto paste addresses.
+        /// </summary>
+        public static string GeneralSettingsTabView_Auto_Paste_Addresses {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Auto_Paste_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark mode.
+        /// </summary>
+        public static string GeneralSettingsTabView_Dark_Mode {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Dark_Mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network anonymization (Tor).
+        /// </summary>
+        public static string GeneralSettingsTabView_Network_Anonymization_Tor {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Network_Anonymization_Tor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run in background when window closed.
+        /// </summary>
+        public static string GeneralSettingsTabView_Run_In_Background_When_Window_Closed {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Run_In_Background_When_Window_Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run Wasabi when computer starts.
+        /// </summary>
+        public static string GeneralSettingsTabView_Run_Wasabi_When_Computer_Starts {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Run_Wasabi_When_Computer_Starts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminate Tor when Wasabi shuts down.
+        /// </summary>
+        public static string GeneralSettingsTabView_Terminate_Tor_When_Wasabi_Shuts_Down {
+            get {
+                return ResourceManager.GetString("GeneralSettingsTabView_Terminate_Tor_When_Wasabi_Shuts_Down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage general settings.
         /// </summary>
         public static string GeneralSettingsTabViewModel_Caption {

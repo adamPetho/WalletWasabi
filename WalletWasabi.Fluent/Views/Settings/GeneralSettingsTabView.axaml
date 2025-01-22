@@ -5,6 +5,7 @@
              xmlns:settings="using:WalletWasabi.Fluent.ViewModels.Settings"
              xmlns:conv="using:WalletWasabi.Fluent.Converters"
              xmlns:basemodels="using:WalletWasabi.Models"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="650"
              x:Class="WalletWasabi.Fluent.Views.Settings.GeneralSettingsTabView"
              x:CompileBindings="True"
@@ -12,27 +13,27 @@
   <StackPanel Classes="settingsLayout">
 
     <DockPanel>
-      <TextBlock Text="Dark mode" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Dark_Mode}" />
       <ToggleSwitch IsChecked="{Binding Settings.DarkModeEnabled}" />
     </DockPanel>
 
     <DockPanel>
-      <TextBlock Text="Run Wasabi when computer starts" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Run_Wasabi_When_Computer_Starts}" />
       <ToggleSwitch IsChecked="{Binding RunOnSystemStartup}" Command="{Binding StartupCommand}" />
     </DockPanel>
 
     <DockPanel>
-      <TextBlock Text="Run in background when window closed" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Run_In_Background_When_Window_Closed}" />
       <ToggleSwitch IsChecked="{Binding Settings.HideOnClose}" />
     </DockPanel>
 
     <DockPanel>
-      <TextBlock Text="Auto copy addresses" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Auto_Copy_Addresses}" />
       <ToggleSwitch IsChecked="{Binding Settings.AutoCopy}" />
     </DockPanel>
 
     <DockPanel>
-      <TextBlock Text="Auto paste addresses" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Auto_Paste_Addresses}" />
       <ToggleSwitch IsChecked="{Binding Settings.AutoPaste}" />
     </DockPanel>
     <!-- Temporarily remove from settings view for release
@@ -44,7 +45,7 @@
     -->
 
     <DockPanel>
-      <TextBlock Text="Network anonymization (Tor)" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Network_Anonymization_Tor}" />
       <ComboBox ItemsSource="{Binding TorModes}" SelectedItem="{Binding Settings.UseTor}">
         <ComboBox.ItemTemplate>
           <DataTemplate x:DataType="basemodels:TorMode">
@@ -63,12 +64,12 @@
     </DockPanel>
 
     <DockPanel IsVisible="{Binding Settings.UseTor, ConverterParameter={x:Static basemodels:TorMode.Enabled}, Converter={x:Static conv:EnumToBoolConverter.Instance}}">
-      <TextBlock Text="Terminate Tor when Wasabi shuts down" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Terminate_Tor_When_Wasabi_Shuts_Down}" />
       <ToggleSwitch IsChecked="{Binding Settings.TerminateTorOnExit}" />
     </DockPanel>
 
     <DockPanel>
-      <TextBlock Text="Auto download new version" />
+      <TextBlock Text="{x:Static lang:Resources.GeneralSettingsTabView_Auto_Download_New_Version}" />
       <ToggleSwitch IsChecked="{Binding Settings.DownloadNewVersion}" />
     </DockPanel>
   </StackPanel>

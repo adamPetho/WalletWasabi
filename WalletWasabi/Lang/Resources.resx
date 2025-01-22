@@ -1716,4 +1716,28 @@
   <data name="CoordinatorTabSettingsView_Min_Input_Count" xml:space="preserve">
     <value>Min Input Count</value>
   </data>
+  <data name="GeneralSettingsTabView_Dark_Mode" xml:space="preserve">
+    <value>Dark mode</value>
+  </data>
+  <data name="GeneralSettingsTabView_Run_Wasabi_When_Computer_Starts" xml:space="preserve">
+    <value>Run Wasabi when computer starts</value>
+  </data>
+  <data name="GeneralSettingsTabView_Run_In_Background_When_Window_Closed" xml:space="preserve">
+    <value>Run in background when window closed</value>
+  </data>
+  <data name="GeneralSettingsTabView_Auto_Copy_Addresses" xml:space="preserve">
+    <value>Auto copy addresses</value>
+  </data>
+  <data name="GeneralSettingsTabView_Auto_Paste_Addresses" xml:space="preserve">
+    <value>Auto paste addresses</value>
+  </data>
+  <data name="GeneralSettingsTabView_Network_Anonymization_Tor" xml:space="preserve">
+    <value>Network anonymization (Tor)</value>
+  </data>
+  <data name="GeneralSettingsTabView_Terminate_Tor_When_Wasabi_Shuts_Down" xml:space="preserve">
+    <value>Terminate Tor when Wasabi shuts down</value>
+  </data>
+  <data name="GeneralSettingsTabView_Auto_Download_New_Version" xml:space="preserve">
+    <value>Auto download new version</value>
+  </data>
 </root>
