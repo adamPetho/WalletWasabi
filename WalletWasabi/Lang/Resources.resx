@@ -1878,4 +1878,13 @@
   <data name="CoinListView_Copy_Bitcoin_Address" xml:space="preserve">
     <value>Copy Bitcoin Address</value>
   </data>
+  <data name="ActionsColumnView_Speedup_Transaction_ToolTip" xml:space="preserve">
+    <value>Speed Up Transaction</value>
+  </data>
+  <data name="ActionsColumnView_Show_Details_ToolTip" xml:space="preserve">
+    <value>Show Details</value>
+  </data>
+  <data name="ActionsColumnView_Cancel_Transaction_ToolTip" xml:space="preserve">
+    <value>Cancel Transaction</value>
+  </data>
 </root>

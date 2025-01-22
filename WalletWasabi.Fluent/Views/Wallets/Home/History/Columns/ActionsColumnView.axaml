@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodel="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Home.History.HistoryItems"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="50"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.History.Columns.ActionsColumnView"
              x:CompileBindings="True"
@@ -25,7 +26,7 @@
     <InvalidatingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15" Margin="15 0">
 
       <!-- SpeedUp button -->
-      <Button Classes="plain" ToolTip.Tip="Speed Up Transaction"
+      <Button Classes="plain" ToolTip.Tip="{x:Static lang:Resources.ActionsColumnView_Speedup_Transaction_ToolTip}"
               Command="{Binding SpeedUpTransactionCommand}"
               IsVisible="{Binding CanBeSpedUp}">
         <PathIcon Classes.AlreadySpedUp="{Binding HasBeenSpedUp}"
@@ -43,14 +44,14 @@
       </Button>
 
       <!-- Cancel -->
-      <Button Classes="plain" ToolTip.Tip="Cancel Transaction"
+      <Button Classes="plain" ToolTip.Tip="{x:Static lang:Resources.ActionsColumnView_Cancel_Transaction_ToolTip}"
               Command="{Binding CancelTransactionCommand}"
               IsVisible="{Binding Transaction.CanCancelTransaction}">
         <PathIcon Data="{StaticResource dismiss_light}" Height="16" />
       </Button>
 
       <!-- Details -->
-      <Button Classes="plain" ToolTip.Tip="Show Details"
+      <Button Classes="plain" ToolTip.Tip="{x:Static lang:Resources.ActionsColumnView_Show_Details_ToolTip}"
               Command="{Binding ShowDetailsCommand}">
         <PathIcon Data="{StaticResource details_regular}" Height="16" />
       </Button>

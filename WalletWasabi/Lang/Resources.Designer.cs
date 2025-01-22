@@ -162,6 +162,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel Transaction.
+        /// </summary>
+        public static string ActionsColumnView_Cancel_Transaction_ToolTip {
+            get {
+                return ResourceManager.GetString("ActionsColumnView_Cancel_Transaction_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Details.
+        /// </summary>
+        public static string ActionsColumnView_Show_Details_ToolTip {
+            get {
+                return ResourceManager.GetString("ActionsColumnView_Show_Details_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed Up Transaction.
+        /// </summary>
+        public static string ActionsColumnView_Speedup_Transaction_ToolTip {
+            get {
+                return ResourceManager.GetString("ActionsColumnView_Speedup_Transaction_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string AddedWalletPageViewModel_Title {
