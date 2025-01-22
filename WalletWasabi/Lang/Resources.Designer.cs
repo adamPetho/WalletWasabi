@@ -1056,6 +1056,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type a passphrase.
+        /// </summary>
+        public static string CreatePasswordDialogView_First_Watermark {
+            get {
+                return ResourceManager.GetString("CreatePasswordDialogView_First_Watermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm the passphrase.
+        /// </summary>
+        public static string CreatePasswordDialogView_Secondary_Watermark {
+            get {
+                return ResourceManager.GetString("CreatePasswordDialogView_Secondary_Watermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The entered fee is not valid..
         /// </summary>
         public static string CustomFeeRateDialogViewModel_Error_FeeEntered_Invalid {

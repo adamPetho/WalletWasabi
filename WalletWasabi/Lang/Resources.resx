@@ -1617,4 +1617,10 @@
   <data name="ConfirmHideAddressView_Secondary" xml:space="preserve">
     <value>This can not be undone.</value>
   </data>
+  <data name="CreatePasswordDialogView_First_Watermark" xml:space="preserve">
+    <value>Type a passphrase</value>
+  </data>
+  <data name="CreatePasswordDialogView_Secondary_Watermark" xml:space="preserve">
+    <value>Confirm the passphrase</value>
+  </data>
 </root>
