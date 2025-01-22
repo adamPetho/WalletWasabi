@@ -2019,4 +2019,7 @@
   <data name="PrivacyRingView_Caption" xml:space="preserve">
     <value>Hover over the ring segments to see coin details</value>
   </data>
+  <data name="BtcPriceTileView_EXCHANGE_RATE" xml:space="preserve">
+    <value>EXCHANGE RATE</value>
+  </data>
 </root>

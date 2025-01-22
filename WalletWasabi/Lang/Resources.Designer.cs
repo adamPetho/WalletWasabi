@@ -613,6 +613,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EXCHANGE RATE.
+        /// </summary>
+        public static string BtcPriceTileView_EXCHANGE_RATE {
+            get {
+                return ResourceManager.GetString("BtcPriceTileView_EXCHANGE_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Wasabi&apos;s GitHub issues website.
         /// </summary>
         public static string BugReportLinkViewModel_Caption {
