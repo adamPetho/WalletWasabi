@@ -2079,4 +2079,16 @@
   <data name="ManualcontrolDialogView_Caption" xml:space="preserve">
     <value>Select the coins that are allowed for the transaction to use</value>
   </data>
+  <data name="PrivacyControlView_Title" xml:space="preserve">
+    <value>Send - Control your privacy</value>
+  </data>
+  <data name="PrivacyControlView_Caption" xml:space="preserve">
+    <value>Choose who can and can't see this transaction</value>
+  </data>
+  <data name="PrivacyControlView_CouldSeeText" xml:space="preserve">
+    <value>Could see this transaction: </value>
+  </data>
+  <data name="PrivacyControlView_CantSeeText" xml:space="preserve">
+    <value>Can't see this transaction: </value>
+  </data>
 </root>

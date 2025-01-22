@@ -2632,6 +2632,42 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t see this transaction: .
+        /// </summary>
+        public static string PrivacyControlView_CantSeeText {
+            get {
+                return ResourceManager.GetString("PrivacyControlView_CantSeeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose who can and can&apos;t see this transaction.
+        /// </summary>
+        public static string PrivacyControlView_Caption {
+            get {
+                return ResourceManager.GetString("PrivacyControlView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could see this transaction: .
+        /// </summary>
+        public static string PrivacyControlView_CouldSeeText {
+            get {
+                return ResourceManager.GetString("PrivacyControlView_CouldSeeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send - Control your privacy.
+        /// </summary>
+        public static string PrivacyControlView_Title {
+            get {
+                return ResourceManager.GetString("PrivacyControlView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Control.
         /// </summary>
         public static string PrivacyControlViewModel_Title {

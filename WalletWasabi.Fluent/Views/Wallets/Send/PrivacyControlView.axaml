@@ -3,14 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels.Wallets.Send"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:PrivacyControlViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Send.PrivacyControlView">
-  <ContentArea Title="Send - Control your privacy"
-                 Caption="Choose who can and can't see this transaction"
+  <ContentArea Title="{x:Static lang:Resources.PrivacyControlView_Title}"
+                 Caption="{x:Static lang:Resources.PrivacyControlView_Caption}"
                  EnableBack="{Binding EnableBack}"
-                 EnableNext="True" NextContent="Continue"
+                 EnableNext="True" NextContent="{x:Static lang:Resources.Words_Continue}"
                  IsBusy="{Binding IsBusy}"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <ContentArea.Styles>
@@ -48,7 +49,7 @@
             <StackPanel Orientation="Horizontal" Spacing="10">
               <PathIcon Data="{StaticResource shield_regular}" Foreground="{DynamicResource PrivacyControlWhiteListHeaderForeground}" Height="20" />
               <TextBlock VerticalAlignment="Bottom" FontSize="18" Margin="0 2 0 0" Foreground="{DynamicResource PrivacyControlWhiteListHeaderForeground}"
-                         Text="Could see this transaction: " />
+                         Text="{x:Static lang:Resources.PrivacyControlView_CouldSeeText}" />
             </StackPanel>
           </Border>
 
@@ -97,7 +98,7 @@
             <StackPanel Orientation="Horizontal" Spacing="10">
               <PathIcon Data="{StaticResource warning_regular}" Height="20" />
               <TextBlock VerticalAlignment="Bottom" FontSize="18" Margin="0 2 0 0"
-                         Text="Can't see this transaction: " />
+                         Text="{x:Static lang:Resources.PrivacyControlView_CantSeeText}" />
             </StackPanel>
           </Border>
 
