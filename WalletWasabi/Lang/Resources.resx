@@ -1611,4 +1611,10 @@
   <data name="AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference" xml:space="preserve">
     <value>Coinjoin time preference</value>
   </data>
+  <data name="ConfirmHideAddressView_First" xml:space="preserve">
+    <value>Do you wish to hide the address with the following labels?</value>
+  </data>
+  <data name="ConfirmHideAddressView_Secondary" xml:space="preserve">
+    <value>This can not be undone.</value>
+  </data>
 </root>

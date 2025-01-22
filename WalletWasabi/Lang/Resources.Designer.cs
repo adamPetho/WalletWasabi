@@ -847,6 +847,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you wish to hide the address with the following labels?.
+        /// </summary>
+        public static string ConfirmHideAddressView_First {
+            get {
+                return ResourceManager.GetString("ConfirmHideAddressView_First", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This can not be undone..
+        /// </summary>
+        public static string ConfirmHideAddressView_Secondary {
+            get {
+                return ResourceManager.GetString("ConfirmHideAddressView_Secondary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide Address.
         /// </summary>
         public static string ConfirmHideAddressViewModel_Title {
