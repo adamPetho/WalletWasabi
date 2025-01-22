@@ -1773,4 +1773,10 @@
   <data name="StatusIcon_Ask_Me_Later" xml:space="preserve">
     <value>Ask me later</value>
   </data>
+  <data name="TorIssuesView_Tor_Having_Issues" xml:space="preserve">
+    <value>Tor network is having issues:</value>
+  </data>
+  <data name="TorIssuesView_Click_Icon_For_Details" xml:space="preserve">
+    <value>Click this icon for details</value>
+  </data>
 </root>

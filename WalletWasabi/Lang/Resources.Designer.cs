@@ -3289,6 +3289,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click this icon for details.
+        /// </summary>
+        public static string TorIssuesView_Click_Icon_For_Details {
+            get {
+                return ResourceManager.GetString("TorIssuesView_Click_Icon_For_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tor network is having issues:.
+        /// </summary>
+        public static string TorIssuesView_Tor_Having_Issues {
+            get {
+                return ResourceManager.GetString("TorIssuesView_Tor_Having_Issues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transaction Details.
         /// </summary>
         public static string TransactionDetailsViewModel_Title {
