@@ -1000,6 +1000,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Bitcoin Address.
+        /// </summary>
+        public static string CoinListView_Copy_Bitcoin_Address {
+            get {
+                return ResourceManager.GetString("CoinListView_Copy_Bitcoin_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Order.
         /// </summary>
         public static string ConfirmDeleteOrderDialogViewModel_Title {

@@ -1875,4 +1875,7 @@
   <data name="CoinjoinCoinListView_Copy_Bitcoin_Address" xml:space="preserve">
     <value>Copy Bitcoin Address</value>
   </data>
+  <data name="CoinListView_Copy_Bitcoin_Address" xml:space="preserve">
+    <value>Copy Bitcoin Address</value>
+  </data>
 </root>
