@@ -523,6 +523,51 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input amount.
+        /// </summary>
+        public static string BroadcastTransactionView_Input_Amount {
+            get {
+                return ResourceManager.GetString("BroadcastTransactionView_Input_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input count.
+        /// </summary>
+        public static string BroadcastTransactionView_Input_Count {
+            get {
+                return ResourceManager.GetString("BroadcastTransactionView_Input_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output amount.
+        /// </summary>
+        public static string BroadcastTransactionView_Output_Amount {
+            get {
+                return ResourceManager.GetString("BroadcastTransactionView_Output_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output count.
+        /// </summary>
+        public static string BroadcastTransactionView_Output_Count {
+            get {
+                return ResourceManager.GetString("BroadcastTransactionView_Output_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction ID.
+        /// </summary>
+        public static string BroadcastTransactionView_Transaction_ID {
+            get {
+                return ResourceManager.GetString("BroadcastTransactionView_Transaction_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to It was not possible to broadcast the transaction..
         /// </summary>
         public static string BroadcastTransactionViewModel_Error_Generic_Caption {

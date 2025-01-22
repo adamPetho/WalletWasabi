@@ -1,24 +1,25 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:transactionBroadcasting="using:WalletWasabi.Fluent.ViewModels.TransactionBroadcasting"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:DataType="transactionBroadcasting:BroadcastTransactionViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.TransactionBroadcasting.BroadcastTransactionView">
   <ContentArea Title="{Binding Title}"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}"
-                 EnableNext="True" NextContent="Broadcast"
+                 EnableNext="True" NextContent="{x:Static lang:Resources.Words_Broadcast}"
                  IsBusy="{Binding IsBusy}">
     <StackPanel Spacing="20">
       <PreviewItem Icon="{StaticResource transaction_id}"
-                     Label="Transaction ID"
+                     Label="{x:Static lang:Resources.BroadcastTransactionView_Transaction_ID}"
                      Content="{Binding BroadcastInfo.TransactionId, FallbackValue=ab550cbedcacc9e4d1d6d37b1dc54eee0cax7b70c4e0beeac2d0915353b70ae0}" />
       <Separator />
       <PreviewItem Icon="{StaticResource btc_logo}"
-                     Label="Input amount">
+                     Label="{x:Static lang:Resources.BroadcastTransactionView_Input_Amount}">
         <StackPanel>
           <TextBlock IsVisible="{Binding Path=BroadcastInfo.InputAmount, Converter={x:Static ObjectConverters.IsNull}}"
-                     Text="Unknown" />
+                     Text="{x:Static lang:Resources.Words_Unknown}" />
           <AmountControl IsVisible="{Binding Path=BroadcastInfo.InputAmount, Converter={x:Static ObjectConverters.IsNotNull}}"
                          Classes="WithUsd"
                          Amount="{Binding BroadcastInfo.InputAmount}"/>
@@ -26,10 +27,10 @@
       </PreviewItem>
       <Separator />
       <PreviewItem Icon="{StaticResource btc_logo}"
-                     Label="Output amount">
+                     Label="{x:Static lang:Resources.BroadcastTransactionView_Output_Amount}">
         <StackPanel>
           <TextBlock IsVisible="{Binding Path=BroadcastInfo.OutputAmount, Converter={x:Static ObjectConverters.IsNull}}"
-                     Text="Unknown" />
+                     Text="{x:Static lang:Resources.Words_Unknown}" />
           <AmountControl IsVisible="{Binding Path=BroadcastInfo.OutputAmount, Converter={x:Static ObjectConverters.IsNotNull}}"
                          Classes="WithUsd"
                          Amount="{Binding BroadcastInfo.OutputAmount}"/>
@@ -37,18 +38,18 @@
       </PreviewItem>
       <Separator />
       <PreviewItem Icon="{StaticResource arrow_down_right_circle_regular}"
-                     Label="Input count"
+                     Label="{x:Static lang:Resources.BroadcastTransactionView_Input_Count}"
                      Content="{Binding BroadcastInfo.InputCount, FallbackValue=1}" />
       <Separator />
       <PreviewItem Icon="{StaticResource arrow_up_right_circle_regular}"
-                     Label="Output count"
+                     Label="{x:Static lang:Resources.BroadcastTransactionView_Output_Count}"
                      Content="{Binding BroadcastInfo.OutputCount, FallbackValue=1}" />
       <Separator />
       <PreviewItem Icon="{StaticResource paper_cash_regular}"
-                   Label="Fee">
+                   Label="{x:Static lang:Resources.Words_Fee}">
         <StackPanel>
           <TextBlock IsVisible="{Binding Path=BroadcastInfo.NetworkFee, Converter={x:Static ObjectConverters.IsNull}}"
-                   Text="Unknown" />
+                   Text="{x:Static lang:Resources.Words_Unknown}" />
           <AmountControl IsVisible="{Binding Path=BroadcastInfo.NetworkFee, Converter={x:Static ObjectConverters.IsNotNull}}"
                          Classes="WithUsd"
                          Amount="{Binding BroadcastInfo.NetworkFee}"/>

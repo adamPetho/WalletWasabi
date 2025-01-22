@@ -1779,4 +1779,19 @@
   <data name="TorIssuesView_Click_Icon_For_Details" xml:space="preserve">
     <value>Click this icon for details</value>
   </data>
+  <data name="BroadcastTransactionView_Transaction_ID" xml:space="preserve">
+    <value>Transaction ID</value>
+  </data>
+  <data name="BroadcastTransactionView_Input_Amount" xml:space="preserve">
+    <value>Input amount</value>
+  </data>
+  <data name="BroadcastTransactionView_Output_Amount" xml:space="preserve">
+    <value>Output amount</value>
+  </data>
+  <data name="BroadcastTransactionView_Input_Count" xml:space="preserve">
+    <value>Input count</value>
+  </data>
+  <data name="BroadcastTransactionView_Output_Count" xml:space="preserve">
+    <value>Output count</value>
+  </data>
 </root>
