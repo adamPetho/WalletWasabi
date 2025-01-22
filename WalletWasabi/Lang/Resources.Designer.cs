@@ -2713,6 +2713,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can choose to hide, modify, or display the addresses listed below..
+        /// </summary>
+        public static string ReceiveAddressesView_Caption {
+            get {
+                return ResourceManager.GetString("ReceiveAddressesView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Addresses Awaiting Payment.
         /// </summary>
         public static string ReceiveAddressesViewModel_Title {

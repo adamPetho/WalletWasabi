@@ -2058,4 +2058,7 @@
   <data name="Words_Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="ReceiveAddressesView_Caption" xml:space="preserve">
+    <value>You can choose to hide, modify, or display the addresses listed below.</value>
+  </data>
 </root>
