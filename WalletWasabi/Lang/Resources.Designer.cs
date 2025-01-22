@@ -198,6 +198,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit the selected address&apos;s labels here:.
+        /// </summary>
+        public static string AddressLabelEditView_Caption {
+            get {
+                return ResourceManager.GetString("AddressLabelEditView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Labels.
         /// </summary>
         public static string AddressLabelEditViewModel_Title {
@@ -5553,6 +5562,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Sat {
             get {
                 return ResourceManager.GetString("Words_Sat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Words_Save {
+            get {
+                return ResourceManager.GetString("Words_Save", resourceCulture);
             }
         }
         

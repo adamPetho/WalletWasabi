@@ -2052,4 +2052,10 @@
   <data name="ReceiveActionsColumnView_QRCode_ToolTip" xml:space="preserve">
     <value>QR Code</value>
   </data>
+  <data name="AddressLabelEditView_Caption" xml:space="preserve">
+    <value>Edit the selected address's labels here:</value>
+  </data>
+  <data name="Words_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>
