@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:features="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Home.History.Features"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.History.Features.CancelTransactionDialogView"
              x:DataType="features:CancelTransactionDialogViewModel"
@@ -11,7 +12,7 @@
   <ContentArea Title="Cancel Transaction"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}"
-                 EnableNext="True" NextContent="Confirm"
+                 EnableNext="True" NextContent="{x:Static lang:Resources.Words_Confirm}"
                  IsBusy="{Binding IsBusy}"
                  MinWidth="500">
 
@@ -20,7 +21,7 @@
         <PathIcon Data="{StaticResource cancel_regular}" Opacity="0.6" />
       </Viewbox>
       <StackPanel Spacing="10" HorizontalAlignment="Center">
-        <TextBlock HorizontalAlignment="Center" Text="Cancelling this transaction will cost you" />
+        <TextBlock HorizontalAlignment="Center" Text="{x:Static lang:Resources.CancelTransactionDialogView_Warning_Text}" />
         <AmountControl Classes="WithUsd h5" HorizontalAlignment="Center" Amount="{Binding Fee}" />
       </StackPanel>
     </DockPanel>

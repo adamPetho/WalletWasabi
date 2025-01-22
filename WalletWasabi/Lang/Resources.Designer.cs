@@ -667,6 +667,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelling this transaction will cost you.
+        /// </summary>
+        public static string CancelTransactionDialogView_Warning_Text {
+            get {
+                return ResourceManager.GetString("CancelTransactionDialogView_Warning_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wasabi was unable to cancel your transaction..
         /// </summary>
         public static string CancelTransactionDialogViewModel_Error_AlreadyConfirmed_Caption {

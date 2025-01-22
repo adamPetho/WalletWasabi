@@ -1968,4 +1968,7 @@
   <data name="TransactionDetailsView_Block_Height" xml:space="preserve">
     <value>Block height</value>
   </data>
+  <data name="CancelTransactionDialogView_Warning_Text" xml:space="preserve">
+    <value>Cancelling this transaction will cost you</value>
+  </data>
 </root>
