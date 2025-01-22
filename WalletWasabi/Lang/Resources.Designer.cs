@@ -2038,6 +2038,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the coins that are allowed for the transaction to use.
+        /// </summary>
+        public static string ManualcontrolDialogView_Caption {
+            get {
+                return ResourceManager.GetString("ManualcontrolDialogView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manual Control.
         /// </summary>
         public static string ManualControlDialogViewModel_Title {

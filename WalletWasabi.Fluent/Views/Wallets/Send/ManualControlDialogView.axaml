@@ -3,20 +3,21 @@
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels.Wallets.Send"
              xmlns:sorting="clr-namespace:WalletWasabi.Fluent.Controls.Sorting"
              xmlns:coins="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Coins"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:DataType="vm:ManualControlDialogViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Send.ManualControlDialogView">
 
   <ContentArea Title="{Binding Title}"
-               Caption="Select the coins that are allowed for the transaction to use"
-               EnableNext="True" NextContent="Continue"
+               Caption="{x:Static lang:Resources.ManualcontrolDialogView_Caption}"
+               EnableNext="True" NextContent="{x:Static lang:Resources.Words_Continue}"
                EnableCancel="{Binding EnableCancel}"
                EnableBack="{Binding EnableBack}"
                ScrollViewer.VerticalScrollBarVisibility="Disabled"
                ScrollViewer.HorizontalScrollBarVisibility="Disabled">
     <ContentArea.TopContent>
       <StackPanel Orientation="Horizontal" Spacing="5" HorizontalAlignment="Right">
-        <Button Theme="{StaticResource DialogSortButton}"  ToolTip.Tip="Sorting">
+        <Button Theme="{StaticResource DialogSortButton}"  ToolTip.Tip="{x:Static lang:Resources.Words_Sorting}">
           <Button.Flyout>
             <Flyout Placement="BottomEdgeAlignedRight">
               <sorting:SortControl Sortables="{Binding CoinList.Sortables}" />

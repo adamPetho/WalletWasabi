@@ -2076,4 +2076,7 @@
   <data name="CustomFeeRateView_LabelContent" xml:space="preserve">
     <value>Transaction fee rate:</value>
   </data>
+  <data name="ManualcontrolDialogView_Caption" xml:space="preserve">
+    <value>Select the coins that are allowed for the transaction to use</value>
+  </data>
 </root>
