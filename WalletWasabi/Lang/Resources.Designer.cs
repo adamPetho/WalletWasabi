@@ -1732,6 +1732,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import or paste the transaction hex and broadcast it to the network..
+        /// </summary>
+        public static string LoadTransactionView_Caption {
+            get {
+                return ResourceManager.GetString("LoadTransactionView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import transaction.
+        /// </summary>
+        public static string LoadTransactionView_Import_Transaction {
+            get {
+                return ResourceManager.GetString("LoadTransactionView_Import_Transaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste from clipboard.
+        /// </summary>
+        public static string LoadTransactionView_Paste_From_Clipboard {
+            get {
+                return ResourceManager.GetString("LoadTransactionView_Paste_From_Clipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to It was not possible to load the transaction..
         /// </summary>
         public static string LoadTransactionViewModel_Error_LoadTransaction_Caption {

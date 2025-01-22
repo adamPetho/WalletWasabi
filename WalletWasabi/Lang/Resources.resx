@@ -1794,4 +1794,13 @@
   <data name="BroadcastTransactionView_Output_Count" xml:space="preserve">
     <value>Output count</value>
   </data>
+  <data name="LoadTransactionView_Caption" xml:space="preserve">
+    <value>Import or paste the transaction hex and broadcast it to the network.</value>
+  </data>
+  <data name="LoadTransactionView_Import_Transaction" xml:space="preserve">
+    <value>Import transaction</value>
+  </data>
+  <data name="LoadTransactionView_Paste_From_Clipboard" xml:space="preserve">
+    <value>Paste from clipboard</value>
+  </data>
 </root>

@@ -3,12 +3,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:transactionBroadcasting="using:WalletWasabi.Fluent.ViewModels.TransactionBroadcasting"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="transactionBroadcasting:LoadTransactionViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.TransactionBroadcasting.LoadTransactionView">
   <ContentArea Title="{Binding Title}"
-                 Caption="Import or paste the transaction hex and broadcast it to the network."
+                 Caption="{x:Static lang:Resources.LoadTransactionView_Caption}"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}">
     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -20,10 +21,10 @@
           <Setter Property="IconSize" Value="60" />
         </Style>
       </WrapPanel.Styles>
-      <TileButton Text="Import transaction"
+      <TileButton Text="{x:Static lang:Resources.LoadTransactionView_Import_Transaction}"
                     Icon="{StaticResource folder_move_regular}"
                     Command="{Binding ImportTransactionCommand}" />
-      <TileButton Text="Paste from clipboard"
+      <TileButton Text="{x:Static lang:Resources.LoadTransactionView_Paste_From_Clipboard}"
                     Icon="{StaticResource clipboard_text_regular}"
                     Command="{Binding PasteCommand}" />
     </WrapPanel>
