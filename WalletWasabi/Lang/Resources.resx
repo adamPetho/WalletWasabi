@@ -1911,6 +1911,9 @@
   <data name="HistoryTable_Show_Details_Header" xml:space="preserve">
     <value>Show Details</value>
   </data>
+  <data name="PrivacyBarView_Show_Details_ToolTip" xml:space="preserve">
+    <value>Show Details</value>
+  </data>
   <data name="ActionsColumnView_Cancel_Transaction_ToolTip" xml:space="preserve">
     <value>Cancel Transaction</value>
   </data>

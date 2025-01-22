@@ -2533,6 +2533,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Details.
+        /// </summary>
+        public static string PrivacyBarView_Show_Details_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyBarView_Show_Details_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Control.
         /// </summary>
         public static string PrivacyControlViewModel_Title {
