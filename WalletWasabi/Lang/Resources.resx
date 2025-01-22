@@ -1752,4 +1752,25 @@
   <data name="SettingsPageView_Modifying_Not_Possible_Text" xml:space="preserve">
     <value>Modifying settings is not possible, as certain parameters have been overridden during startup.</value>
   </data>
+  <data name="StatusIcon_Backend_Not_Connected_Warning_Text" xml:space="preserve">
+    <value>The reported balance might not be accurate, and some other features may not be available, because Wasabi was unable to connect to the server. Retrying to connect.</value>
+  </data>
+  <data name="StatusIcon_Backend_Not_Compatible_Warning_Text" xml:space="preserve">
+    <value>This version of Wasabi is not compatible with the backend it tries to connect to. Update if available or change the backend provider.</value>
+  </data>
+  <data name="Words_Peers" xml:space="preserve">
+    <value>Peers</value>
+  </data>
+  <data name="StatusIcon_Update_Available" xml:space="preserve">
+    <value>Update available</value>
+  </data>
+  <data name="StatusIcon_Close_And_Update" xml:space="preserve">
+    <value>Close and Update</value>
+  </data>
+  <data name="StatusIcon_Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="StatusIcon_Ask_Me_Later" xml:space="preserve">
+    <value>Ask me later</value>
+  </data>
 </root>

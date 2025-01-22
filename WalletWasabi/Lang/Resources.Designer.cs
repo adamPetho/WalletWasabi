@@ -3208,6 +3208,60 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ask me later.
+        /// </summary>
+        public static string StatusIcon_Ask_Me_Later {
+            get {
+                return ResourceManager.GetString("StatusIcon_Ask_Me_Later", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This version of Wasabi is not compatible with the backend it tries to connect to. Update if available or change the backend provider..
+        /// </summary>
+        public static string StatusIcon_Backend_Not_Compatible_Warning_Text {
+            get {
+                return ResourceManager.GetString("StatusIcon_Backend_Not_Compatible_Warning_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reported balance might not be accurate, and some other features may not be available, because Wasabi was unable to connect to the server. Retrying to connect..
+        /// </summary>
+        public static string StatusIcon_Backend_Not_Connected_Warning_Text {
+            get {
+                return ResourceManager.GetString("StatusIcon_Backend_Not_Connected_Warning_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close and Update.
+        /// </summary>
+        public static string StatusIcon_Close_And_Update {
+            get {
+                return ResourceManager.GetString("StatusIcon_Close_And_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string StatusIcon_Update {
+            get {
+                return ResourceManager.GetString("StatusIcon_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        public static string StatusIcon_Update_Available {
+            get {
+                return ResourceManager.GetString("StatusIcon_Update_Available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version {0} is now available.
         /// </summary>
         public static string StatusIconViewModel_NewVersion_Available {
@@ -4572,6 +4626,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Paste {
             get {
                 return ResourceManager.GetString("Words_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Peers.
+        /// </summary>
+        public static string Words_Peers {
+            get {
+                return ResourceManager.GetString("Words_Peers", resourceCulture);
             }
         }
         
