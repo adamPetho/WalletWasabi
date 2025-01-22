@@ -276,6 +276,12 @@
   <data name="Words_Fee" xml:space="preserve">
     <value>Fee</value>
   </data>
+  <data name="Words_Fees" xml:space="preserve">
+    <value>Fees</value>
+  </data>
+  <data name="Words_Fee_Rate" xml:space="preserve">
+    <value>Fee Rate</value>
+  </data>
   <data name="Words_File" xml:space="preserve">
     <value>File</value>
   </data>
@@ -323,6 +329,9 @@
   </data>
   <data name="Words_Input" xml:space="preserve">
     <value>Input</value>
+  </data>
+  <data name="Words_Inputs" xml:space="preserve">
+    <value>Inputs</value>
   </data>
   <data name="Words_Interface" xml:space="preserve">
     <value>Interface</value>
@@ -389,6 +398,9 @@
   </data>
   <data name="Words_Output" xml:space="preserve">
     <value>Output</value>
+  </data>
+  <data name="Words_Outputs" xml:space="preserve">
+    <value>Outputs</value>
   </data>
   <data name="Words_P2P" xml:space="preserve">
     <value>P2P</value>
@@ -1907,5 +1919,20 @@
   </data>
   <data name="Words_Accelerator" xml:space="preserve">
     <value>Accelerator</value>
+  </data>
+  <data name="CoinJoinDetailsView_Confirmations_Text" xml:space="preserve">
+    <value>({0} confirmations)</value>
+  </data>
+  <data name="CoinJoinDetailsView_Transaction_ID" xml:space="preserve">
+    <value>Transaction ID</value>
+  </data>
+  <data name="CoinJoinDetailsView_Expected_Confirmation_Time" xml:space="preserve">
+    <value>Expected confirmation time</value>
+  </data>
+  <data name="CoinJoinDetailsView_Expected_Confirmation_Time_ToolTip" xml:space="preserve">
+    <value>This is just an estimation based on some data for transactions and blocks. The confirmation time might change.</value>
+  </data>
+  <data name="Words_Hex" xml:space="preserve">
+    <value>Hex</value>
   </data>
 </root>

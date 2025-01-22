@@ -5,19 +5,20 @@
              xmlns:details="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Home.History.Details"
              xmlns:conv="clr-namespace:WalletWasabi.Fluent.Converters"
              xmlns:coinjoins="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Coinjoins"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="details:CoinJoinDetailsViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.History.Details.CoinJoinDetailsView"
              Name="CoinJoinDetails">
   <ContentArea Title="{Binding Title}"
-                 NextContent="Done" EnableNext="True"
+                 NextContent="{x:Static lang:Resources.Words_Done}" EnableNext="True"
                  EnableCancel="{Binding EnableCancel}">
     <StackPanel Spacing="15">
 
       <!-- Date -->
       <PreviewItem Icon="{StaticResource timer_regular}"
-                     Label="Date"
+                     Label="{x:Static lang:Resources.Words_Date}"
                      CopyableContent="{Binding Date}">
         <TextBlock Text="{Binding Date}" />
       </PreviewItem>
@@ -26,7 +27,7 @@
 
       <!-- Transaction IDs -->
       <PreviewItem Icon="{StaticResource transaction_id}"
-                     Label="Transaction ID"
+                     Label="{x:Static lang:Resources.CoinJoinDetailsView_Transaction_ID}"
                      CopyableContent="{Binding TransactionId}">
         <PrivacyContentControl>
           <TextBlock Text="{Binding TransactionId}" Classes="monoSpaced" />
@@ -37,13 +38,13 @@
 
       <!-- Status -->
       <PreviewItem Icon="{StaticResource status_regular}"
-                     Label="Status">
+                     Label="{x:Static lang:Resources.Words_Status}">
         <StackPanel Orientation="Horizontal">
           <Panel>
-            <TextBlock Text="Confirmed" IsVisible="{Binding IsConfirmed}" />
-            <TextBlock Text="Pending" IsVisible="{Binding !IsConfirmed}" />
+            <TextBlock Text="{x:Static lang:Resources.Words_Confirmed}" IsVisible="{Binding IsConfirmed}" />
+            <TextBlock Text="{x:Static lang:Resources.Words_Pending}" IsVisible="{Binding !IsConfirmed}" />
           </Panel>
-          <TextBlock IsVisible="{Binding IsConfirmed}" Margin="4 0 0 0 " Text="{Binding Confirmations, StringFormat='({0} confirmations)'}" />
+          <TextBlock IsVisible="{Binding IsConfirmed}" Margin="4 0 0 0 " Text="{Binding Confirmations, StringFormat='{x:Static lang:Resources.CoinJoinDetailsView_Confirmations_Text}'}" />
         </StackPanel>
       </PreviewItem>
 
@@ -53,12 +54,12 @@
       <DockPanel Margin="0 -35 0 0" LastChildFill="True">
         <Grid ColumnDefinitions="*,30,*">
           <StackPanel Grid.Column="0">
-            <TextBlock Margin="35 0 25 0" Text="Inputs" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Margin="35 0 25 0" Text="{x:Static lang:Resources.Words_Inputs}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
             <coinjoins:CoinjoinCoinListView Margin="10 15 10 0" DataContext="{Binding InputList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
           </StackPanel>
           <PathIcon Grid.Column="1" Opacity="0.6" Margin="0 48 0 0" VerticalAlignment="Top" Data="{StaticResource arrow_right_regular}"/>
           <StackPanel Grid.Column="2">
-            <TextBlock Margin="35 0 25 0" Text="Outputs" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Margin="35 0 25 0" Text="{x:Static lang:Resources.Words_Outputs}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
             <coinjoins:CoinjoinCoinListView Margin="10 15 10 0" DataContext="{Binding OutputList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
           </StackPanel>
         </Grid>
@@ -68,7 +69,7 @@
       <!-- Fee Rate-->
       <PreviewItem IsVisible="{Binding FeeRateVisible}"
                      Icon="{StaticResource paper_cash_regular}"
-                     Label="Fee Rate"
+                     Label="{x:Static lang:Resources.Words_Fee_Rate}"
                      CopyableContent="{Binding FeeRate.SatoshiPerByte}">
         <PrivacyContentControl>
          <TextBlock Text="{Binding FeeRate.SatoshiPerByte, StringFormat='{}{0:0.##} sat/vByte'}" />
@@ -79,7 +80,7 @@
 
       <!-- CJ fee  -->
       <PreviewItem Icon="{StaticResource btc_logo}"
-                     Label="Fees"
+                     Label="{x:Static lang:Resources.Words_Fees}"
                      CopyableContent="{Binding CoinJoinFeeAmount.Btc, Converter={x:Static conv:MoneyConverters.ToFeeWithoutUnit}}">
         <PrivacyContentControl>
           <AmountControl Classes="WithUsd" Amount="{Binding CoinJoinFeeAmount}" />
@@ -89,8 +90,8 @@
       <!-- Confirmation Time -->
       <PreviewItem IsVisible="{Binding IsConfirmationTimeVisible}"
                      Icon="{StaticResource timer_regular}"
-                     Label="Expected confirmation time"
-                     ToolTip.Tip="This is just an estimation based on some data for transactions and blocks. The confirmation time might change.">
+                     Label="{x:Static lang:Resources.CoinJoinDetailsView_Expected_Confirmation_Time}"
+                     ToolTip.Tip="{x:Static lang:Resources.CoinJoinDetailsView_Expected_Confirmation_Time_ToolTip}">
         <PrivacyContentControl>
           <TextBlock Text="{Binding ConfirmationTime, Converter={x:Static conv:TimeSpanConverter.ToEstimatedConfirmationTime}}" Classes="monoSpaced" />
         </PrivacyContentControl>
@@ -99,9 +100,9 @@
       <Separator />
       <!-- Hex -->
       <PreviewItem Icon="{StaticResource binary_file}"
-                   Label="Hex"
+                   Label="{x:Static lang:Resources.Words_Hex}"
                    CopyableContent="{Binding TransactionHex}">
-        <TextBlock Text="Copy" />
+        <TextBlock Text="{x:Static lang:Resources.Words_Copy}" />
       </PreviewItem>
 
       <Separator IsVisible="{Binding IsConfirmationTimeVisible}" />

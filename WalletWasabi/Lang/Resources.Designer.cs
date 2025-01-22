@@ -991,6 +991,42 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ({0} confirmations).
+        /// </summary>
+        public static string CoinJoinDetailsView_Confirmations_Text {
+            get {
+                return ResourceManager.GetString("CoinJoinDetailsView_Confirmations_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected confirmation time.
+        /// </summary>
+        public static string CoinJoinDetailsView_Expected_Confirmation_Time {
+            get {
+                return ResourceManager.GetString("CoinJoinDetailsView_Expected_Confirmation_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is just an estimation based on some data for transactions and blocks. The confirmation time might change..
+        /// </summary>
+        public static string CoinJoinDetailsView_Expected_Confirmation_Time_ToolTip {
+            get {
+                return ResourceManager.GetString("CoinJoinDetailsView_Expected_Confirmation_Time_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction ID.
+        /// </summary>
+        public static string CoinJoinDetailsView_Transaction_ID {
+            get {
+                return ResourceManager.GetString("CoinJoinDetailsView_Transaction_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coinjoin Details.
         /// </summary>
         public static string CoinJoinDetailsViewModel_Title {
@@ -4612,6 +4648,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fee Rate.
+        /// </summary>
+        public static string Words_Fee_Rate {
+            get {
+                return ResourceManager.GetString("Words_Fee_Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fees.
+        /// </summary>
+        public static string Words_Fees {
+            get {
+                return ResourceManager.GetString("Words_Fees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string Words_File {
@@ -4702,6 +4756,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hex.
+        /// </summary>
+        public static string Words_Hex {
+            get {
+                return ResourceManager.GetString("Words_Hex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hour.
         /// </summary>
         public static string Words_Hour {
@@ -4761,6 +4824,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Input {
             get {
                 return ResourceManager.GetString("Words_Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inputs.
+        /// </summary>
+        public static string Words_Inputs {
+            get {
+                return ResourceManager.GetString("Words_Inputs", resourceCulture);
             }
         }
         
@@ -4995,6 +5067,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Output {
             get {
                 return ResourceManager.GetString("Words_Output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outputs.
+        /// </summary>
+        public static string Words_Outputs {
+            get {
+                return ResourceManager.GetString("Words_Outputs", resourceCulture);
             }
         }
         
