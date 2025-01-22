@@ -1626,4 +1626,25 @@
   <data name="Words_Done" xml:space="preserve">
     <value>Done</value>
   </data>
+  <data name="NewCoordinatorConfirmationDialogView_Caption" xml:space="preserve">
+    <value>Detected a Coordinator connection string in the clipboard. Please review the details below.</value>
+  </data>
+  <data name="NewCoordinatorConfirmationDialogView_Question" xml:space="preserve">
+    <value>Do you want apply this coordinator?</value>
+  </data>
+  <data name="Words_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Words_Coordinator_URI" xml:space="preserve">
+    <value>Coordinator URI</value>
+  </data>
+  <data name="NewCoordinatorConfirmationDialogView_Absolute_Minimum_Input_Count" xml:space="preserve">
+    <value>Absolute minimum input count</value>
+  </data>
+  <data name="Words_Read_More" xml:space="preserve">
+    <value>Read more</value>
+  </data>
+  <data name="NewCoordinatorConfirmationDialogView_Read_More_ToolTip" xml:space="preserve">
+    <value>Open the link in the default browser</value>
+  </data>
 </root>

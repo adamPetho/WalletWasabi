@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dialog="using:WalletWasabi.Fluent.ViewModels.Dialogs"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:DataType="dialog:NewCoordinatorConfirmationDialogViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Dialogs.NewCoordinatorConfirmationDialogView">
   <ContentArea Title="{Binding Title}"
-               Caption="Detected a Coordinator connection string in the clipboard. Please review the details below."
+               Caption="{x:Static lang:Resources.NewCoordinatorConfirmationDialogView_Caption}"
                ScrollViewer.VerticalScrollBarVisibility="Disabled">
-    <QuestionControl Content="Do you want apply this coordinator?"
+    <QuestionControl Content="{x:Static lang:Resources.NewCoordinatorConfirmationDialogView_Question}"
                      YesCommand="{Binding NextCommand}"
                      NoCommand="{Binding CancelCommand}"
                      HighlightButton="YesButton">
@@ -19,7 +20,7 @@
           <StackPanel Spacing="15" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
             <!-- Name -->
-            <PreviewItem Label="Name"
+            <PreviewItem Label="{x:Static lang:Resources.Words_Name}"
                          Icon="{StaticResource person_regular}"
                          CopyableContent="{Binding CoordinatorConnection.Name}">
               <TextBlock Text="{Binding CoordinatorConnection.Name, FallbackValue=Name}" />
@@ -27,7 +28,7 @@
             <Separator />
 
             <!-- Network -->
-            <PreviewItem Label="Network"
+            <PreviewItem Label="{x:Static lang:Resources.Words_Network}"
                          Icon="{StaticResource globe}"
                          CopyableContent="{Binding CoordinatorConnection.Network}">
               <TextBlock Text="{Binding CoordinatorConnection.Network, FallbackValue=Main}" />
@@ -35,7 +36,7 @@
             <Separator />
 
             <!-- CoordinatorUri -->
-            <PreviewItem Label="Coordinator URI"
+            <PreviewItem Label="{x:Static lang:Resources.Words_Coordinator_URI}"
                          Icon="{StaticResource coordinator}"
                          CopyableContent="{Binding CoordinatorConnection.CoordinatorUri}">
               <TextBlock Text="{Binding CoordinatorConnection.CoordinatorUri, FallbackValue=https://api.example.com/}" />
@@ -43,7 +44,7 @@
             <Separator />
 
             <!-- AbsoluteMinInputCount -->
-            <PreviewItem Label="Absolute minimum input count"
+            <PreviewItem Label="{x:Static lang:Resources.NewCoordinatorConfirmationDialogView_Absolute_Minimum_Input_Count}"
                          Icon="{StaticResource input_count}"
                          CopyableContent="{Binding CoordinatorConnection.AbsoluteMinInputCount}">
               <TextBlock Text="{Binding CoordinatorConnection.AbsoluteMinInputCount, FallbackValue=100}" />
@@ -51,11 +52,11 @@
             <Separator />
 
             <!-- ReadMore -->
-            <PreviewItem Label="Read more"
+            <PreviewItem Label="{x:Static lang:Resources.Words_Read_More}"
                          Icon="{StaticResource read_more}"
                          CopyableContent="{Binding CoordinatorConnection.ReadMore}">
               <Button Classes="activeHyperLink"
-                      ToolTip.Tip="Open the link in the default browser"
+                      ToolTip.Tip="{x:Static lang:Resources.NewCoordinatorConfirmationDialogView_Read_More_ToolTip}"
                       Content="{Binding CoordinatorConnection.ReadMore, FallbackValue=https://www.example.com/}"
                       Command="{Binding OpenReadMoreCommand}" />
             </PreviewItem>

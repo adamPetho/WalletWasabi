@@ -1777,6 +1777,42 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absolute minimum input count.
+        /// </summary>
+        public static string NewCoordinatorConfirmationDialogView_Absolute_Minimum_Input_Count {
+            get {
+                return ResourceManager.GetString("NewCoordinatorConfirmationDialogView_Absolute_Minimum_Input_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detected a Coordinator connection string in the clipboard. Please review the details below..
+        /// </summary>
+        public static string NewCoordinatorConfirmationDialogView_Caption {
+            get {
+                return ResourceManager.GetString("NewCoordinatorConfirmationDialogView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want apply this coordinator?.
+        /// </summary>
+        public static string NewCoordinatorConfirmationDialogView_Question {
+            get {
+                return ResourceManager.GetString("NewCoordinatorConfirmationDialogView_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the link in the default browser.
+        /// </summary>
+        public static string NewCoordinatorConfirmationDialogView_Read_More_ToolTip {
+            get {
+                return ResourceManager.GetString("NewCoordinatorConfirmationDialogView_Read_More_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coordinator Detected.
         /// </summary>
         public static string NewCoordinatorConfirmationDialogViewModel_Title {
@@ -3631,6 +3667,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coordinator URI.
+        /// </summary>
+        public static string Words_Coordinator_URI {
+            get {
+                return ResourceManager.GetString("Words_Coordinator_URI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Words_Copy {
@@ -4063,6 +4108,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Words_Name {
+            get {
+                return ResourceManager.GetString("Words_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Network.
         /// </summary>
         public static string Words_Network {
@@ -4239,6 +4293,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Rate {
             get {
                 return ResourceManager.GetString("Words_Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read more.
+        /// </summary>
+        public static string Words_Read_More {
+            get {
+                return ResourceManager.GetString("Words_Read_More", resourceCulture);
             }
         }
         
