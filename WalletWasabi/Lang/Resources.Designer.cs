@@ -1036,6 +1036,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of transactions.
+        /// </summary>
+        public static string CoinJoinDetaulsView_NumberOfTransactions {
+            get {
+                return ResourceManager.GetString("CoinJoinDetaulsView_NumberOfTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wasabi takes care of your financial privacy by automatically starting to coinjoin all your funds. Select a coinjoin strategy that fits you best!.
         /// </summary>
         public static string CoinJoinProfilesView_Caption {
@@ -1050,6 +1059,15 @@ namespace WalletWasabi.Lang {
         public static string CoinJoinProfilesViewModel_Title {
             get {
                 return ResourceManager.GetString("CoinJoinProfilesViewModel_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction IDs.
+        /// </summary>
+        public static string CoinJoinsDetailsView_Transaction_IDs {
+            get {
+                return ResourceManager.GetString("CoinJoinsDetailsView_Transaction_IDs", resourceCulture);
             }
         }
         
