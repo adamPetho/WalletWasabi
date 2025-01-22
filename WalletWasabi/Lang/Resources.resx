@@ -2010,4 +2010,7 @@
   <data name="HistoryTable_Copy_Amount_Header" xml:space="preserve">
     <value>Copy Amount</value>
   </data>
+  <data name="PrivacyRingDetailsView_PRIVATE" xml:space="preserve">
+    <value>PRIVATE</value>
+  </data>
 </root>

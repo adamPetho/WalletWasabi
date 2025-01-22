@@ -2560,6 +2560,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PRIVATE.
+        /// </summary>
+        public static string PrivacyRingDetailsView_PRIVATE {
+            get {
+                return ResourceManager.GetString("PrivacyRingDetailsView_PRIVATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Progress.
         /// </summary>
         public static string PrivacyRingViewModel_Title {
