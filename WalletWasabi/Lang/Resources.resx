@@ -1842,4 +1842,34 @@
   <data name="WalletInfoView_Extended_Account_Public_Key_Taproot" xml:space="preserve">
     <value>Extended Account Public Key (Taproot)</value>
   </data>
+  <data name="WalletStatsView_Number_Of_Coins" xml:space="preserve">
+    <value>Number of coins (UTXOs)</value>
+  </data>
+  <data name="WalletStatsView_Unconfirmed_Balance" xml:space="preserve">
+    <value>Unconfirmed balance</value>
+  </data>
+  <data name="WalletStatsView_Confirmed_Balance" xml:space="preserve">
+    <value>Confirmed balance</value>
+  </data>
+  <data name="WalletStatsView_Total_Balance" xml:space="preserve">
+    <value>Total balance</value>
+  </data>
+  <data name="WalletStatsView_Total_Number_Of_Transactions" xml:space="preserve">
+    <value>Total number of transactions</value>
+  </data>
+  <data name="WalletStatsView_Number_Of_Non_Coinjoin_Transactions" xml:space="preserve">
+    <value>Number of non-coinjoin transactions</value>
+  </data>
+  <data name="WalletStatsView_Number_Of_Coinjoin_Transactions" xml:space="preserve">
+    <value>Number of Coinjoin transactions</value>
+  </data>
+  <data name="WalletStatsView_Number_Of_Addresses" xml:space="preserve">
+    <value>Number of addresses</value>
+  </data>
+  <data name="WalletStatsView_Number_Of_Clean_Addresses" xml:space="preserve">
+    <value>Number of clean addresses</value>
+  </data>
+  <data name="WalletStatsView_Number_Of_Used_Addresses" xml:space="preserve">
+    <value>Number of used addresses</value>
+  </data>
 </root>

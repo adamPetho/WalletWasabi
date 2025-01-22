@@ -3838,6 +3838,96 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmed balance.
+        /// </summary>
+        public static string WalletStatsView_Confirmed_Balance {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Confirmed_Balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of addresses.
+        /// </summary>
+        public static string WalletStatsView_Number_Of_Addresses {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Number_Of_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of clean addresses.
+        /// </summary>
+        public static string WalletStatsView_Number_Of_Clean_Addresses {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Number_Of_Clean_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Coinjoin transactions.
+        /// </summary>
+        public static string WalletStatsView_Number_Of_Coinjoin_Transactions {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Number_Of_Coinjoin_Transactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of coins (UTXOs).
+        /// </summary>
+        public static string WalletStatsView_Number_Of_Coins {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Number_Of_Coins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of non-coinjoin transactions.
+        /// </summary>
+        public static string WalletStatsView_Number_Of_Non_Coinjoin_Transactions {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Number_Of_Non_Coinjoin_Transactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of used addresses.
+        /// </summary>
+        public static string WalletStatsView_Number_Of_Used_Addresses {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Number_Of_Used_Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total balance.
+        /// </summary>
+        public static string WalletStatsView_Total_Balance {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Total_Balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total number of transactions.
+        /// </summary>
+        public static string WalletStatsView_Total_Number_Of_Transactions {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Total_Number_Of_Transactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unconfirmed balance.
+        /// </summary>
+        public static string WalletStatsView_Unconfirmed_Balance {
+            get {
+                return ResourceManager.GetString("WalletStatsView_Unconfirmed_Balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display wallet stats.
         /// </summary>
         public static string WalletStatsViewModel_Caption {
