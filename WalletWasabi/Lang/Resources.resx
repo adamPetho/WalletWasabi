@@ -1662,4 +1662,7 @@
   <data name="LinkView_Copy_Link_ToolTip" xml:space="preserve">
     <value>Copy link</value>
   </data>
+  <data name="RestartView_Restart_Now" xml:space="preserve">
+    <value>Restart now</value>
+  </data>
 </root>

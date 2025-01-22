@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:settings="clr-namespace:WalletWasabi.Fluent.ViewModels.SearchBar.Settings"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d"
              x:DataType="settings:RestartViewModel"
              x:CompileBindings="True"
@@ -10,7 +11,7 @@
 
   <DockPanel Margin="10">
     <Button Classes="action" Margin="10" HorizontalAlignment="Center" DockPanel.Dock="Bottom" Command="{Binding RestartCommand}">
-      <TextBlock>Restart now</TextBlock>
+      <TextBlock Text="{x:Static lang:Resources.RestartView_Restart_Now}" />
     </Button>
     <TextBlock Margin="10 20 10 10" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Message}" />
   </DockPanel>

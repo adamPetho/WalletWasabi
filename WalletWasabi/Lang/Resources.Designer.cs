@@ -2245,6 +2245,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart now.
+        /// </summary>
+        public static string RestartView_Restart_Now {
+            get {
+                return ResourceManager.GetString("RestartView_Restart_Now", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         public static string SearchCategory_General {
