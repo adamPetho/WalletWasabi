@@ -2976,6 +2976,42 @@ namespace WalletWasabi.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Manage appearance, privacy and other settings.
         /// </summary>
+        public static string SettingsPageView_Caption {
+            get {
+                return ResourceManager.GetString("SettingsPageView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifying settings is not possible, as certain parameters have been overridden during startup..
+        /// </summary>
+        public static string SettingsPageView_Modifying_Not_Possible_Text {
+            get {
+                return ResourceManager.GetString("SettingsPageView_Modifying_Not_Possible_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart Wasabi.
+        /// </summary>
+        public static string SettingsPageView_Restart_Wasabi_Button_Text {
+            get {
+                return ResourceManager.GetString("SettingsPageView_Restart_Wasabi_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes will be applied after restarting the application..
+        /// </summary>
+        public static string SettingsPageView_Restart_Wasabi_Text {
+            get {
+                return ResourceManager.GetString("SettingsPageView_Restart_Wasabi_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage appearance, privacy and other settings.
+        /// </summary>
         public static string SettingsPageViewModel_Caption {
             get {
                 return ResourceManager.GetString("SettingsPageViewModel_Caption", resourceCulture);

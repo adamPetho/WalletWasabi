@@ -1740,4 +1740,16 @@
   <data name="GeneralSettingsTabView_Auto_Download_New_Version" xml:space="preserve">
     <value>Auto download new version</value>
   </data>
+  <data name="SettingsPageView_Caption" xml:space="preserve">
+    <value>Manage appearance, privacy and other settings</value>
+  </data>
+  <data name="SettingsPageView_Restart_Wasabi_Text" xml:space="preserve">
+    <value>Changes will be applied after restarting the application.</value>
+  </data>
+  <data name="SettingsPageView_Restart_Wasabi_Button_Text" xml:space="preserve">
+    <value>Restart Wasabi</value>
+  </data>
+  <data name="SettingsPageView_Modifying_Not_Possible_Text" xml:space="preserve">
+    <value>Modifying settings is not possible, as certain parameters have been overridden during startup.</value>
+  </data>
 </root>
