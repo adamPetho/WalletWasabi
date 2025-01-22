@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dialogs="clr-namespace:WalletWasabi.Fluent.ViewModels.Dialogs"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.Dialogs.AdvancedCoinjoinOptionsView"
              x:DataType="dialogs:ManualCoinJoinSettingsViewModel">
@@ -10,25 +11,25 @@
   <StackPanel Classes="settingsLayout">
 
     <DockPanel IsVisible="{Binding NewWalletWorkflow}">
-      <TextBlock Text="Automatically start coinjoin" />
+      <TextBlock Text="{x:Static lang:Resources.AdvancedCoinjoinOptionsView_Automatically_Start_Coinjoin}" />
       <ToggleSwitch IsChecked="{Binding IsAutoCoinjoinEnabled}" />
     </DockPanel>
 
-    <DockPanel ToolTip.Tip="Only allow a single coin with anonymity score 1 into coinjoin registration.">
-      <TextBlock Text="Red coin isolation" />
+    <DockPanel ToolTip.Tip="{x:Static lang:Resources.AdvancedCoinjoinOptionsView_Red_Coin_Isolation_ToolTip}">
+      <TextBlock Text="{x:Static lang:Resources.AdvancedCoinjoinOptionsView_Red_Coin_Isolation}" />
       <ToggleSwitch IsChecked="{Binding RedCoinIsolation}" />
     </DockPanel>
 
-    <StackPanel Spacing="10" ToolTip.Tip="Minimum anonymity score for a coin to be considered private.">
-      <TextBlock Text="Anonymity score target" />
+    <StackPanel Spacing="10" ToolTip.Tip="{x:Static lang:Resources.AdvancedCoinjonOptionsView_Anonymity_Score_Target_ToolTip}">
+      <TextBlock Text="{x:Static lang:Resources.AdvancedCoinjoinOptionsView_Anonymity_Score_Target}" />
       <DockPanel>
         <TextBlock MinWidth="24" DockPanel.Dock="Right" Text="{Binding AnonScoreTarget}" VerticalAlignment="Center" Margin="5" />
         <Slider Minimum="2" Maximum="300" Value="{Binding AnonScoreTarget}" />
       </DockPanel>
     </StackPanel>
 
-    <DockPanel ToolTip.Tip="Only coinjoin when the fee rate is below the median of this time period.">
-      <TextBlock Text="Coinjoin time preference" />
+    <DockPanel ToolTip.Tip="{x:Static lang:Resources.AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference_ToolTip}">
+      <TextBlock Text="{x:Static lang:Resources.AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference}" />
       <ComboBox HorizontalAlignment="Stretch"
                 ItemsSource="{Binding TimeFrames}"
                 SelectedItem="{Binding SelectedTimeFrame}" />

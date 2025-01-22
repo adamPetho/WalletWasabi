@@ -1590,4 +1590,25 @@
   <data name="AboutAdvancedInfoView_Compatible_Hardware_Wallet_Interface_Version" xml:space="preserve">
     <value>Compatible Hardware Wallet Interface Version</value>
   </data>
+  <data name="AdvancedCoinjoinOptionsView_Automatically_Start_Coinjoin" xml:space="preserve">
+    <value>Automatically start coinjoin</value>
+  </data>
+  <data name="AdvancedCoinjoinOptionsView_Red_Coin_Isolation_ToolTip" xml:space="preserve">
+    <value>Only allow a single coin with anonymity score 1 into coinjoin registration.</value>
+  </data>
+  <data name="AdvancedCoinjoinOptionsView_Red_Coin_Isolation" xml:space="preserve">
+    <value>Red coin isolation</value>
+  </data>
+  <data name="AdvancedCoinjonOptionsView_Anonymity_Score_Target_ToolTip" xml:space="preserve">
+    <value>Minimum anonymity score for a coin to be considered private.</value>
+  </data>
+  <data name="AdvancedCoinjoinOptionsView_Anonymity_Score_Target" xml:space="preserve">
+    <value>Anonymity score target</value>
+  </data>
+  <data name="AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference_ToolTip" xml:space="preserve">
+    <value>Only coinjoin when the fee rate is below the median of this time period.</value>
+  </data>
+  <data name="AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference" xml:space="preserve">
+    <value>Coinjoin time preference</value>
+  </data>
 </root>

@@ -216,6 +216,69 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anonymity score target.
+        /// </summary>
+        public static string AdvancedCoinjoinOptionsView_Anonymity_Score_Target {
+            get {
+                return ResourceManager.GetString("AdvancedCoinjoinOptionsView_Anonymity_Score_Target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically start coinjoin.
+        /// </summary>
+        public static string AdvancedCoinjoinOptionsView_Automatically_Start_Coinjoin {
+            get {
+                return ResourceManager.GetString("AdvancedCoinjoinOptionsView_Automatically_Start_Coinjoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coinjoin time preference.
+        /// </summary>
+        public static string AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference {
+            get {
+                return ResourceManager.GetString("AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only coinjoin when the fee rate is below the median of this time period..
+        /// </summary>
+        public static string AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference_ToolTip {
+            get {
+                return ResourceManager.GetString("AdvancedCoinjoinOptionsView_Coinjoin_Time_Preference_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red coin isolation.
+        /// </summary>
+        public static string AdvancedCoinjoinOptionsView_Red_Coin_Isolation {
+            get {
+                return ResourceManager.GetString("AdvancedCoinjoinOptionsView_Red_Coin_Isolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only allow a single coin with anonymity score 1 into coinjoin registration..
+        /// </summary>
+        public static string AdvancedCoinjoinOptionsView_Red_Coin_Isolation_ToolTip {
+            get {
+                return ResourceManager.GetString("AdvancedCoinjoinOptionsView_Red_Coin_Isolation_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum anonymity score for a coin to be considered private..
+        /// </summary>
+        public static string AdvancedCoinjonOptionsView_Anonymity_Score_Target_ToolTip {
+            get {
+                return ResourceManager.GetString("AdvancedCoinjonOptionsView_Anonymity_Score_Target_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advanced Recovery Options.
         /// </summary>
         public static string AdvancedRecoveryOptionsViewModel_Title {
