@@ -6,6 +6,7 @@
              xmlns:models="clr-namespace:WalletWasabi.Fluent.Models"
              xmlns:statusIcon="clr-namespace:WalletWasabi.Fluent.ViewModels.StatusIcon"
              xmlns:st="clr-namespace:WalletWasabi.Fluent.Views.StatusIcon"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="671" d:DesignHeight="32"
              x:DataType="statusIcon:StatusIconViewModel"
              x:CompileBindings="True"
