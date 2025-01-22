@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dialogs="using:WalletWasabi.Fluent.ViewModels.Dialogs"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:Class="WalletWasabi.Fluent.Views.Dialogs.AdvancedRecoveryOptionsView"
              x:DataType="dialogs:AdvancedRecoveryOptionsViewModel"
              x:CompileBindings="True"
@@ -13,7 +14,7 @@
     </Style>
   </UserControl.Styles>
   <ContentArea Title="{Binding Title}"
-                 CancelContent="Cancel"
+                 CancelContent="{x:Static lang:Resources.Words_Cancel}"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}"
                  EnableNext="True" NextContent="OK">
