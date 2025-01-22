@@ -378,6 +378,69 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitcoin Core/Knots Data Folder.
+        /// </summary>
+        public static string BitcoinTabSettingsView_Bitcoin_Core_Knots_Data_Folder {
+            get {
+                return ResourceManager.GetString("BitcoinTabSettingsView_Bitcoin Core_Knots_Data_Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitcoin P2P Endpoint.
+        /// </summary>
+        public static string BitcoinTabSettingsView_Bitcoin_P2P_Endpoint {
+            get {
+                return ResourceManager.GetString("BitcoinTabSettingsView_Bitcoin_P2P_Endpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasabi will download blocks from a full node you control..
+        /// </summary>
+        public static string BitcoinTabSettingsView_BitcoinP2PEndpoint_ToolTip {
+            get {
+                return ResourceManager.GetString("BitcoinTabSettingsView_BitcoinP2PEndpoint_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coins received from others to already used addresses won&apos;t appear below this amount. To prevent potential dust attacks..
+        /// </summary>
+        public static string BitcoinTabSettingsView_Dust_Threshold_ToolTip {
+            get {
+                return ResourceManager.GetString("BitcoinTabSettingsView_Dust_Threshold_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Bitcoin Core/Knots version.
+        /// </summary>
+        public static string BitcoinTabSettingsView_Local_Bitcoin_Core_Knots_Version {
+            get {
+                return ResourceManager.GetString("BitcoinTabSettingsView_Local_Bitcoin_Core_Knots_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run Bitcoin Knots on startup.
+        /// </summary>
+        public static string BitcoinTabSettingsView_Run_Bitcoin_Knots_On_Startup {
+            get {
+                return ResourceManager.GetString("BitcoinTabSettingsView_Run_Bitcoin_Knots_On_Startup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop Bitcoin Knots on shutdown.
+        /// </summary>
+        public static string BitcoinTabSettingsView_Stop_Bitcoin_Knots_On_Shutdown {
+            get {
+                return ResourceManager.GetString("BitcoinTabSettingsView_Stop_Bitcoin_Knots_On_Shutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Bitcoin settings.
         /// </summary>
         public static string BitcoinTabSettingsViewModel_Caption {
@@ -3879,6 +3942,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Dust {
             get {
                 return ResourceManager.GetString("Words_Dust", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dust Threshold.
+        /// </summary>
+        public static string Words_Dust_Threshold {
+            get {
+                return ResourceManager.GetString("Words_Dust_Threshold", resourceCulture);
             }
         }
         

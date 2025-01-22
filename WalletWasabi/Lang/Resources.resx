@@ -1674,4 +1674,28 @@
   <data name="AdvancedSettingsTabView_Backend_URI" xml:space="preserve">
     <value>Backend_URI</value>
   </data>
+  <data name="BitcoinTabSettingsView_Run_Bitcoin_Knots_On_Startup" xml:space="preserve">
+    <value>Run Bitcoin Knots on startup</value>
+  </data>
+  <data name="BitcoinTabSettingsView_Stop_Bitcoin_Knots_On_Shutdown" xml:space="preserve">
+    <value>Stop Bitcoin Knots on shutdown</value>
+  </data>
+  <data name="BitcoinTabSettingsView_Local_Bitcoin_Core_Knots_Version" xml:space="preserve">
+    <value>Local Bitcoin Core/Knots version</value>
+  </data>
+  <data name="BitcoinTabSettingsView_Bitcoin Core_Knots_Data_Folder" xml:space="preserve">
+    <value>Bitcoin Core/Knots Data Folder</value>
+  </data>
+  <data name="BitcoinTabSettingsView_Bitcoin_P2P_Endpoint" xml:space="preserve">
+    <value>Bitcoin P2P Endpoint</value>
+  </data>
+  <data name="BitcoinTabSettingsView_BitcoinP2PEndpoint_ToolTip" xml:space="preserve">
+    <value>Wasabi will download blocks from a full node you control.</value>
+  </data>
+  <data name="Words_Dust_Threshold" xml:space="preserve">
+    <value>Dust Threshold</value>
+  </data>
+  <data name="BitcoinTabSettingsView_Dust_Threshold_ToolTip" xml:space="preserve">
+    <value>Coins received from others to already used addresses won't appear below this amount. To prevent potential dust attacks.</value>
+  </data>
 </root>
