@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:coinjoins="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Coinjoins"
              xmlns:treeDataGrid="clr-namespace:WalletWasabi.Fluent.TreeDataGrid"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Coinjoins.CoinjoinCoinListView"
              x:DataType="coinjoins:CoinjoinCoinListViewModel"
@@ -11,7 +12,7 @@
 
   <UserControl.Resources>
     <ContextMenu IsVisible="{Binding BtcAddress, Converter={x:Static ObjectConverters.IsNotNull}}" x:Key="AddressContextMenu" x:DataType="coinjoins:CoinjoinCoinListItem">
-      <MenuItem Header="Copy Bitcoin Address"
+      <MenuItem Header="{x:Static lang:Resources.CoinjoinCoinListView_Copy_Bitcoin_Address}"
                 Command="{Binding ClipboardCopyCommand}"
                 CommandParameter="{Binding BtcAddress, StringFormat={}{0}}">
         <MenuItem.Icon>

@@ -1872,4 +1872,7 @@
   <data name="WalletStatsView_Number_Of_Used_Addresses" xml:space="preserve">
     <value>Number of used addresses</value>
   </data>
+  <data name="CoinjoinCoinListView_Copy_Bitcoin_Address" xml:space="preserve">
+    <value>Copy Bitcoin Address</value>
+  </data>
 </root>

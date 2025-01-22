@@ -955,6 +955,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Bitcoin Address.
+        /// </summary>
+        public static string CoinjoinCoinListView_Copy_Bitcoin_Address {
+            get {
+                return ResourceManager.GetString("CoinjoinCoinListView_Copy_Bitcoin_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coinjoin Details.
         /// </summary>
         public static string CoinJoinDetailsViewModel_Title {
