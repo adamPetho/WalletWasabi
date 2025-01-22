@@ -2013,4 +2013,7 @@
   <data name="PrivacyRingDetailsView_PRIVATE" xml:space="preserve">
     <value>PRIVATE</value>
   </data>
+  <data name="PrivacyRingItemDetailsView_Anonymity_Score" xml:space="preserve">
+    <value>Anonymity Score: {0}</value>
+  </data>
 </root>

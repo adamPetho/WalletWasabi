@@ -2569,6 +2569,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anonymity Score: {0}.
+        /// </summary>
+        public static string PrivacyRingItemDetailsView_Anonymity_Score {
+            get {
+                return ResourceManager.GetString("PrivacyRingItemDetailsView_Anonymity_Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Progress.
         /// </summary>
         public static string PrivacyRingViewModel_Title {
