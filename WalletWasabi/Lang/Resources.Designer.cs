@@ -2776,6 +2776,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wasabi is unable to close right now. Coinjoin in progress..
+        /// </summary>
+        public static string ShuttingdownDialogView_First {
+            get {
+                return ResourceManager.GetString("ShuttingdownDialogView_First", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This may take a few minutes. Wasabi will close automatically when finished..
+        /// </summary>
+        public static string ShuttingdownDialogView_Secondary {
+            get {
+                return ResourceManager.GetString("ShuttingdownDialogView_Secondary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please wait to shut down....
         /// </summary>
         public static string ShuttingDownViewModel_Title {

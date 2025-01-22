@@ -1647,4 +1647,10 @@
   <data name="NewCoordinatorConfirmationDialogView_Read_More_ToolTip" xml:space="preserve">
     <value>Open the link in the default browser</value>
   </data>
+  <data name="ShuttingdownDialogView_First" xml:space="preserve">
+    <value>Wasabi is unable to close right now. Coinjoin in progress.</value>
+  </data>
+  <data name="ShuttingdownDialogView_Secondary" xml:space="preserve">
+    <value>This may take a few minutes. Wasabi will close automatically when finished.</value>
+  </data>
 </root>

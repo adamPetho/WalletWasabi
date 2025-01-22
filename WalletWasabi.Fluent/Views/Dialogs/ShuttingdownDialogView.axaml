@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dialog="using:WalletWasabi.Fluent.ViewModels.Dialogs"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="dialog:ShuttingDownViewModel"
              x:CompileBindings="True"
@@ -15,9 +16,9 @@
     </ContentArea.Title>
     <DockPanel VerticalAlignment="Center">
       <StackPanel DockPanel.Dock="Bottom" Margin="20 0" MaxWidth="500" Spacing="5">
-        <TextBlock Text="Wasabi is unable to close right now. Coinjoin in progress."
+        <TextBlock Text="{x:Static lang:Resources.ShuttingdownDialogView_First}"
                    TextAlignment="Center" TextWrapping="Wrap" />
-        <TextBlock Text="This may take a few minutes. Wasabi will close automatically when finished."
+        <TextBlock Text="{x:Static lang:Resources.ShuttingdownDialogView_Secondary}"
                    TextAlignment="Center" TextWrapping="Wrap" MaxWidth="500" />
       </StackPanel>
 
