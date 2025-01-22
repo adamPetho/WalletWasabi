@@ -3271,6 +3271,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Speeding up this transaction will cost you.
+        /// </summary>
+        public static string SpeedUpTransactionDialogView_Cost_Info {
+            get {
+                return ResourceManager.GetString("SpeedUpTransactionDialogView_Cost_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speeding up this transaction will deduct from the recipient&apos;s amount.
+        /// </summary>
+        public static string SpeedUpTransactionDialogView_Receiver_Amount_Deduction_Warning {
+            get {
+                return ResourceManager.GetString("SpeedUpTransactionDialogView_Receiver_Amount_Deduction_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed Up Transaction.
+        /// </summary>
+        public static string SpeedUpTransactionDialogView_Title {
+            get {
+                return ResourceManager.GetString("SpeedUpTransactionDialogView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The transaction is already confirmed..
         /// </summary>
         public static string SpeedUpTransactionDialogViewModel_Error_AlreadyConfirmed_Message {
@@ -4482,6 +4509,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Config {
             get {
                 return ResourceManager.GetString("Words_Config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Words_Confirm {
+            get {
+                return ResourceManager.GetString("Words_Confirm", resourceCulture);
             }
         }
         

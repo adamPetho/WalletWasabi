@@ -1971,4 +1971,16 @@
   <data name="CancelTransactionDialogView_Warning_Text" xml:space="preserve">
     <value>Cancelling this transaction will cost you</value>
   </data>
+  <data name="SpeedUpTransactionDialogView_Title" xml:space="preserve">
+    <value>Speed Up Transaction</value>
+  </data>
+  <data name="SpeedUpTransactionDialogView_Cost_Info" xml:space="preserve">
+    <value>Speeding up this transaction will cost you</value>
+  </data>
+  <data name="SpeedUpTransactionDialogView_Receiver_Amount_Deduction_Warning" xml:space="preserve">
+    <value>Speeding up this transaction will deduct from the recipient's amount</value>
+  </data>
+  <data name="Words_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

@@ -4,15 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:WalletWasabi.Fluent.Converters"
              xmlns:features="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Home.History.Features"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:DataType="features:SpeedUpTransactionDialogViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.History.Features.SpeedUpTransactionDialogView">
 
-  <ContentArea Title="Speed Up Transaction"
+  <ContentArea Title="{x:Static lang:Resources.SpeedUpTransactionDialogView_Title}"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}"
-                 EnableNext="True" NextContent="Confirm"
+                 EnableNext="True" NextContent="{x:Static lang:Resources.Words_Confirm}"
                  IsBusy="{Binding IsBusy}"
                  MinWidth="500">
     <Panel>
@@ -21,7 +22,7 @@
           <PathIcon Data="{StaticResource rocket_regular}" Opacity="0.6" />
         </Viewbox>
         <StackPanel Spacing="10" HorizontalAlignment="Center">
-          <TextBlock Text="Speeding up this transaction will cost you" />
+          <TextBlock Text="{x:Static lang:Resources.SpeedUpTransactionDialogView_Cost_Info}" />
           <AmountControl Classes="WithUsd h5" HorizontalAlignment="Center"  Amount="{Binding Fee}" />
         </StackPanel>
       </DockPanel>
@@ -37,7 +38,7 @@
         </Panel>
         <StackPanel Spacing="10" HorizontalAlignment="Center">
           <StackPanel Spacing="10">
-            <TextBlock Text="Speeding up this transaction will deduct from the recipient's amount" />
+            <TextBlock Text="{x:Static lang:Resources.SpeedUpTransactionDialogView_Receiver_Amount_Deduction_Warning}" />
             <AmountControl Classes="WithUsd h5" HorizontalAlignment="Center" Amount="{Binding Fee}" />
           </StackPanel>
         </StackPanel>
