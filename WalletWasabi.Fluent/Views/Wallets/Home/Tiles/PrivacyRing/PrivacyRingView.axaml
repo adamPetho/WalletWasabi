@@ -5,6 +5,7 @@
              xmlns:tiles="using:WalletWasabi.Fluent.ViewModels.Wallets.Home.Tiles"
              xmlns:ring="using:WalletWasabi.Fluent.ViewModels.Wallets.Home.Tiles.PrivacyRing"
              xmlns:ringView="using:WalletWasabi.Fluent.Views.Wallets.Home.Tiles.PrivacyRing"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Home.Tiles.PrivacyRing.PrivacyRingView"
              x:Name="View">
@@ -55,10 +56,10 @@
     </Style>
   </UserControl.Styles>
   <ContentArea Title="{Binding Title}"
-                 EnableNext="True" NextContent="Done"
+                 EnableNext="True" NextContent="{x:Static lang:Resources.Words_Done}"
                  EnableCancel="False"
                  EnableBack="False"
-                 Caption="Hover over the ring segments to see coin details"
+                 Caption="{x:Static lang:Resources.PrivacyRingView_Caption}"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
     <DockPanel>

@@ -2016,4 +2016,7 @@
   <data name="PrivacyRingItemDetailsView_Anonymity_Score" xml:space="preserve">
     <value>Anonymity Score: {0}</value>
   </data>
+  <data name="PrivacyRingView_Caption" xml:space="preserve">
+    <value>Hover over the ring segments to see coin details</value>
+  </data>
 </root>

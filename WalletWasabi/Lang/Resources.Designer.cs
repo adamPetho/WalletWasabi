@@ -2578,6 +2578,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hover over the ring segments to see coin details.
+        /// </summary>
+        public static string PrivacyRingView_Caption {
+            get {
+                return ResourceManager.GetString("PrivacyRingView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Privacy Progress.
         /// </summary>
         public static string PrivacyRingViewModel_Title {
