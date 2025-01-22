@@ -2677,6 +2677,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string ReceiveActionsColumnView_Edit_ToolTip {
+            get {
+                return ResourceManager.GetString("ReceiveActionsColumnView_Edit_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide address.
+        /// </summary>
+        public static string ReceiveActionsColumnView_HideAddress_ToolTip {
+            get {
+                return ResourceManager.GetString("ReceiveActionsColumnView_HideAddress_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QR Code.
+        /// </summary>
+        public static string ReceiveActionsColumnView_QRCode_ToolTip {
+            get {
+                return ResourceManager.GetString("ReceiveActionsColumnView_QRCode_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Addresses Awaiting Payment.
         /// </summary>
         public static string ReceiveAddressesViewModel_Title {
