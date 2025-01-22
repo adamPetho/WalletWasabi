@@ -2061,4 +2061,7 @@
   <data name="ReceiveAddressesView_Caption" xml:space="preserve">
     <value>You can choose to hide, modify, or display the addresses listed below.</value>
   </data>
+  <data name="ReceiveAddressView_ShowOnHardwareWallet_ToolTip" xml:space="preserve">
+    <value>Show on the hardware wallet</value>
+  </data>
 </root>

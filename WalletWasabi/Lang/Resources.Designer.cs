@@ -2731,6 +2731,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show on the hardware wallet.
+        /// </summary>
+        public static string ReceiveAddressView_ShowOnHardwareWallet_ToolTip {
+            get {
+                return ResourceManager.GetString("ReceiveAddressView_ShowOnHardwareWallet_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to send the address to the device.
         /// </summary>
         public static string ReceiveAddressViewModel_Error_UnableToSendAddressToDevice_Caption {
