@@ -3739,6 +3739,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string Words_Done {
+            get {
+                return ResourceManager.GetString("Words_Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dust.
         /// </summary>
         public static string Words_Dust {

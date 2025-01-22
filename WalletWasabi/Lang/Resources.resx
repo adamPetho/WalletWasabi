@@ -1623,4 +1623,7 @@
   <data name="CreatePasswordDialogView_Secondary_Watermark" xml:space="preserve">
     <value>Confirm the passphrase</value>
   </data>
+  <data name="Words_Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
 </root>

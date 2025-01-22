@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dialogs="clr-namespace:WalletWasabi.Fluent.ViewModels.Dialogs"
+             xmlns:lang="using:WalletWasabi.Lang"
              xmlns:dv="clr-namespace:WalletWasabi.Fluent.Views.Dialogs"
              mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="470"
              x:DataType="dialogs:ManualCoinJoinProfileDialogViewModel"
@@ -10,10 +11,10 @@
              x:Class="WalletWasabi.Fluent.Views.Dialogs.ManualCoinJoinProfileDialogView">
   <ContentArea
     Title="{Binding Title}"
-    CancelContent="Cancel"
+    CancelContent="{x:Static lang:Resources.Words_Cancel}"
     EnableCancel="{Binding EnableCancel}"
     EnableBack="{Binding EnableBack}"
-    EnableNext="True" NextContent="Done">
+    EnableNext="True" NextContent="{x:Static lang:Resources.Words_Done}">
 
     <dv:AdvancedCoinjoinOptionsView DataContext="{Binding CoinjoinAdvancedSettings}" />
 
