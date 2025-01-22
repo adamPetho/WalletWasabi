@@ -2091,4 +2091,70 @@
   <data name="PrivacyControlView_CantSeeText" xml:space="preserve">
     <value>Can't see this transaction: </value>
   </data>
+  <data name="PrivacyWarningsView_InterlinkLabel" xml:space="preserve">
+    <value>Transaction interlinks labels:</value>
+  </data>
+  <data name="PrivacyWarningsView_InterlinkLabel_ToolTip" xml:space="preserve">
+    <value>Those entities know this is your transaction. Coinjoin more or use the label management tool to carefully select who would know that this transaction is yours.</value>
+  </data>
+  <data name="PrivacyWarningsView_KnownByLabel" xml:space="preserve">
+    <value>Transaction known as yours by:</value>
+  </data>
+  <data name="PrivacyWarningsView_KnownByLabel_ToolTip" xml:space="preserve">
+    <value>Those entities know this is your transaction. Coinjoin more or use the label management tool to carefully select who would know that this transaction is yours.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesNonPrivateCoinsText" xml:space="preserve">
+    <value>Transaction uses non-private coins.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesNonPrivateCoinsText_ToolTip" xml:space="preserve">
+    <value>Some entities can deanonymize this transaction because it spends coins with no privacy. Coinjoin more to have enough private coins for this transaction.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesSemiPrivateCoinsText" xml:space="preserve">
+    <value>Transaction uses semi-private coins.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesSemiPrivateCoinsText_ToolTip" xml:space="preserve">
+    <value>This transaction is not private enough because it spends not fully private coins. Coinjoin more to have enough private coins for this transaction.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionCreatesChangeText" xml:space="preserve">
+    <value>Transaction creates change.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionCreatesChangeText_ToolTip" xml:space="preserve">
+    <value>Change can be used to link this transaction with the next transaction that will use it. Use the change avoidance suggestion to send a little more or less if this is OK for the receiver, or coinjoin the change later.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionConsolidatesCoinsText" xml:space="preserve">
+    <value>Transaction consolidates over {0} coins.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionConsolidatesCoinsText_ToolTip" xml:space="preserve">
+    <value>This might reduce the privacy of your transaction.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesUnconfirmedCoinsText" xml:space="preserve">
+    <value>This transaction uses unconfirmed coins.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesUnconfirmedCoinsText_ToolTip" xml:space="preserve">
+    <value>This may cause your transaction to be rejected, or delay its confirmation, or cost more than needed to get it confirmed within the desired time. Wait for a confirmation to only use confirmed coins.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesCoinjoiningCoinsText" xml:space="preserve">
+    <value>Transaction uses coinjoining coins.</value>
+  </data>
+  <data name="PrivacyWarningsView_TransactionUsesCoinjoiningCoinsText_ToolTip" xml:space="preserve">
+    <value>This may cause your transaction to be replaced by the coinjoin. Consider waiting for the current coinjoin to be finished before sending this transaction.</value>
+  </data>
+  <data name="PrivacyWarningsView_ImproveTransactionText" xml:space="preserve">
+    <value>Improve this transaction:</value>
+  </data>
+  <data name="PrivacyWarningsView_LabelManagmentText" xml:space="preserve">
+    <value>Label Managment</value>
+  </data>
+  <data name="PrivacyWarningsView_LabelManagmentDescriptionText" xml:space="preserve">
+    <value>Choose labels to link with this transaction.</value>
+  </data>
+  <data name="PrivacyWarningsView_DifferenceAmountText" xml:space="preserve">
+    <value>by {0}</value>
+  </data>
+  <data name="PrivacyWarningsView_BetterPrivacyText" xml:space="preserve">
+    <value>Better Privacy</value>
+  </data>
+  <data name="PrivacyWarningsView_ChangeAvoidanceText" xml:space="preserve">
+    <value>Change Avoidance</value>
+  </data>
 </root>

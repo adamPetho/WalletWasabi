@@ -2722,6 +2722,204 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Better Privacy.
+        /// </summary>
+        public static string PrivacyWarningsView_BetterPrivacyText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_BetterPrivacyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Avoidance.
+        /// </summary>
+        public static string PrivacyWarningsView_ChangeAvoidanceText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_ChangeAvoidanceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to by {0}.
+        /// </summary>
+        public static string PrivacyWarningsView_DifferenceAmountText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_DifferenceAmountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Improve this transaction:.
+        /// </summary>
+        public static string PrivacyWarningsView_ImproveTransactionText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_ImproveTransactionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction interlinks labels:.
+        /// </summary>
+        public static string PrivacyWarningsView_InterlinkLabel {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_InterlinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Those entities know this is your transaction. Coinjoin more or use the label management tool to carefully select who would know that this transaction is yours..
+        /// </summary>
+        public static string PrivacyWarningsView_InterlinkLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_InterlinkLabel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction known as yours by:.
+        /// </summary>
+        public static string PrivacyWarningsView_KnownByLabel {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_KnownByLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Those entities know this is your transaction. Coinjoin more or use the label management tool to carefully select who would know that this transaction is yours..
+        /// </summary>
+        public static string PrivacyWarningsView_KnownByLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_KnownByLabel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose labels to link with this transaction..
+        /// </summary>
+        public static string PrivacyWarningsView_LabelManagmentDescriptionText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_LabelManagmentDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Label Managment.
+        /// </summary>
+        public static string PrivacyWarningsView_LabelManagmentText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_LabelManagmentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction consolidates over {0} coins..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionConsolidatesCoinsText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionConsolidatesCoinsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This might reduce the privacy of your transaction..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionConsolidatesCoinsText_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionConsolidatesCoinsText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction creates change..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionCreatesChangeText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionCreatesChangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change can be used to link this transaction with the next transaction that will use it. Use the change avoidance suggestion to send a little more or less if this is OK for the receiver, or coinjoin the change later..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionCreatesChangeText_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionCreatesChangeText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction uses coinjoining coins..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesCoinjoiningCoinsText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesCoinjoiningCoinsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This may cause your transaction to be replaced by the coinjoin. Consider waiting for the current coinjoin to be finished before sending this transaction..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesCoinjoiningCoinsText_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesCoinjoiningCoinsText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction uses non-private coins..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesNonPrivateCoinsText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesNonPrivateCoinsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some entities can deanonymize this transaction because it spends coins with no privacy. Coinjoin more to have enough private coins for this transaction..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesNonPrivateCoinsText_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesNonPrivateCoinsText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction uses semi-private coins..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesSemiPrivateCoinsText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesSemiPrivateCoinsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This transaction is not private enough because it spends not fully private coins. Coinjoin more to have enough private coins for this transaction..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesSemiPrivateCoinsText_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesSemiPrivateCoinsText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This transaction uses unconfirmed coins..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesUnconfirmedCoinsText {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesUnconfirmedCoinsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This may cause your transaction to be rejected, or delay its confirmation, or cost more than needed to get it confirmed within the desired time. Wait for a confirmation to only use confirmed coins..
+        /// </summary>
+        public static string PrivacyWarningsView_TransactionUsesUnconfirmedCoinsText_ToolTip {
+            get {
+                return ResourceManager.GetString("PrivacyWarningsView_TransactionUsesUnconfirmedCoinsText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choice of the paranoid. Optimizes for privacy at all costs..
         /// </summary>
         public static string PrivateCoinJoinProfileViewModel_Description {
