@@ -182,9 +182,9 @@ namespace WalletWasabi.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Speed Up Transaction.
         /// </summary>
-        public static string ActionsColumnView_Speedup_Transaction_ToolTip1 {
+        public static string ActionsColumnView_Speedup_Transaction_ToolTip {
             get {
-                return ResourceManager.GetString("ActionsColumnView_Speedup_Transaction_ToolTip1", resourceCulture);
+                return ResourceManager.GetString("ActionsColumnView_Speedup_Transaction_ToolTip", resourceCulture);
             }
         }
         

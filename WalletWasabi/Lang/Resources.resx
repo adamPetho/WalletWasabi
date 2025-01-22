@@ -1902,7 +1902,7 @@
   <data name="HistoryTable_SpeedUp_Header" xml:space="preserve">
     <value>Speed Up Transaction</value>
   </data>
-  <data name="ActionsColumnView_Speedup_Transaction_ToolTip1" xml:space="preserve">
+  <data name="ActionsColumnView_Speedup_Transaction_ToolTip" xml:space="preserve">
     <value>Speed Up Transaction</value>
   </data>
   <data name="ActionsColumnView_Show_Details_ToolTip" xml:space="preserve">
