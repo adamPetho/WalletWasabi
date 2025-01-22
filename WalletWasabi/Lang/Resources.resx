@@ -2040,4 +2040,7 @@
   <data name="PrivacyControlTileView_Bottom_Text" xml:space="preserve">
     <value>PRIVATE</value>
   </data>
+  <data name="WalletBalanceTileView_Title" xml:space="preserve">
+    <value>BALANCE</value>
+  </data>
 </root>

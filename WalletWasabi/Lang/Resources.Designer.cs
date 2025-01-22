@@ -3928,6 +3928,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BALANCE.
+        /// </summary>
+        public static string WalletBalanceTileView_Title {
+            get {
+                return ResourceManager.GetString("WalletBalanceTileView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display wallet coinjoin settings.
         /// </summary>
         public static string WalletCoinJoinSettingsViewModel_Caption {
