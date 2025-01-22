@@ -1665,4 +1665,13 @@
   <data name="RestartView_Restart_Now" xml:space="preserve">
     <value>Restart now</value>
   </data>
+  <data name="AdvancedSettingsTabView_Enable_GPU_ToolTip" xml:space="preserve">
+    <value>When enabled use a graphics card (GPU) to render user interface. Using a GPU rather than the CPU can improve performance.</value>
+  </data>
+  <data name="AdvancedSettingsTabView_Enable_GPU" xml:space="preserve">
+    <value>Enable GPU</value>
+  </data>
+  <data name="AdvancedSettingsTabView_Backend_URI" xml:space="preserve">
+    <value>Backend_URI</value>
+  </data>
 </root>

@@ -306,6 +306,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backend_URI.
+        /// </summary>
+        public static string AdvancedSettingsTabView_Backend_URI {
+            get {
+                return ResourceManager.GetString("AdvancedSettingsTabView_Backend_URI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable GPU.
+        /// </summary>
+        public static string AdvancedSettingsTabView_Enable_GPU {
+            get {
+                return ResourceManager.GetString("AdvancedSettingsTabView_Enable_GPU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When enabled use a graphics card (GPU) to render user interface. Using a GPU rather than the CPU can improve performance..
+        /// </summary>
+        public static string AdvancedSettingsTabView_Enable_GPU_ToolTip {
+            get {
+                return ResourceManager.GetString("AdvancedSettingsTabView_Enable_GPU_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage advanced settings.
         /// </summary>
         public static string AdvancedSettingsTabViewModel_Caption {
