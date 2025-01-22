@@ -115,6 +115,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced Information.
+        /// </summary>
+        public static string AboutView_Advanced_Information {
+            get {
+                return ResourceManager.GetString("AboutView_Advanced_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This open source software is licensed with .
+        /// </summary>
+        public static string AboutView_License {
+            get {
+                return ResourceManager.GetString("AboutView_License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display Wasabi&apos;s current info.
         /// </summary>
         public static string AboutViewModel_Caption {

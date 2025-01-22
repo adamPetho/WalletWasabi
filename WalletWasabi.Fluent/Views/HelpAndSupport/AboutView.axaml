@@ -3,13 +3,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels.HelpAndSupport"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="vm:AboutViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.HelpAndSupport.AboutView">
   <Panel>
     <ContentArea EnableNext="{Binding !EnableBack}"
-                          NextContent="Close"
+                          NextContent="{x:Static lang:Resources.Words_Close}"
                           EnableBack="{Binding EnableBack}">
       <DockPanel LastChildFill="True">
         <Viewbox DockPanel.Dock="Top" Margin="25,25,25,50" Width="112" VerticalAlignment="Center"
@@ -69,7 +70,7 @@
           <DockPanel HorizontalAlignment="Center" DockPanel.Dock="Top">
             <TextBlock Margin=" 0 0 0 -0.5"
                        VerticalAlignment="Center"
-                       Text="This open source software is licensed with " />
+                       Text="{x:Static lang:Resources.AboutView_License}" />
             <ContentControl Content="{Binding License}" />
           </DockPanel>
           <!-- Advanced -->
@@ -80,7 +81,7 @@
                   Command="{Binding AboutAdvancedInfoDialogCommand}">
             <StackPanel Orientation="Horizontal" Spacing="5" Margin="2">
               <PathIcon Data="{StaticResource info_regular}" />
-              <TextBlock Text="Advanced Information" Classes="Hyperlink" />
+              <TextBlock Text="{x:Static lang:Resources.AboutView_Advanced_Information}" Classes="Hyperlink" />
             </StackPanel>
           </Button>
         </DockPanel>

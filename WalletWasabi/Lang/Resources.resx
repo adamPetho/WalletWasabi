@@ -1653,4 +1653,10 @@
   <data name="ShuttingdownDialogView_Secondary" xml:space="preserve">
     <value>This may take a few minutes. Wasabi will close automatically when finished.</value>
   </data>
+  <data name="AboutView_License" xml:space="preserve">
+    <value>This open source software is licensed with </value>
+  </data>
+  <data name="AboutView_Advanced_Information" xml:space="preserve">
+    <value>Advanced Information</value>
+  </data>
 </root>
