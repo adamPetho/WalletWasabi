@@ -182,9 +182,9 @@ namespace WalletWasabi.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Speed Up Transaction.
         /// </summary>
-        public static string ActionsColumnView_Speedup_Transaction_ToolTip {
+        public static string ActionsColumnView_Speedup_Transaction_ToolTip1 {
             get {
-                return ResourceManager.GetString("ActionsColumnView_Speedup_Transaction_ToolTip", resourceCulture);
+                return ResourceManager.GetString("ActionsColumnView_Speedup_Transaction_ToolTip1", resourceCulture);
             }
         }
         
@@ -1755,6 +1755,78 @@ namespace WalletWasabi.Lang {
         public static string HardwareWalletViewModel_ImportTransaction_Title {
             get {
                 return ResourceManager.GetString("HardwareWalletViewModel_ImportTransaction_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel Transaction.
+        /// </summary>
+        public static string HistoryTable_Cancel_Transaction_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_Cancel_Transaction_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Amount.
+        /// </summary>
+        public static string HistoryTable_Copy_Amount_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_Copy_Amount_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Label.
+        /// </summary>
+        public static string HistoryTable_Copy_Label_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_Copy_Label_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Transaction Hex.
+        /// </summary>
+        public static string HistoryTable_Copy_Transaction_Hex_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_Copy_Transaction_Hex_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Transaction ID.
+        /// </summary>
+        public static string HistoryTable_Copy_Transaction_ID_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_Copy_Transaction_ID_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Details.
+        /// </summary>
+        public static string HistoryTable_Show_Details_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_Show_Details_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed Up Transaction.
+        /// </summary>
+        public static string HistoryTable_SpeedUp_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_SpeedUp_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transactions.
+        /// </summary>
+        public static string HistoryTable_Transactions_Header {
+            get {
+                return ResourceManager.GetString("HistoryTable_Transactions_Header", resourceCulture);
             }
         }
         

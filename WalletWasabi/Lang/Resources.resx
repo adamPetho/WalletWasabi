@@ -880,6 +880,9 @@
   <data name="CancelTransactionDialogViewModel_Title" xml:space="preserve">
     <value>Cancel Transaction</value>
   </data>
+  <data name="HistoryTable_Cancel_Transaction_Header" xml:space="preserve">
+    <value>Cancel Transaction</value>
+  </data>
   <data name="CancelTransactionDialogViewModel_Success" xml:space="preserve">
     <value>Your transaction has been successfully canceled.</value>
   </data>
@@ -1482,6 +1485,9 @@
   <data name="SearchCategory_Transactions" xml:space="preserve">
     <value>Transactions</value>
   </data>
+  <data name="HistoryTable_Transactions_Header" xml:space="preserve">
+    <value>Transactions</value>
+  </data>
   <data name="Settings_DarkModeEnabled_Name" xml:space="preserve">
     <value>Dark mode</value>
   </data>
@@ -1893,10 +1899,16 @@
   <data name="CoinListView_Copy_Bitcoin_Address" xml:space="preserve">
     <value>Copy Bitcoin Address</value>
   </data>
-  <data name="ActionsColumnView_Speedup_Transaction_ToolTip" xml:space="preserve">
+  <data name="HistoryTable_SpeedUp_Header" xml:space="preserve">
+    <value>Speed Up Transaction</value>
+  </data>
+  <data name="ActionsColumnView_Speedup_Transaction_ToolTip1" xml:space="preserve">
     <value>Speed Up Transaction</value>
   </data>
   <data name="ActionsColumnView_Show_Details_ToolTip" xml:space="preserve">
+    <value>Show Details</value>
+  </data>
+  <data name="HistoryTable_Show_Details_Header" xml:space="preserve">
     <value>Show Details</value>
   </data>
   <data name="ActionsColumnView_Cancel_Transaction_ToolTip" xml:space="preserve">
@@ -1982,5 +1994,17 @@
   </data>
   <data name="Words_Confirm" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="HistoryTable_Copy_Transaction_ID_Header" xml:space="preserve">
+    <value>Copy Transaction ID</value>
+  </data>
+  <data name="HistoryTable_Copy_Transaction_Hex_Header" xml:space="preserve">
+    <value>Copy Transaction Hex</value>
+  </data>
+  <data name="HistoryTable_Copy_Label_Header" xml:space="preserve">
+    <value>Copy Label</value>
+  </data>
+  <data name="HistoryTable_Copy_Amount_Header" xml:space="preserve">
+    <value>Copy Amount</value>
   </data>
 </root>
