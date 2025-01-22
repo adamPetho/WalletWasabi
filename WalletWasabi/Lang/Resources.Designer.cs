@@ -3613,6 +3613,114 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Key Path (SegWit).
+        /// </summary>
+        public static string WalletInfoView_Account_Key_Path_SegWit {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Account_Key_Path_SegWit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Key Path (Taproot).
+        /// </summary>
+        public static string WalletInfoView_Account_Key_Path_Taproot {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Account_Key_Path_Taproot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Account Private Key xpriv.
+        /// </summary>
+        public static string WalletInfoView_Extended_Account_Private_Key_xpriv {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Extended_Account_Private_Key_xpriv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Account Public Key (SegWit).
+        /// </summary>
+        public static string WalletInfoView_Extended_Account_Public_Key_SegWit {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Extended_Account_Public_Key_SegWit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Account Public Key (Taproot).
+        /// </summary>
+        public static string WalletInfoView_Extended_Account_Public_Key_Taproot {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Extended_Account_Public_Key_Taproot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Master Fingerprint.
+        /// </summary>
+        public static string WalletInfoView_Extended_Master_Fingerprint {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Extended_Master_Fingerprint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Master Private Key.
+        /// </summary>
+        public static string WalletInfoView_Extended_Master_Private_Key {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Extended_Master_Private_Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Master zprv.
+        /// </summary>
+        public static string WalletInfoView_Extended_Master_zprv {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Extended_Master_zprv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private External Output descriptor.
+        /// </summary>
+        public static string WalletInfoView_Private_External_Output_Descriptor {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Private_External_Output_Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private Internal Output descriptor.
+        /// </summary>
+        public static string WalletInfoView_Private_Internal_Output_Descriptor {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Private_Internal_Output_Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public External Output descriptor.
+        /// </summary>
+        public static string WalletInfoView_Public_External_Output_Descriptor {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Public_External_Output_Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public Internal Output descriptor.
+        /// </summary>
+        public static string WalletInfoView_Public_Internal_Output_Descriptor {
+            get {
+                return ResourceManager.GetString("WalletInfoView_Public_Internal_Output_Descriptor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display wallet info.
         /// </summary>
         public static string WalletInfoViewModel_Caption {

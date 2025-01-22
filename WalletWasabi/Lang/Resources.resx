@@ -1806,4 +1806,40 @@
   <data name="WalletCoinsView_Caption" xml:space="preserve">
     <value>A list of coins that you own.</value>
   </data>
+  <data name="WalletInfoView_Extended_Master_Private_Key" xml:space="preserve">
+    <value>Extended Master Private Key</value>
+  </data>
+  <data name="WalletInfoView_Extended_Master_zprv" xml:space="preserve">
+    <value>Extended Master zprv</value>
+  </data>
+  <data name="WalletInfoView_Extended_Master_Fingerprint" xml:space="preserve">
+    <value>Extended Master Fingerprint</value>
+  </data>
+  <data name="WalletInfoView_Account_Key_Path_SegWit" xml:space="preserve">
+    <value>Account Key Path (SegWit)</value>
+  </data>
+  <data name="WalletInfoView_Account_Key_Path_Taproot" xml:space="preserve">
+    <value>Account Key Path (Taproot)</value>
+  </data>
+  <data name="WalletInfoView_Extended_Account_Private_Key_xpriv" xml:space="preserve">
+    <value>Extended Account Private Key xpriv</value>
+  </data>
+  <data name="WalletInfoView_Public_External_Output_Descriptor" xml:space="preserve">
+    <value>Public External Output descriptor</value>
+  </data>
+  <data name="WalletInfoView_Public_Internal_Output_Descriptor" xml:space="preserve">
+    <value>Public Internal Output descriptor</value>
+  </data>
+  <data name="WalletInfoView_Private_External_Output_Descriptor" xml:space="preserve">
+    <value>Private External Output descriptor</value>
+  </data>
+  <data name="WalletInfoView_Private_Internal_Output_Descriptor" xml:space="preserve">
+    <value>Private Internal Output descriptor</value>
+  </data>
+  <data name="WalletInfoView_Extended_Account_Public_Key_SegWit" xml:space="preserve">
+    <value>Extended Account Public Key (SegWit)</value>
+  </data>
+  <data name="WalletInfoView_Extended_Account_Public_Key_Taproot" xml:space="preserve">
+    <value>Extended Account Public Key (Taproot)</value>
+  </data>
 </root>

@@ -5,11 +5,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:advanced="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Advanced"
              xmlns:conv="clr-namespace:WalletWasabi.Fluent.Converters"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:DataType="advanced:WalletInfoViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Advanced.WalletInfoView">
   <ContentArea Title="{Binding Title}"
-                 EnableNext="True" NextContent="Done"
+                 EnableNext="True" NextContent="{x:Static lang:Resources.Words_Done}"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}">
     <ContentArea.CancelContent>
@@ -21,7 +22,7 @@
     <StackPanel Spacing="10" Margin="0 0 20 0">
 
       <PreviewItem Icon="{StaticResource private_key_regular}"
-                     Label="Extended Master Private Key"
+                     Label="{x:Static lang:Resources.WalletInfoView_Extended_Master_Private_Key}"
                      CopyableContent="{Binding ExtendedMasterPrivateKey}"
                      IsVisible="{Binding !!ExtendedMasterPrivateKey}"
                      PrivacyModeEnabled="{Binding !ShowSensitiveData}">
@@ -30,7 +31,7 @@
       <Separator IsVisible="{Binding !!ExtendedMasterPrivateKey}" />
 
       <PreviewItem Icon="{StaticResource private_key_regular}"
-                     Label="Extended Master zprv"
+                     Label="{x:Static lang:Resources.WalletInfoView_Extended_Master_zprv}"
                      CopyableContent="{Binding ExtendedMasterZprv}"
                      IsVisible="{Binding !!ExtendedMasterZprv}"
                      PrivacyModeEnabled="{Binding !ShowSensitiveData}">
@@ -39,7 +40,7 @@
       <Separator IsVisible="{Binding !!ExtendedMasterZprv}" />
 
       <PreviewItem Icon="{StaticResource fingerprint_regular}"
-                     Label="Extended Master Fingerprint"
+                     Label="{x:Static lang:Resources.WalletInfoView_Extended_Master_Fingerprint}"
                      CopyableContent="{Binding MasterKeyFingerprint}"
                      IsVisible="{Binding MasterKeyFingerprint, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
         <TextBlock Classes="monoSpaced" Text="{Binding MasterKeyFingerprint}" />
@@ -47,21 +48,21 @@
       <Separator IsVisible="{Binding MasterKeyFingerprint, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
 
       <PreviewItem Icon="{StaticResource organization_regular}"
-                     Label="Account Key Path (SegWit)"
+                     Label="{x:Static lang:Resources.WalletInfoView_Account_Key_Path_SegWit}"
                      CopyableContent="{Binding SegWitAccountKeyPath}">
         <TextBlock Classes="monoSpaced" Text="{Binding SegWitAccountKeyPath}" />
       </PreviewItem>
       <Separator />
 
       <PreviewItem Icon="{StaticResource organization_regular}"
-                           Label="Account Key Path (Taproot)"
+                           Label="{x:Static lang:Resources.WalletInfoView_Account_Key_Path_Taproot}"
                            CopyableContent="{Binding TaprootAccountKeyPath}">
         <TextBlock Classes="monoSpaced" Text="{Binding TaprootAccountKeyPath}" />
       </PreviewItem>
       <Separator />
 
       <PreviewItem Icon="{StaticResource private_key_regular}"
-                     Label="Extended Account Private Key xpriv"
+                     Label="{x:Static lang:Resources.WalletInfoView_Extended_Account_Private_Key_xpriv}"
                      CopyableContent="{Binding ExtendedAccountPrivateKey}"
                      IsVisible="{Binding !!ExtendedAccountPrivateKey}"
                      PrivacyModeEnabled="{Binding !ShowSensitiveData}">
@@ -71,25 +72,25 @@
 
       <StackPanel Spacing="10" IsVisible="{Binding HasOutputDescriptors}">
         <PreviewItem Icon="{StaticResource key_regular}"
-                       Label="Public External Output descriptor"
+                       Label="{x:Static lang:Resources.WalletInfoView_Public_External_Output_Descriptor}"
                        CopyableContent="{Binding PublicExternalOutputDescriptor}">
           <PrivacyContentControl Classes="monoSpaced" Content="{Binding PublicExternalOutputDescriptor}" ForceShow="{Binding ShowSensitiveData}" />
         </PreviewItem>
         <PreviewItem Icon="{StaticResource key_regular}"
-                       Label="Public Internal Output descriptor"
+                       Label="{x:Static lang:Resources.WalletInfoView_Public_Internal_Output_Descriptor}"
                        CopyableContent="{Binding PublicInternalOutputDescriptor}">
           <PrivacyContentControl Classes="monoSpaced" Content="{Binding PublicInternalOutputDescriptor}" ForceShow="{Binding ShowSensitiveData}" />
         </PreviewItem>
 
         <PreviewItem Icon="{StaticResource key_regular}"
-                       Label="Private External Output descriptor"
+                       Label="{x:Static lang:Resources.WalletInfoView_Private_External_Output_Descriptor}"
                        IsVisible="{Binding !!PrivateExternalOutputDescriptor}"
                        PrivacyModeEnabled="{Binding !ShowSensitiveData}"
                        CopyableContent="{Binding PrivateExternalOutputDescriptor}">
           <PrivacyContentControl Classes="monoSpaced" Content="{Binding PrivateExternalOutputDescriptor}" ForceShow="{Binding ShowSensitiveData}" />
         </PreviewItem>
         <PreviewItem Icon="{StaticResource key_regular}"
-                       Label="Private Internal Output descriptor"
+                       Label="{x:Static lang:Resources.WalletInfoView_Private_Internal_Output_Descriptor}"
                        IsVisible="{Binding !!PrivateInternalOutputDescriptor}"
                        PrivacyModeEnabled="{Binding !ShowSensitiveData}"
                        CopyableContent="{Binding PrivateInternalOutputDescriptor}">
@@ -99,14 +100,14 @@
       <Separator IsVisible="{Binding HasOutputDescriptors}" />
 
       <PreviewItem Icon="{StaticResource key_regular}"
-                     Label="Extended Account Public Key (SegWit)"
+                     Label="{x:Static lang:Resources.WalletInfoView_Extended_Account_Public_Key_SegWit}"
                      CopyableContent="{Binding SegWitExtendedAccountPublicKey}">
         <PrivacyContentControl Classes="monoSpaced" Content="{Binding SegWitExtendedAccountPublicKey}" ForceShow="{Binding ShowSensitiveData}" />
       </PreviewItem>
       <Separator />
 
       <PreviewItem Icon="{StaticResource key_regular}"
-                     Label="Extended Account Public Key (Taproot)"
+                     Label="{x:Static lang:Resources.WalletInfoView_Extended_Account_Public_Key_Taproot}"
                      CopyableContent="{Binding TaprootExtendedAccountPublicKey}"
                      IsVisible="{Binding !!TaprootExtendedAccountPublicKey}">
         <PrivacyContentControl Classes="monoSpaced" Content="{Binding TaprootExtendedAccountPublicKey}" ForceShow="{Binding ShowSensitiveData}" />
