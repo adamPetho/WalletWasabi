@@ -1698,4 +1698,22 @@
   <data name="BitcoinTabSettingsView_Dust_Threshold_ToolTip" xml:space="preserve">
     <value>Coins received from others to already used addresses won't appear below this amount. To prevent potential dust attacks.</value>
   </data>
+  <data name="CoordinatorTabSettingsView_Coordinator_URI_ToolTip" xml:space="preserve">
+    <value>The client will connect to this coordinator that will manage coinjoins.</value>
+  </data>
+  <data name="CoordinatorTabSettingsView_Coordinator_URI" xml:space="preserve">
+    <value>Coordinator URI</value>
+  </data>
+  <data name="CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate_ToolTip" xml:space="preserve">
+    <value>The client will refuse to participate in rounds with a mining fee rate (sat/vb) higher than the value indicated here.</value>
+  </data>
+  <data name="CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate" xml:space="preserve">
+    <value>Max Coinjoin Mining Fee Rate</value>
+  </data>
+  <data name="CoordinatorTabSettingsView_Min_Input_Count_ToolTip" xml:space="preserve">
+    <value>The client will refuse to participate in rounds with a minimum input count lower than the value indicated here.</value>
+  </data>
+  <data name="CoordinatorTabSettingsView_Min_Input_Count" xml:space="preserve">
+    <value>Min Input Count</value>
+  </data>
 </root>

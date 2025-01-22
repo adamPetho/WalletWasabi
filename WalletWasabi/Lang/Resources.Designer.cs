@@ -1119,6 +1119,60 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coordinator URI.
+        /// </summary>
+        public static string CoordinatorTabSettingsView_Coordinator_URI {
+            get {
+                return ResourceManager.GetString("CoordinatorTabSettingsView_Coordinator_URI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The client will connect to this coordinator that will manage coinjoins..
+        /// </summary>
+        public static string CoordinatorTabSettingsView_Coordinator_URI_ToolTip {
+            get {
+                return ResourceManager.GetString("CoordinatorTabSettingsView_Coordinator_URI_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Coinjoin Mining Fee Rate.
+        /// </summary>
+        public static string CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate {
+            get {
+                return ResourceManager.GetString("CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The client will refuse to participate in rounds with a mining fee rate (sat/vb) higher than the value indicated here..
+        /// </summary>
+        public static string CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate_ToolTip {
+            get {
+                return ResourceManager.GetString("CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Input Count.
+        /// </summary>
+        public static string CoordinatorTabSettingsView_Min_Input_Count {
+            get {
+                return ResourceManager.GetString("CoordinatorTabSettingsView_Min_Input_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The client will refuse to participate in rounds with a minimum input count lower than the value indicated here..
+        /// </summary>
+        public static string CoordinatorTabSettingsView_Min_Input_Count_ToolTip {
+            get {
+                return ResourceManager.GetString("CoordinatorTabSettingsView_Min_Input_Count_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Coordinator settings.
         /// </summary>
         public static string CoordinatorTabSettingsViewModel_Caption {

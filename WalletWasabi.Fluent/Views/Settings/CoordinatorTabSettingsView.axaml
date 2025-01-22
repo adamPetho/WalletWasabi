@@ -3,14 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:settings="using:WalletWasabi.Fluent.ViewModels.Settings"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="428" d:DesignHeight="371"
              x:DataType="settings:CoordinatorTabSettingsViewModel"
              x:Class="WalletWasabi.Fluent.Views.Settings.CoordinatorTabSettingsView"
              x:CompileBindings="True">
   <StackPanel Classes="settingsLayout">
 
-    <DockPanel ToolTip.Tip="The client will connect to this coordinator that will manage coinjoins.">
-      <TextBlock Text="Coordinator URI" />
+    <DockPanel ToolTip.Tip="{x:Static lang:Resources.CoordinatorTabSettingsView_Coordinator_URI_ToolTip}">
+      <TextBlock Text="{x:Static lang:Resources.CoordinatorTabSettingsView_Coordinator_URI}" />
       <TextBox Name="CoordinatorTextBox" Text="{Binding CoordinatorUri}">
         <Interaction.Behaviors>
           <TextBoxAutoSelectTextBehavior />
@@ -20,13 +21,13 @@
       </TextBox>
     </DockPanel>
 
-    <DockPanel ToolTip.Tip="The client will refuse to participate in rounds with a mining fee rate (sat/vb) higher than the value indicated here.">
-      <TextBlock Text="Max Coinjoin Mining Fee Rate" />
+    <DockPanel ToolTip.Tip="{x:Static lang:Resources.CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate_ToolTip}">
+      <TextBlock Text="{x:Static lang:Resources.CoordinatorTabSettingsView_Max_Coinjoin_Mining_Fee_Rate}" />
       <CurrencyEntryBox Classes="standalone" Name="CoinJoinMiningFeeRateTextBox" Text="{Binding MaxCoinJoinMiningFeeRate}" CurrencyCode="sat/vb"/>
     </DockPanel>
 
-    <DockPanel ToolTip.Tip="The client will refuse to participate in rounds with a minimum input count lower than the value indicated here.">
-      <TextBlock Text="Min Input Count" />
+    <DockPanel ToolTip.Tip="{x:Static lang:Resources.CoordinatorTabSettingsView_Min_Input_Count_ToolTip}">
+      <TextBlock Text="{x:Static lang:Resources.CoordinatorTabSettingsView_Min_Input_Count}" />
       <TextBox Classes="standalone" Name="AbsoluteMinInputCountTextBox" Text="{Binding AbsoluteMinInputCount}">
         <Interaction.Behaviors>
           <TextBoxAutoSelectTextBehavior />
