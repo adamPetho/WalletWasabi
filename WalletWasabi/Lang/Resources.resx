@@ -1659,4 +1659,7 @@
   <data name="AboutView_Advanced_Information" xml:space="preserve">
     <value>Advanced Information</value>
   </data>
+  <data name="LinkView_Copy_Link_ToolTip" xml:space="preserve">
+    <value>Copy link</value>
+  </data>
 </root>

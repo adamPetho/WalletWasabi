@@ -1444,6 +1444,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy link.
+        /// </summary>
+        public static string LinkView_Copy_Link_ToolTip {
+            get {
+                return ResourceManager.GetString("LinkView_Copy_Link_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}% completed.
         /// </summary>
         public static string LoadingViewModel_PercentCompleted {
