@@ -4081,6 +4081,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accelerator.
+        /// </summary>
+        public static string Words_Accelerator {
+            get {
+                return ResourceManager.GetString("Words_Accelerator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string Words_Action {
@@ -4234,6 +4243,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancellation.
+        /// </summary>
+        public static string Words_Cancellation {
+            get {
+                return ResourceManager.GetString("Words_Cancellation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
         public static string Words_Change {
@@ -4270,11 +4288,29 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coinjoin.
+        /// </summary>
+        public static string Words_Coinjoin {
+            get {
+                return ResourceManager.GetString("Words_Coinjoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coinjoining.
         /// </summary>
         public static string Words_Coinjoining {
             get {
                 return ResourceManager.GetString("Words_Coinjoining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coinjoins.
+        /// </summary>
+        public static string Words_Coinjoins {
+            get {
+                return ResourceManager.GetString("Words_Coinjoins", resourceCulture);
             }
         }
         
@@ -4693,6 +4729,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incoming.
+        /// </summary>
+        public static string Words_Incoming {
+            get {
+                return ResourceManager.GetString("Words_Incoming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Info.
         /// </summary>
         public static string Words_Info {
@@ -4936,6 +4981,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Outgoing.
+        /// </summary>
+        public static string Words_Outgoing {
+            get {
+                return ResourceManager.GetString("Words_Outgoing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output.
         /// </summary>
         public static string Words_Output {
@@ -5076,6 +5130,15 @@ namespace WalletWasabi.Lang {
         public static string Words_Second {
             get {
                 return ResourceManager.GetString("Words_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Self Transfer.
+        /// </summary>
+        public static string Words_Self_Transfer {
+            get {
+                return ResourceManager.GetString("Words_Self_Transfer", resourceCulture);
             }
         }
         

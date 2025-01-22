@@ -1887,4 +1887,25 @@
   <data name="ActionsColumnView_Cancel_Transaction_ToolTip" xml:space="preserve">
     <value>Cancel Transaction</value>
   </data>
+  <data name="Words_Incoming" xml:space="preserve">
+    <value>Incoming</value>
+  </data>
+  <data name="Words_Outgoing" xml:space="preserve">
+    <value>Outgoing</value>
+  </data>
+  <data name="Words_Self_Transfer" xml:space="preserve">
+    <value>Self Transfer</value>
+  </data>
+  <data name="Words_Coinjoin" xml:space="preserve">
+    <value>Coinjoin</value>
+  </data>
+  <data name="Words_Coinjoins" xml:space="preserve">
+    <value>Coinjoins</value>
+  </data>
+  <data name="Words_Cancellation" xml:space="preserve">
+    <value>Cancellation</value>
+  </data>
+  <data name="Words_Accelerator" xml:space="preserve">
+    <value>Accelerator</value>
+  </data>
 </root>
