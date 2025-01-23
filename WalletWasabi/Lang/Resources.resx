@@ -2280,4 +2280,7 @@
   <data name="IsOwnIndicatorView_ChangeText" xml:space="preserve">
     <value>CHANGE</value>
   </data>
+  <data name="OutputsCoinListView_CopyButtonHeader" xml:space="preserve">
+    <value>Copy Bitcoin Address</value>
+  </data>
 </root>

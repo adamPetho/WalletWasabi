@@ -2524,6 +2524,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Bitcoin Address.
+        /// </summary>
+        public static string OutputsCoinListView_CopyButtonHeader {
+            get {
+                return ResourceManager.GetString("OutputsCoinListView_CopyButtonHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compatibility passphrase was used! Please consider generating a new wallet to ensure recoverability!.
         /// </summary>
         public static string Password_Message_CompatibilityPasswordWarn {
