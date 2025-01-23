@@ -2262,4 +2262,10 @@
   <data name="WalletToolsView_ThirdText" xml:space="preserve">
     <value>Your passphrase is also required to restore your wallet, do not forget it.</value>
   </data>
+  <data name="WalletVerifyRecoveryWordsView_Watermark" xml:space="preserve">
+    <value>Type in your recovery words in the correct order</value>
+  </data>
+  <data name="Words_Verify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
 </root>

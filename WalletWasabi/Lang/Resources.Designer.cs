@@ -4981,6 +4981,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type in your recovery words in the correct order.
+        /// </summary>
+        public static string WalletVerifyRecoveryWordsView_Watermark {
+            get {
+                return ResourceManager.GetString("WalletVerifyRecoveryWordsView_Watermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wasabi was unable to verify the recovery words.&quot;.
         /// </summary>
         public static string WalletVerifyRecoveryWordsViewModel_Error_Generic_Caption {
@@ -6435,6 +6444,15 @@ namespace WalletWasabi.Lang {
         public static string Words_User {
             get {
                 return ResourceManager.GetString("Words_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify.
+        /// </summary>
+        public static string Words_Verify {
+            get {
+                return ResourceManager.GetString("Words_Verify", resourceCulture);
             }
         }
         
