@@ -5,11 +5,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets.Settings"
              xmlns:v="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Settings"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:DataType="vm:WalletSettingsViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.Views.Wallets.Settings.WalletSettingsView">
   <ContentArea Title="{Binding Title}"
-               EnableNext="True" NextContent="Done"
+               EnableNext="True" NextContent="{x:Static lang:Resources.Words_Done}"
                EnableCancel="{Binding EnableCancel}"
                EnableBack="{Binding EnableBack}"
                ScrollViewer.VerticalScrollBarVisibility="Disabled">
@@ -17,19 +18,19 @@
     <TabControl SelectedIndex="{Binding SelectedTab, Mode=TwoWay}"
                 Classes="Settings">
 
-      <TabItem Header="General">
+      <TabItem Header="{x:Static lang:Resources.Words_General}">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
           <v:WalletGeneralSettingsView />
         </ScrollViewer>
       </TabItem>
 
-      <TabItem Header="Coinjoin" IsVisible="{Binding !IsWatchOnly}">
+      <TabItem Header="{x:Static lang:Resources.Words_Coinjoin}" IsVisible="{Binding !IsWatchOnly}">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
           <v:WalletCoinJoinSettingsView DataContext="{Binding WalletCoinJoinSettings}" />
         </ScrollViewer>
       </TabItem>
 
-      <TabItem Header="Tools" IsVisible="{Binding !IsWatchOnly}">
+      <TabItem Header="{x:Static lang:Resources.Words_Tools}" IsVisible="{Binding !IsWatchOnly}">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
           <v:WalletToolsView />
         </ScrollViewer>

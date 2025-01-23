@@ -6331,6 +6331,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string Words_Tools {
+            get {
+                return ResourceManager.GetString("Words_Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tor.
         /// </summary>
         public static string Words_Tor {

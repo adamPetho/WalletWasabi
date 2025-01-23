@@ -2250,4 +2250,7 @@
   <data name="WalletRenameView_Watermark" xml:space="preserve">
     <value>Wallet name</value>
   </data>
+  <data name="Words_Tools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
 </root>
