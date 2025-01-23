@@ -2283,4 +2283,13 @@
   <data name="OutputsCoinListView_CopyButtonHeader" xml:space="preserve">
     <value>Copy Bitcoin Address</value>
   </data>
+  <data name="LoadingView_FirstText" xml:space="preserve">
+    <value>Downloading and processing Bitcoin network data</value>
+  </data>
+  <data name="LoadingView_SecondText" xml:space="preserve">
+    <value>Wasabi does this without any third party knowing about your balance and financial activity.</value>
+  </data>
+  <data name="LoadingView_ThirdText" xml:space="preserve">
+    <value>This process will be longer on first launch, with larger wallets, or after long gaps between synchronizations.</value>
+  </data>
 </root>

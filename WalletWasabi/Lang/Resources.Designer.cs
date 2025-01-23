@@ -1966,6 +1966,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading and processing Bitcoin network data.
+        /// </summary>
+        public static string LoadingView_FirstText {
+            get {
+                return ResourceManager.GetString("LoadingView_FirstText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasabi does this without any third party knowing about your balance and financial activity..
+        /// </summary>
+        public static string LoadingView_SecondText {
+            get {
+                return ResourceManager.GetString("LoadingView_SecondText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This process will be longer on first launch, with larger wallets, or after long gaps between synchronizations..
+        /// </summary>
+        public static string LoadingView_ThirdText {
+            get {
+                return ResourceManager.GetString("LoadingView_ThirdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}% completed.
         /// </summary>
         public static string LoadingViewModel_PercentCompleted {
