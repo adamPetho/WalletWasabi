@@ -4954,6 +4954,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Have you checked your wallet backup?.
+        /// </summary>
+        public static string WalletToolsView_FirstText {
+            get {
+                return ResourceManager.GetString("WalletToolsView_FirstText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is recommended that you verify your wallet Recovery Words from time to time..
+        /// </summary>
+        public static string WalletToolsView_SecondText {
+            get {
+                return ResourceManager.GetString("WalletToolsView_SecondText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your passphrase is also required to restore your wallet, do not forget it..
+        /// </summary>
+        public static string WalletToolsView_ThirdText {
+            get {
+                return ResourceManager.GetString("WalletToolsView_ThirdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wasabi was unable to verify the recovery words.&quot;.
         /// </summary>
         public static string WalletVerifyRecoveryWordsViewModel_Error_Generic_Caption {

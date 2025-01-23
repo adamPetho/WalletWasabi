@@ -2253,4 +2253,13 @@
   <data name="Words_Tools" xml:space="preserve">
     <value>Tools</value>
   </data>
+  <data name="WalletToolsView_FirstText" xml:space="preserve">
+    <value>Have you checked your wallet backup?</value>
+  </data>
+  <data name="WalletToolsView_SecondText" xml:space="preserve">
+    <value>It is recommended that you verify your wallet Recovery Words from time to time.</value>
+  </data>
+  <data name="WalletToolsView_ThirdText" xml:space="preserve">
+    <value>Your passphrase is also required to restore your wallet, do not forget it.</value>
+  </data>
 </root>
