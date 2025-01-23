@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels.Wallets.Send"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:CompileBindings="True"
              x:DataType="vm:SendFeeViewModel"
@@ -131,11 +132,11 @@
     </Style>
   </UserControl.Styles>
   <ContentArea Title="{Binding Title}"
-                 Caption="Set your preference for how fast the transaction should be confirmed"
-                 CancelContent="Cancel"
+                 Caption="{x:Static lang:Resources.SendFeeView_Caption}"
+                 CancelContent="{x:Static lang:Resources.Words_Cancel}"
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="true"
-                 EnableNext="True" NextContent="Continue"
+                 EnableNext="True" NextContent="{x:Static lang:Resources.Words_Continue}"
                  IsBusy="{Binding IsBusy}">
     <DockPanel>
 
@@ -145,7 +146,7 @@
               DockPanel.Dock="Bottom"
               HorizontalAlignment="Center"
               VerticalAlignment="Bottom"
-              Content="Advanced" />
+              Content="{x:Static lang:Resources.Words_Advanced}" />
       <DockPanel MinHeight="80" DataContext="{Binding FeeChart}">
         <DockPanel.Resources>
           <Thickness x:Key="SliderTopHeaderMargin">0,0,0,4</Thickness>
@@ -220,8 +221,8 @@
                 <Setter Property="FontSize" Value="{StaticResource FontSizeH8}" />
               </Style>
             </StackPanel.Styles>
-            <TextBlock Text="{Binding CurrentSatoshiPerByte, Mode=OneWay, StringFormat='Fee Rate: {0:0.##} sat/vByte'}" />
-            <TextBlock Text="{Binding CurrentConfirmationTargetString, Mode=OneWay, StringFormat='Estimated Confirmation Time: \{0\}'}" />
+            <TextBlock Text="{Binding CurrentSatoshiPerByte, Mode=OneWay, StringFormat='{x:Static lang:Resources.SendFeeView_FeeRateText}'}" />
+            <TextBlock Text="{Binding CurrentConfirmationTargetString, Mode=OneWay, StringFormat='{x:Static lang:Resources.SendFeeView_EstimatedConfirmationTimeText}'}" />
           </StackPanel>
         </Panel>
       </DockPanel>

@@ -3226,6 +3226,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set your preference for how fast the transaction should be confirmed.
+        /// </summary>
+        public static string SendFeeView_Caption {
+            get {
+                return ResourceManager.GetString("SendFeeView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estimated Confirmation Time: \{0\}.
+        /// </summary>
+        public static string SendFeeView_EstimatedConfirmationTimeText {
+            get {
+                return ResourceManager.GetString("SendFeeView_EstimatedConfirmationTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fee Rate: {0:0.##} sat/vByte.
+        /// </summary>
+        public static string SendFeeView_FeeRateText {
+            get {
+                return ResourceManager.GetString("SendFeeView_FeeRateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transaction fee estimations are not available at the moment. Try again later or you can enter the fee rate manually..
         /// </summary>
         public static string SendFeeViewModel_Error_TransactionFee_Message {

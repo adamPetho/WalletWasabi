@@ -2157,4 +2157,13 @@
   <data name="PrivacyWarningsView_ChangeAvoidanceText" xml:space="preserve">
     <value>Change Avoidance</value>
   </data>
+  <data name="SendFeeView_Caption" xml:space="preserve">
+    <value>Set your preference for how fast the transaction should be confirmed</value>
+  </data>
+  <data name="SendFeeView_FeeRateText" xml:space="preserve">
+    <value>Fee Rate: {0:0.##} sat/vByte</value>
+  </data>
+  <data name="SendFeeView_EstimatedConfirmationTimeText" xml:space="preserve">
+    <value>Estimated Confirmation Time: \{0\}</value>
+  </data>
 </root>
