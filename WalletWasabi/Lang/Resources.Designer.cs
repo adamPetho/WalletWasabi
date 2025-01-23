@@ -4207,6 +4207,51 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This transaction is well optimized.
+        /// </summary>
+        public static string TransactionPreviewView_FullPrivacyText {
+            get {
+                return ResourceManager.GetString("TransactionPreviewView_FullPrivacyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your privacy is being protected with payjoin..
+        /// </summary>
+        public static string TransactionPreviewView_Payjoin_ToolTip {
+            get {
+                return ResourceManager.GetString("TransactionPreviewView_Payjoin_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Now.
+        /// </summary>
+        public static string TransactionPreviewView_SkipButtonText {
+            get {
+                return ResourceManager.GetString("TransactionPreviewView_SkipButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview Transaction.
+        /// </summary>
+        public static string TransactionPreviewView_Title {
+            get {
+                return ResourceManager.GetString("TransactionPreviewView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo last modification.
+        /// </summary>
+        public static string TransactionPreviewView_Undo_ToolTip {
+            get {
+                return ResourceManager.GetString("TransactionPreviewView_Undo_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wasabi was unable to export the PSBT..
         /// </summary>
         public static string TransactionPreviewViewModel_PSBT_Error_UnableExport_Caption {

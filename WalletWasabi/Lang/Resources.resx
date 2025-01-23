@@ -2181,4 +2181,19 @@
   <data name="SendView_SilentPaymentText" xml:space="preserve">
     <value>ⓘ Silent Payments are privately reusable static addresses</value>
   </data>
+  <data name="TransactionPreviewView_SkipButtonText" xml:space="preserve">
+    <value>Send Now</value>
+  </data>
+  <data name="TransactionPreviewView_Title" xml:space="preserve">
+    <value>Preview Transaction</value>
+  </data>
+  <data name="TransactionPreviewView_Payjoin_ToolTip" xml:space="preserve">
+    <value>Your privacy is being protected with payjoin.</value>
+  </data>
+  <data name="TransactionPreviewView_Undo_ToolTip" xml:space="preserve">
+    <value>Undo last modification</value>
+  </data>
+  <data name="TransactionPreviewView_FullPrivacyText" xml:space="preserve">
+    <value>This transaction is well optimized</value>
+  </data>
 </root>

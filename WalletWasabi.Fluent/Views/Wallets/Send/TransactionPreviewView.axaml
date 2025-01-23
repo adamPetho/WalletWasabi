@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:send="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Send"
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels.Wallets.Send"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d"
              x:DataType="vm:TransactionPreviewViewModel"
              x:CompileBindings="True"
@@ -13,10 +14,10 @@
                  EnableCancel="{Binding EnableCancel}"
                  EnableBack="{Binding EnableBack}"
                  EnableNext="True" NextContent="{Binding NextButtonText}"
-                 EnableSkip="{Binding PreferPsbtWorkflow}" SkipContent="Send Now"
+                 EnableSkip="{Binding PreferPsbtWorkflow}" SkipContent="{x:Static lang:Resources.TransactionPreviewView_SkipButtonText}"
                  IsBusy="{Binding IsBusy}"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 Title="Preview Transaction">
+                 Title="{x:Static lang:Resources.TransactionPreviewView_Title}">
 
     <Interaction.Behaviors>
       <HoldKeyBehavior Key="LeftAlt" IsKeyPressed="{Binding IsCoinControlVisible}" />
@@ -25,11 +26,11 @@
     <ContentArea.TopContent>
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" VerticalAlignment="Center" TextElement.FontSize="{DynamicResource ControlContentThemeFontSize}">
         <Image Width="120" Margin="10 4 10 5" Source="avares://WalletWasabi.Fluent/Assets/TechnologyLogos/payjoin.png"
-               ToolTip.Tip="Your privacy is being protected with payjoin."
+               ToolTip.Tip="{x:Static lang:Resources.TransactionPreviewView_Payjoin_ToolTip}"
                IsVisible="{Binding CurrentTransactionSummary.IsPayJoin}" />
 
         <Button Command="{Binding UndoCommand}" Classes="plain" Padding="10 0 10 10"
-                ToolTip.Tip="Undo last modification" IsVisible="{Binding CanUndo}">
+                ToolTip.Tip="{x:Static lang:Resources.TransactionPreviewView_Undo_ToolTip}" IsVisible="{Binding CanUndo}">
           <Viewbox Height="20">
             <PathIcon Data="{StaticResource undo_icon_regular}" Foreground="{DynamicResource SystemAccentColor}" />
           </Viewbox>
@@ -88,7 +89,7 @@
 
                 <!-- Full privacy message -->
                 <DockPanel IsVisible="{Binding MaxPrivacy}">
-                  <TextBlock Text="This transaction is well optimized" DockPanel.Dock="Top" HorizontalAlignment="Center" />
+                  <TextBlock Text="{x:Static lang:Resources.TransactionPreviewView_FullPrivacyText}" DockPanel.Dock="Top" HorizontalAlignment="Center" />
                   <Image Margin="0 20" Source="{StaticResource privacy_indicator_good}" Height="100" Width="100" />
                 </DockPanel>
               </Panel>
