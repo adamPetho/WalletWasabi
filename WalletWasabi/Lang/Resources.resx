@@ -2166,4 +2166,19 @@
   <data name="SendFeeView_EstimatedConfirmationTimeText" xml:space="preserve">
     <value>Estimated Confirmation Time: \{0\}</value>
   </data>
+  <data name="SendView_Title" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SendView_ToWatermark" xml:space="preserve">
+    <value>(e.g. Bitcoin address, Silent Payment address or payjoin URL)</value>
+  </data>
+  <data name="SendView_PasteButton_ToolTip" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="SendView_ScanQRCode_ToolTip" xml:space="preserve">
+    <value>Scan QR Code</value>
+  </data>
+  <data name="SendView_SilentPaymentText" xml:space="preserve">
+    <value>ⓘ Silent Payments are privately reusable static addresses</value>
+  </data>
 </root>

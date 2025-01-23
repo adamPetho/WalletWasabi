@@ -3298,6 +3298,51 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string SendView_PasteButton_ToolTip {
+            get {
+                return ResourceManager.GetString("SendView_PasteButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan QR Code.
+        /// </summary>
+        public static string SendView_ScanQRCode_ToolTip {
+            get {
+                return ResourceManager.GetString("SendView_ScanQRCode_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⓘ Silent Payments are privately reusable static addresses.
+        /// </summary>
+        public static string SendView_SilentPaymentText {
+            get {
+                return ResourceManager.GetString("SendView_SilentPaymentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string SendView_Title {
+            get {
+                return ResourceManager.GetString("SendView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (e.g. Bitcoin address, Silent Payment address or payjoin URL).
+        /// </summary>
+        public static string SendView_ToWatermark {
+            get {
+                return ResourceManager.GetString("SendView_ToWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display wallet send dialog.
         /// </summary>
         public static string SendViewModel_Caption {
