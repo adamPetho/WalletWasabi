@@ -4,6 +4,7 @@
              xmlns:models="using:WalletWasabi.Models"
              xmlns:vm="using:WalletWasabi.Fluent.ViewModels"
              xmlns:converters="clr-namespace:WalletWasabi.Fluent.Converters"
+             xmlns:lang="using:WalletWasabi.Lang"
              x:DataType="vm:ApplicationViewModel"
              x:CompileBindings="True"
              x:Class="WalletWasabi.Fluent.App"
@@ -21,7 +22,7 @@
     <NativeMenu x:Key="DefaultNativeMenu">
       <NativeMenuItem Header="{Binding IsMainWindowShown, Converter={StaticResource ShowHideBoolConverter}}" Command="{Binding ShowHideCommand}" />
       <NativeMenuItemSeparator />
-      <NativeMenuItem Header="Quit" Command="{Binding QuitCommand}" />
+      <NativeMenuItem Header="{x:Static lang:Resources.AppView_QuitHeader}" Command="{Binding QuitCommand}" />
     </NativeMenu>
   </Application.Resources>
 
@@ -34,7 +35,7 @@
   </Application.Styles>
   <NativeMenu.Menu>
     <NativeMenu>
-      <NativeMenuItem Header="About Wasabi Wallet" Command="{Binding AboutCommand}" />
+      <NativeMenuItem Header="{x:Static lang:Resources.AppView_AboutWasabiHeader}" Command="{Binding AboutCommand}" />
     </NativeMenu>
   </NativeMenu.Menu>
   <TrayIcon.Icons>

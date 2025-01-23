@@ -405,6 +405,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About Wasabi Wallet.
+        /// </summary>
+        public static string AppView_AboutWasabiHeader {
+            get {
+                return ResourceManager.GetString("AppView_AboutWasabiHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string AppView_QuitHeader {
+            get {
+                return ResourceManager.GetString("AppView_QuitHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Authorization has failed, please try again..
         /// </summary>
         public static string AuthorizationDialogBase_AuthorizationFailed_Message {

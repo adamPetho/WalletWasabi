@@ -2325,4 +2325,10 @@
   <data name="WalletView_Donate" xml:space="preserve">
     <value>Donate</value>
   </data>
+  <data name="AppView_QuitHeader" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="AppView_AboutWasabiHeader" xml:space="preserve">
+    <value>About Wasabi Wallet</value>
+  </data>
 </root>
