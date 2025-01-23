@@ -16,8 +16,8 @@
                NextContent="{x:Static lang:Resources.Words_Done}"
                EnableCancel="{Binding EnableCancel}"
                IsBusy="{Binding IsBusy}"
-               ScrollViewer.VerticalScrollBarVisibility="Disabled">
-    <ContentArea.Caption>{x:Static lang:Resources.ExcludedCoinsView_Caption}</ContentArea.Caption>
+               ScrollViewer.VerticalScrollBarVisibility="Disabled"
+               Caption="{x:Static lang:Resources.ExcludedCoinsView_Caption}">
     <ContentArea.TopContent>
       <StackPanel Orientation="Horizontal" Spacing="4">
         <Button DockPanel.Dock="Right" Theme="{StaticResource DialogSortButton}" ToolTip.Tip="{x:Static lang:Resources.Words_Sorting}">
