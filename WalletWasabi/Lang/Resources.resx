@@ -2271,4 +2271,13 @@
   <data name="InputsCoinListView_CopyBtcAddressMenuItem" xml:space="preserve">
     <value>Copy Bitcoin Address</value>
   </data>
+  <data name="IsOwnIndicatorView_FirstIndicator_ToolTip" xml:space="preserve">
+    <value>This output belongs to one of your opened wallets</value>
+  </data>
+  <data name="IsOwnIndicatorView_SecondIndicator_ToolTip" xml:space="preserve">
+    <value>This output goes back to your own wallet</value>
+  </data>
+  <data name="IsOwnIndicatorView_ChangeText" xml:space="preserve">
+    <value>CHANGE</value>
+  </data>
 </root>

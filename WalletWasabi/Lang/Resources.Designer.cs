@@ -1921,6 +1921,33 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CHANGE.
+        /// </summary>
+        public static string IsOwnIndicatorView_ChangeText {
+            get {
+                return ResourceManager.GetString("IsOwnIndicatorView_ChangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This output belongs to one of your opened wallets.
+        /// </summary>
+        public static string IsOwnIndicatorView_FirstIndicator_ToolTip {
+            get {
+                return ResourceManager.GetString("IsOwnIndicatorView_FirstIndicator_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This output goes back to your own wallet.
+        /// </summary>
+        public static string IsOwnIndicatorView_SecondIndicator_ToolTip {
+            get {
+                return ResourceManager.GetString("IsOwnIndicatorView_SecondIndicator_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no information about these people, only use it when necessary!.
         /// </summary>
         public static string LabelSelectionViewModel_NoInformation_Tip {
