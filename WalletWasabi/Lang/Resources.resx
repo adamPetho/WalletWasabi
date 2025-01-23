@@ -2214,4 +2214,7 @@
   <data name="TransactionSummary_ExpectedConfirmationTimeText_ToolTip" xml:space="preserve">
     <value>This is just an estimation based on some data for transactions and blocks. The confirmation time might change.</value>
   </data>
+  <data name="ExcludedCoinsView_Caption" xml:space="preserve">
+    <value>The chosen coins will be excluded from coinjoin. It's important to note that there will be no increase in the privacy of those coins.</value>
+  </data>
 </root>

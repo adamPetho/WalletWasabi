@@ -1569,6 +1569,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The chosen coins will be excluded from coinjoin. It&apos;s important to note that there will be no increase in the privacy of those coins..
+        /// </summary>
+        public static string ExcludedCoinsView_Caption {
+            get {
+                return ResourceManager.GetString("ExcludedCoinsView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display exclude coins.
         /// </summary>
         public static string ExcludedCoinsViewModel_Caption {
