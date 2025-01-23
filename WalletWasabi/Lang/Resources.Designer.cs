@@ -4450,6 +4450,78 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically start coinjoin.
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_AutomaticallyStartCoinjoinText {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_AutomaticallyStartCoinjoinText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coinjoin strategy:.
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_CoinjoinStrategyText {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_CoinjoinStrategyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coinjoin to this wallet:.
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_CoinjoinToThisWalletText {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_CoinjoinToThisWalletText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Only loaded wallets can be selected..
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_FirstLine {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_FirstLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - Coins from the coinjoin transaction will be received by this wallet. However, this setting resets after Wasabi restarts..
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_SecondLine {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_SecondLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - The selected wallet cannot be changed when a coinjoin is in progress..
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_ThirdLine {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_ThirdLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop coinjoining threshold.
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_StopCoinjoinThresholdText {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_StopCoinjoinThresholdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coinjoin will automatically stop if the wallet balance is less than this..
+        /// </summary>
+        public static string WalletCoinJoinSettingsView_StopCoinjoinThresholdText_ToolTip {
+            get {
+                return ResourceManager.GetString("WalletCoinJoinSettingsView_StopCoinjoinThresholdText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display wallet coinjoin settings.
         /// </summary>
         public static string WalletCoinJoinSettingsViewModel_Caption {

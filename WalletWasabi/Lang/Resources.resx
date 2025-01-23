@@ -2217,4 +2217,28 @@
   <data name="ExcludedCoinsView_Caption" xml:space="preserve">
     <value>The chosen coins will be excluded from coinjoin. It's important to note that there will be no increase in the privacy of those coins.</value>
   </data>
+  <data name="WalletCoinJoinSettingsView_AutomaticallyStartCoinjoinText" xml:space="preserve">
+    <value>Automatically start coinjoin</value>
+  </data>
+  <data name="WalletCoinJoinSettingsView_CoinjoinStrategyText" xml:space="preserve">
+    <value>Coinjoin strategy:</value>
+  </data>
+  <data name="WalletCoinJoinSettingsView_CoinjoinToThisWalletText" xml:space="preserve">
+    <value>Coinjoin to this wallet:</value>
+  </data>
+  <data name="WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_FirstLine" xml:space="preserve">
+    <value>- Only loaded wallets can be selected.</value>
+  </data>
+  <data name="WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_SecondLine" xml:space="preserve">
+    <value>- Coins from the coinjoin transaction will be received by this wallet. However, this setting resets after Wasabi restarts.</value>
+  </data>
+  <data name="WalletCoinJoinSettingsView_CoinjoinToThisWalletText_ToolTip_ThirdLine" xml:space="preserve">
+    <value>- The selected wallet cannot be changed when a coinjoin is in progress.</value>
+  </data>
+  <data name="WalletCoinJoinSettingsView_StopCoinjoinThresholdText" xml:space="preserve">
+    <value>Stop coinjoining threshold</value>
+  </data>
+  <data name="WalletCoinJoinSettingsView_StopCoinjoinThresholdText_ToolTip" xml:space="preserve">
+    <value>Coinjoin will automatically stop if the wallet balance is less than this.</value>
+  </data>
 </root>
