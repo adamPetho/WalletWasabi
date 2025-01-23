@@ -2244,4 +2244,10 @@
   <data name="WalletGeneralSettingsView_PSBTWorkflowText" xml:space="preserve">
     <value>PSBT Workflow</value>
   </data>
+  <data name="WalletRenameView_Caption" xml:space="preserve">
+    <value>You can modify the name of your wallet</value>
+  </data>
+  <data name="WalletRenameView_Watermark" xml:space="preserve">
+    <value>Wallet name</value>
+  </data>
 </root>

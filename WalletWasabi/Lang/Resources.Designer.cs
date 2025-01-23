@@ -4765,6 +4765,24 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can modify the name of your wallet.
+        /// </summary>
+        public static string WalletRenameView_Caption {
+            get {
+                return ResourceManager.GetString("WalletRenameView_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wallet name.
+        /// </summary>
+        public static string WalletRenameView_Watermark {
+            get {
+                return ResourceManager.GetString("WalletRenameView_Watermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot rename the wallet.
         /// </summary>
         public static string WalletRenameViewModel_Error_InvalidName_Caption {
