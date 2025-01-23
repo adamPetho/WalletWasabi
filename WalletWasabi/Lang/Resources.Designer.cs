@@ -4585,6 +4585,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PSBT Workflow.
+        /// </summary>
+        public static string WalletGeneralSettingsView_PSBTWorkflowText {
+            get {
+                return ResourceManager.GetString("WalletGeneralSettingsView_PSBTWorkflowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Key Path (SegWit).
         /// </summary>
         public static string WalletInfoView_Account_Key_Path_SegWit {

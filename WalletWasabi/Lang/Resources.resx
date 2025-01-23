@@ -2241,4 +2241,7 @@
   <data name="WalletCoinJoinSettingsView_StopCoinjoinThresholdText_ToolTip" xml:space="preserve">
     <value>Coinjoin will automatically stop if the wallet balance is less than this.</value>
   </data>
+  <data name="WalletGeneralSettingsView_PSBTWorkflowText" xml:space="preserve">
+    <value>PSBT Workflow</value>
+  </data>
 </root>
