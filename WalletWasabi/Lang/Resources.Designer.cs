@@ -5161,6 +5161,60 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Donate.
+        /// </summary>
+        public static string WalletView_Donate {
+            get {
+                return ResourceManager.GetString("WalletView_Donate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Receive.
+        /// </summary>
+        public static string WalletView_Receive {
+            get {
+                return ResourceManager.GetString("WalletView_Receive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wallet Coins.
+        /// </summary>
+        public static string WalletView_WalletCoinsHeader {
+            get {
+                return ResourceManager.GetString("WalletView_WalletCoinsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wallet Info.
+        /// </summary>
+        public static string WalletView_WalletInfoHeader {
+            get {
+                return ResourceManager.GetString("WalletView_WalletInfoHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wallet Settings.
+        /// </summary>
+        public static string WalletView_WalletSettingsHeader {
+            get {
+                return ResourceManager.GetString("WalletView_WalletSettingsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wallet Stats.
+        /// </summary>
+        public static string WalletView_WalletStatsHeader {
+            get {
+                return ResourceManager.GetString("WalletView_WalletStatsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to Wasabi Wallet.
         /// </summary>
         public static string WelcomePageView_Main {

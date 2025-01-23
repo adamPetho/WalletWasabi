@@ -6,6 +6,7 @@
              xmlns:home="using:WalletWasabi.Fluent.Views.Wallets.Home"
              xmlns:history="using:WalletWasabi.Fluent.Views.Wallets.Home.History"
              xmlns:shell="clr-namespace:WalletWasabi.Fluent.Views.Shell"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="850"
              x:DataType="wallets:WalletViewModel"
              x:CompileBindings="True"
@@ -34,11 +35,11 @@
               </Button.IsVisible>
               <StackPanel Orientation="Horizontal">
                 <PathIcon Data="{StaticResource live_regular}" />
-                <TextBlock Text="Broadcast" />
+                <TextBlock Text="{x:Static lang:Resources.Words_Broadcast}" />
               </StackPanel>
             </Button>
 
-            <SubActionButton Content="Send"
+            <SubActionButton Content="{x:Static lang:Resources.Words_Send}"
                              Command="{Binding SendCommand}"
                              IsVisible="{Binding IsSendButtonVisible}"
                              Icon="{StaticResource wallet_action_send}">
@@ -65,11 +66,11 @@
                     IsVisible="{Binding Path=SeveralReceivingScriptTypes, Converter={x:Static BoolConverters.Not}}">
               <StackPanel Orientation="Horizontal">
                 <PathIcon Data="{StaticResource wallet_action_receive}" />
-                <TextBlock Text="Receive" />
+                <TextBlock Text="{x:Static lang:Resources.WalletView_Receive}" />
               </StackPanel>
             </Button>
 
-            <SubActionButton Content="Receive"
+            <SubActionButton Content="{x:Static lang:Resources.WalletView_Receive}"
                              Command="{Binding SegwitReceiveCommand}"
                              VerticalAlignment="Bottom"
                              HorizontalAlignment="Right"
@@ -99,7 +100,7 @@
                       Command="{Binding DonateCommand}">
                 <StackPanel Orientation="Horizontal">
                   <PathIcon Data="{StaticResource gift}" />
-                  <TextBlock Text="Donate" />
+                  <TextBlock Text="{x:Static lang:Resources.WalletView_Donate}" />
                 </StackPanel>
               </Button>
             </Panel>
@@ -107,22 +108,22 @@
             <Button Classes="transparentFunction">
               <Button.Flyout>
                 <MenuFlyout Placement="Bottom">
-                  <MenuItem Header="Wallet Settings" Command="{Binding WalletSettingsCommand}">
+                  <MenuItem Header="{x:Static lang:Resources.WalletView_WalletSettingsHeader}" Command="{Binding WalletSettingsCommand}">
                     <MenuItem.Icon>
                       <PathIcon Data="{StaticResource settings_wallet_regular}" />
                     </MenuItem.Icon>
                   </MenuItem>
-                  <MenuItem Header="Wallet Coins" Command="{Binding WalletCoinsCommand}">
+                  <MenuItem Header="{x:Static lang:Resources.WalletView_WalletCoinsHeader}" Command="{Binding WalletCoinsCommand}">
                     <MenuItem.Icon>
                       <PathIcon Data="{StaticResource wallet_coins}" />
                     </MenuItem.Icon>
                   </MenuItem>
-                  <MenuItem Header="Wallet Stats" Command="{Binding WalletStatsCommand}">
+                  <MenuItem Header="{x:Static lang:Resources.WalletView_WalletStatsHeader}" Command="{Binding WalletStatsCommand}">
                     <MenuItem.Icon>
                       <PathIcon Data="{StaticResource stats_wallet_regular}" />
                     </MenuItem.Icon>
                   </MenuItem>
-                  <MenuItem Header="Wallet Info" Command="{Binding WalletInfoCommand}">
+                  <MenuItem Header="{x:Static lang:Resources.WalletView_WalletInfoHeader}" Command="{Binding WalletInfoCommand}">
                     <MenuItem.Icon>
                       <PathIcon Data="{StaticResource info_regular}" />
                     </MenuItem.Icon>

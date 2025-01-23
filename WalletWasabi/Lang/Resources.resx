@@ -2307,4 +2307,22 @@
   <data name="MusicControlsView_FifthHeader" xml:space="preserve">
     <value>How do I find and set up a coordinator?</value>
   </data>
+  <data name="WalletView_WalletSettingsHeader" xml:space="preserve">
+    <value>Wallet Settings</value>
+  </data>
+  <data name="WalletView_WalletCoinsHeader" xml:space="preserve">
+    <value>Wallet Coins</value>
+  </data>
+  <data name="WalletView_WalletStatsHeader" xml:space="preserve">
+    <value>Wallet Stats</value>
+  </data>
+  <data name="WalletView_WalletInfoHeader" xml:space="preserve">
+    <value>Wallet Info</value>
+  </data>
+  <data name="WalletView_Receive" xml:space="preserve">
+    <value>Receive</value>
+  </data>
+  <data name="WalletView_Donate" xml:space="preserve">
+    <value>Donate</value>
+  </data>
 </root>
