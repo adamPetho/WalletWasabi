@@ -105,7 +105,7 @@
               </StatusItem.Icon>
             </StatusItem>
             <StatusItem
-              Title="{x:Static lang:Resources.Words_Peers}" StatusText="{Binding HealthMonitor.Peers, Mode=OneWay, StringFormat={}lang:Resources.Status_Peers_ConnectedCount}">
+              Title="{x:Static lang:Resources.Words_Peers}" StatusText="{Binding HealthMonitor.Peers, Mode=OneWay, StringFormat='{x:Static lang:Resources.Status_Peers_ConnectedCount}'}">
               <StatusItem.Icon>
                 <PathIcon Data="{StaticResource entities_regular}" />
               </StatusItem.Icon>
