@@ -2196,4 +2196,22 @@
   <data name="TransactionPreviewView_FullPrivacyText" xml:space="preserve">
     <value>This transaction is well optimized</value>
   </data>
+  <data name="TransactionSummary_AmountText" xml:space="preserve">
+    <value>Review coins</value>
+  </data>
+  <data name="TransactionSummary_AddressText" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="TransactionSummary_RecipientText" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="TransactionSummary_ChangeFeeOrConfirmationTime_ToolTip" xml:space="preserve">
+    <value>Change transaction fee or confirmation time</value>
+  </data>
+  <data name="TransactionSummary_ExpectedConfirmationTimeText" xml:space="preserve">
+    <value>Expected confirmation time</value>
+  </data>
+  <data name="TransactionSummary_ExpectedConfirmationTimeText_ToolTip" xml:space="preserve">
+    <value>This is just an estimation based on some data for transactions and blocks. The confirmation time might change.</value>
+  </data>
 </root>

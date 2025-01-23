@@ -6,6 +6,7 @@
              xmlns:converters="clr-namespace:WalletWasabi.Fluent.Converters"
              xmlns:outputs="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Transactions.Outputs"
              xmlns:inputs="clr-namespace:WalletWasabi.Fluent.Views.Wallets.Transactions.Inputs"
+             xmlns:lang="using:WalletWasabi.Lang"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:CompileBindings="True"
              x:DataType="send:TransactionSummaryViewModel"
@@ -33,7 +34,7 @@
     <DockPanel>
       <Button Classes="activeHyperLink"
               Command="{Binding Parent.ChangeCoinsCommand}"
-              Content="Review coins"
+              Content="{x:Static lang:Resources.TransactionSummary_AmountText}"
               Margin="10 0"
               VerticalAlignment="Center"
               DockPanel.Dock="Right">
@@ -65,7 +66,7 @@
     <!-- Address -->
     <PreviewItem Icon="{StaticResource transceive_regular}"
                    x:Name="PreviewItem"
-                   Label="Address"
+                   Label="{x:Static lang:Resources.TransactionSummary_AddressText}"
                    CopyableContent="{Binding AddressText}"
                    Classes.Dimmed="{Binding IsPreview}">
       <TextBlock Classes="monoSpaced" Text="{Binding AddressText, FallbackValue=btc029382398fkj34f98df239823}" />
@@ -75,7 +76,7 @@
     <!-- Recipient -->
     <PreviewItem Icon="{StaticResource person_regular}"
                    Classes.Dimmed="{Binding IsPreview}"
-                   Label="Recipient"
+                   Label="{x:Static lang:Resources.TransactionSummary_RecipientText}"
                    CopyableContent="{Binding Recipient}">
       <LabelsItemsPresenter ItemsSource="{Binding Recipient}"
                               HorizontalAlignment="Left"
@@ -99,7 +100,7 @@
     <DockPanel>
       <Button Classes="plain"
               Command="{Binding Parent.AdjustFeeCommand}"
-              ToolTip.Tip="Change transaction fee or confirmation time"
+              ToolTip.Tip="{x:Static lang:Resources.TransactionSummary_ChangeFeeOrConfirmationTime_ToolTip}"
               DockPanel.Dock="Right"
               Margin="10 0"
               IsVisible="{Binding !IsPreview}">
@@ -110,14 +111,14 @@
 
       <StackPanel Spacing="10">
         <PreviewItem Icon="{StaticResource timer_regular}"
-                       Label="Expected confirmation time"
+                       Label="{x:Static lang:Resources.TransactionSummary_ExpectedConfirmationTimeText}"
                        IsVisible="{Binding !IsCustomFeeUsed}"
                        Classes.Dimmed="{Binding IsPreview}"
-                       ToolTip.Tip="This is just an estimation based on some data for transactions and blocks. The confirmation time might change.">
+                       ToolTip.Tip="{x:Static lang:Resources.TransactionSummary_ExpectedConfirmationTimeText_ToolTip}">
           <TextBlock Text="{Binding ConfirmationTime, Converter={x:Static converters:TimeSpanConverter.ToEstimatedConfirmationTime}, FallbackValue=~20 minutes}" />
         </PreviewItem>
         <PreviewItem Icon="{StaticResource paper_cash_regular}"
-                       Label="Fee"
+                       Label="{x:Static lang:Resources.Words_Fee}"
                        CopyableContent="{Binding Fee.Btc, Converter={x:Static converters:MoneyConverters.ToFeeWithoutUnit}}">
           <StackPanel Orientation="Horizontal">
             <AmountControl Classes="WithUsd" Amount="{Binding Fee}" />
@@ -134,7 +135,7 @@
 
         <!-- Fee Rate-->
         <PreviewItem Icon="{StaticResource paper_cash_regular}"
-                     Label="Fee Rate"
+                     Label="{x:Static lang:Resources.Words_Fee_Rate}"
                      CopyableContent="{Binding FeeRate.SatoshiPerByte}">
          <TextBlock Text="{Binding FeeRate.SatoshiPerByte, StringFormat='{}{0:0.##} sat/vByte'}" />
         </PreviewItem>

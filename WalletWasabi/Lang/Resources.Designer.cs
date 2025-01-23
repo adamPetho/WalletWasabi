@@ -4333,6 +4333,60 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string TransactionSummary_AddressText {
+            get {
+                return ResourceManager.GetString("TransactionSummary_AddressText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Review coins.
+        /// </summary>
+        public static string TransactionSummary_AmountText {
+            get {
+                return ResourceManager.GetString("TransactionSummary_AmountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change transaction fee or confirmation time.
+        /// </summary>
+        public static string TransactionSummary_ChangeFeeOrConfirmationTime_ToolTip {
+            get {
+                return ResourceManager.GetString("TransactionSummary_ChangeFeeOrConfirmationTime_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected confirmation time.
+        /// </summary>
+        public static string TransactionSummary_ExpectedConfirmationTimeText {
+            get {
+                return ResourceManager.GetString("TransactionSummary_ExpectedConfirmationTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is just an estimation based on some data for transactions and blocks. The confirmation time might change..
+        /// </summary>
+        public static string TransactionSummary_ExpectedConfirmationTimeText_ToolTip {
+            get {
+                return ResourceManager.GetString("TransactionSummary_ExpectedConfirmationTimeText_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipient.
+        /// </summary>
+        public static string TransactionSummary_RecipientText {
+            get {
+                return ResourceManager.GetString("TransactionSummary_RecipientText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Wasabi&apos;s user support website.
         /// </summary>
         public static string UserSupportViewModel_Caption {
