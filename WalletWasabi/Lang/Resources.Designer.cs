@@ -2380,6 +2380,51 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How do I find and set up a coordinator?.
+        /// </summary>
+        public static string MusicControlsView_FifthHeader {
+            get {
+                return ResourceManager.GetString("MusicControlsView_FifthHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coinjoin Settings.
+        /// </summary>
+        public static string MusicControlsView_FirstHeader {
+            get {
+                return ResourceManager.GetString("MusicControlsView_FirstHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinator Settings.
+        /// </summary>
+        public static string MusicControlsView_FourthHeader {
+            get {
+                return ResourceManager.GetString("MusicControlsView_FourthHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinator Settings.
+        /// </summary>
+        public static string MusicControlsView_SecondHeader {
+            get {
+                return ResourceManager.GetString("MusicControlsView_SecondHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exclude Coins.
+        /// </summary>
+        public static string MusicControlsView_ThirdHeader {
+            get {
+                return ResourceManager.GetString("MusicControlsView_ThirdHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Absolute minimum input count.
         /// </summary>
         public static string NewCoordinatorConfirmationDialogView_Absolute_Minimum_Input_Count {

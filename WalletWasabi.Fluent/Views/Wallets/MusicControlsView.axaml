@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wallets="clr-namespace:WalletWasabi.Fluent.ViewModels.Wallets"
              xmlns:converters="clr-namespace:WalletWasabi.Fluent.Converters"
+             xmlns:lang="using:WalletWasabi.Lang"
              Background="Transparent"
              x:DataType="wallets:WalletViewModel"
              x:CompileBindings="True"
@@ -111,17 +112,17 @@
               <Button Classes="plain" IsVisible="{Binding CoinJoinStateViewModel.CanNavigateToCoinjoinSettings^}">
                 <Button.Flyout>
                   <MenuFlyout Placement="Top" IsOpen="{Binding IsMusicBoxFlyoutOpenedProxy, Mode=OneWayToSource}">
-                    <MenuItem Header="Coinjoin Settings" Command="{Binding CoinJoinStateViewModel.NavigateToSettingsCommand}">
+                    <MenuItem Header="{x:Static lang:Resources.MusicControlsView_FirstHeader}" Command="{Binding CoinJoinStateViewModel.NavigateToSettingsCommand}">
                       <MenuItem.Icon>
                         <PathIcon Data="{StaticResource settings_general_regular}" />
                       </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Coordinator Settings" Command="{Binding CoinJoinStateViewModel.NavigateToCoordinatorSettingsCommand}">
+                    <MenuItem Header="{x:Static lang:Resources.MusicControlsView_SecondHeader}" Command="{Binding CoinJoinStateViewModel.NavigateToCoordinatorSettingsCommand}">
                       <MenuItem.Icon>
                         <PathIcon Data="{StaticResource coordinator}" />
                       </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Exclude Coins" Command="{Binding CoinJoinStateViewModel.NavigateToExcludedCoinsCommand}">
+                    <MenuItem Header="{x:Static lang:Resources.MusicControlsView_ThirdHeader}" Command="{Binding CoinJoinStateViewModel.NavigateToExcludedCoinsCommand}">
                       <MenuItem.Icon>
                         <PathIcon Data="{StaticResource exclude_coins}" />
                       </MenuItem.Icon>
@@ -138,12 +139,12 @@
                 </Button.Content>
                 <Button.Flyout>
                   <MenuFlyout Placement="Top" IsOpen="{Binding IsMusicBoxFlyoutOpenedProxy, Mode=OneWayToSource}">
-                    <MenuItem Header="Coordinator Settings" Command="{Binding NavigateToCoordinatorSettingsCommand}">
+                    <MenuItem Header="{x:Static lang:Resources.MusicControlsView_FourthHeader}" Command="{Binding NavigateToCoordinatorSettingsCommand}">
                       <MenuItem.Icon>
                         <PathIcon Data="{StaticResource coordinator}" />
                       </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="How do I find and set up a coordinator?" Command="{Binding CoordinatorHelpCommand}" ToolTip.Tip="{Binding FindCoordinatorLink}" >
+                    <MenuItem Header="{x:Static lang:Resources.MusicControlsView_FifthHeader}" Command="{Binding CoordinatorHelpCommand}" ToolTip.Tip="{Binding FindCoordinatorLink}" >
                       <MenuItem.Icon>
                         <PathIcon Data="{StaticResource book_question_mark_regular}" />
                       </MenuItem.Icon>

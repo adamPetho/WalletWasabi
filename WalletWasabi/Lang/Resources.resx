@@ -2292,4 +2292,19 @@
   <data name="LoadingView_ThirdText" xml:space="preserve">
     <value>This process will be longer on first launch, with larger wallets, or after long gaps between synchronizations.</value>
   </data>
+  <data name="MusicControlsView_FirstHeader" xml:space="preserve">
+    <value>Coinjoin Settings</value>
+  </data>
+  <data name="MusicControlsView_SecondHeader" xml:space="preserve">
+    <value>Coordinator Settings</value>
+  </data>
+  <data name="MusicControlsView_ThirdHeader" xml:space="preserve">
+    <value>Exclude Coins</value>
+  </data>
+  <data name="MusicControlsView_FourthHeader" xml:space="preserve">
+    <value>Coordinator Settings</value>
+  </data>
+  <data name="MusicControlsView_FifthHeader" xml:space="preserve">
+    <value>How do I find and set up a coordinator?</value>
+  </data>
 </root>
