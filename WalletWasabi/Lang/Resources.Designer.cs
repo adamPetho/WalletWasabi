@@ -1894,6 +1894,15 @@ namespace WalletWasabi.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Bitcoin Address.
+        /// </summary>
+        public static string InputsCoinListView_CopyBtcAddressMenuItem {
+            get {
+                return ResourceManager.GetString("InputsCoinListView_CopyBtcAddressMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All inputs belong to one of your opened wallets..
         /// </summary>
         public static string InputsCoinViewModel_Tip_AllInputs {

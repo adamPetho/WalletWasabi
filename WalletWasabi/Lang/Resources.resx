@@ -2268,4 +2268,7 @@
   <data name="Words_Verify" xml:space="preserve">
     <value>Verify</value>
   </data>
+  <data name="InputsCoinListView_CopyBtcAddressMenuItem" xml:space="preserve">
+    <value>Copy Bitcoin Address</value>
+  </data>
 </root>
