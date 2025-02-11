@@ -33,7 +33,6 @@ public partial class CoordinatorTabSettingsViewModel : RoutableViewModel
 		this.ValidateProperty(x => x.MaxCoinJoinMiningFeeRate, ValidateMaxCoinJoinMiningFeeRate);
 		this.ValidateProperty(x => x.AbsoluteMinInputCount, ValidateAbsoluteMinInputCount);
 
-
 		_coordinatorUri = settings.GetCoordinatorUri();
 		_maxCoinJoinMiningFeeRate = settings.MaxCoinJoinMiningFeeRate;
 		_absoluteMinInputCount = settings.AbsoluteMinInputCount;
@@ -45,6 +44,14 @@ public partial class CoordinatorTabSettingsViewModel : RoutableViewModel
 				x => x.Settings.Network)
 			.ToSignal()
 			.Subscribe(x => CoordinatorUri = Settings.GetCoordinatorUri());
+
+		this.WhenAnyValue(x => x.Settings.MaxCoinJoinMiningFeeRate)
+			.ToSignal()
+			.Subscribe(x => MaxCoinJoinMiningFeeRate = Settings.MaxCoinJoinMiningFeeRate);
+
+		this.WhenAnyValue(x => x.Settings.AbsoluteMinInputCount)
+			.ToSignal()
+			.Subscribe(x => AbsoluteMinInputCount = Settings.AbsoluteMinInputCount);
 	}
 
 	public bool IsReadOnly => Settings.IsOverridden;

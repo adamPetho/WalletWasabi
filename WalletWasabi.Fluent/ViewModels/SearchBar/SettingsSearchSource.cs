@@ -46,30 +46,6 @@ public class SettingsSearchSource : ReactiveObject, ISearchSource
 
 		yield return ContentSearchItemNode.Create(
 			searchSource: _uiContext.EditableSearchSource,
-			setting: Setting(selector: x => x.UseTor),
-			name: Lang.Resources.Settings_UseTor_Name,
-			category: SearchCategory.Settings,
-			isDefault: false,
-			keywords: new List<string>(),
-			icon: "nav_settings_regular",
-			priority: 7,
-			isEnabled,
-			nestedItemConfiguration: new NestedItemConfiguration<TorMode>(
-				isDisplayed: mode => mode != TorMode.Disabled,
-				item: new ContentSearchItem(
-					content: Setting(selector: x => x.TerminateTorOnExit),
-					name: Lang.Resources.Settings_TerminateTorOnExit_Name,
-					category: SearchCategory.Settings,
-					keywords: new List<string>(),
-					icon: "nav_settings_regular",
-					isEnabled)
-				{
-					IsDefault = false,
-					Priority = 8
-				}));
-
-		yield return ContentSearchItemNode.Create(
-			searchSource: _uiContext.EditableSearchSource,
 			setting: Setting(selector: x => x.StartLocalBitcoinCoreOnStartup),
 			name: Lang.Resources.Settings_StartLocalBitcoinCoreOnStartup_Name,
 			category: SearchCategory.Settings,

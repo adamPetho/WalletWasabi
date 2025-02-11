@@ -1,5 +1,4 @@
 using NBitcoin;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using WalletWasabi.Exceptions;
@@ -21,7 +20,7 @@ public record PersistentConfig
 
 	public string TestNetCoordinatorUri { get; init; } = "";
 
-	public string RegTestCoordinatorUri { get; init; } = "http://localhost:37127/";
+	public string RegTestCoordinatorUri { get; init; } = "http://localhost:37128/";
 
 	/// <remarks>
 	/// For backward compatibility this was changed to an object.
@@ -65,6 +64,10 @@ public record PersistentConfig
 
 	public string CoordinatorIdentifier { get; init; } = "CoinJoinCoordinatorIdentifier";
 
+	public string ExchangeRateProvider { get; init; } = "MempoolSpace";
+
+	public string  FeeRateEstimationProvider { get; init; } = "MempoolSpace";
+
 	public decimal MaxCoinJoinMiningFeeRate { get; init; } = Constants.DefaultMaxCoinJoinMiningFeeRate;
 
 	public int AbsoluteMinInputCount { get; init; } = Constants.DefaultAbsoluteMinInputCount;
@@ -102,6 +105,8 @@ public record PersistentConfig
 			CoordinatorIdentifier == other.CoordinatorIdentifier &&
 			MaxCoinJoinMiningFeeRate == other.MaxCoinJoinMiningFeeRate &&
 			AbsoluteMinInputCount == other.AbsoluteMinInputCount &&
+			ExchangeRateProvider == other.ExchangeRateProvider &&
+			FeeRateEstimationProvider == other.FeeRateEstimationProvider &&
 			DisplayLanguage == other.DisplayLanguage;
 	}
 

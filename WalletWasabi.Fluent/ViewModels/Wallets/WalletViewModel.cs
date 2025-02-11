@@ -6,8 +6,6 @@ using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using DynamicData;
-using DynamicData.Binding;
 using NBitcoin;
 using ReactiveUI;
 using WalletWasabi.Fluent.Extensions;
@@ -22,6 +20,7 @@ using WalletWasabi.Fluent.ViewModels.SearchBar.Sources;
 using WalletWasabi.Fluent.ViewModels.Wallets.Home.History;
 using WalletWasabi.Fluent.ViewModels.Wallets.Home.Tiles;
 using WalletWasabi.Fluent.ViewModels.Wallets.Settings;
+using WalletWasabi.Models;
 using WalletWasabi.Wallets;
 using ScriptType = WalletWasabi.Fluent.Models.Wallets.ScriptType;
 
@@ -45,6 +44,9 @@ public partial class WalletViewModel : RoutableViewModel, IWalletViewModel
 	[AutoNotify(SetterModifier = AccessModifier.Private)] private bool _areAllCoinsPrivate;
 	[AutoNotify(SetterModifier = AccessModifier.Private)] private bool _hasMusicBoxBeenDisplayed;
 	[AutoNotify] private bool _isMusicBoxFlyoutDisplayed;
+
+	[AutoNotify] private ICommand _defaultReceiveCommand;
+	[AutoNotify] private ICommand _defaultSendCommand;
 
 	// This proxy fixes a stack overflow bug in Avalonia
 	public bool IsMusicBoxFlyoutOpenedProxy
@@ -133,10 +135,19 @@ public partial class WalletViewModel : RoutableViewModel, IWalletViewModel
 		DonateCommand = ReactiveCommand.Create(() => Navigate().To().Send(walletModel, new SendFlowModel(wallet, walletModel, donate: true)));
 		SendManualControlCommand = ReactiveCommand.Create(() => Navigate().To().ManualControlDialog(walletModel, wallet));
 
+		this.WhenAnyValue(x => x.Settings.DefaultSendWorkflow)
+			.Subscribe(value => DefaultSendCommand = value == SendWorkflow.Automatic ? SendCommand : SendManualControlCommand);
+
 		SegwitReceiveCommand = ReactiveCommand.Create(() => Navigate().To().Receive(WalletModel, ScriptType.SegWit));
 		TaprootReceiveCommand = SeveralReceivingScriptTypes ?
 			ReactiveCommand.Create(() => Navigate().To().Receive(WalletModel, ScriptType.Taproot)) :
 			null;
+
+		this.WhenAnyValue(x => x.Settings.DefaultReceiveScriptType)
+			.Subscribe(value =>
+				DefaultReceiveCommand = value == ScriptType.SegWit || TaprootReceiveCommand is null
+					? SegwitReceiveCommand
+					: TaprootReceiveCommand);
 
 		WalletInfoCommand = ReactiveCommand.CreateFromTask(async () =>
 		{
@@ -198,7 +209,7 @@ public partial class WalletViewModel : RoutableViewModel, IWalletViewModel
 
 	public bool PreferPsbtWorkflow => WalletModel.Settings.PreferPsbtWorkflow;
 
-	public bool SeveralReceivingScriptTypes => WalletModel.AvailableScriptPubKeyTypes.Contains(ScriptPubKeyType.TaprootBIP86);
+	public bool SeveralReceivingScriptTypes => WalletModel.SeveralReceivingScriptTypes;
 
 	public bool IsWatchOnly => WalletModel.IsWatchOnlyWallet;
 

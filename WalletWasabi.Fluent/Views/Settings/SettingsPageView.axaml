@@ -14,7 +14,9 @@
   <ContentArea Title="{Binding Title}"
                  Caption="{x:Static lang:Resources.SettingsPageView_Caption}"
                  EnableNext="True"
+                 EnableCancel="{Binding !IsReadOnly}"
                  NextContent="{x:Static lang:Resources.Words_Done}"
+                 CancelContent="Reset All Settings"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <DockPanel LastChildFill="True">
 
@@ -56,9 +58,9 @@
           </ScrollViewer>
         </TabItem>
 
-        <TabItem Header="{x:Static lang:Resources.Words_Advanced}">
-          <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <v:AdvancedSettingsTabView DataContext="{Binding AdvancedSettingsTab}" IsEnabled="{Binding !IsReadOnly}" />
+        <TabItem Header="Advanced">
+        <TabItem Header="{x:Static lang:Resources.Words_Connections}">
+            <v:ConnectionsSettingsTabView DataContext="{Binding ConnectionsSettingsTab}" IsEnabled="{Binding !IsReadOnly}" />
           </ScrollViewer>
         </TabItem>
 

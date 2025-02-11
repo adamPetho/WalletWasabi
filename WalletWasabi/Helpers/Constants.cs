@@ -96,7 +96,7 @@ public static class Constants
 
 	public static readonly Money MaximumNumberOfBitcoinsMoney = Money.Coins(MaximumNumberOfBitcoins);
 
-	public static readonly Version ClientVersion = new(2, 4, 0);
+	public static readonly Version ClientVersion = new(2, 5, 1);
 
 	public static readonly Version HwiVersion = new("3.1.0");
 	public static readonly Version BitcoinCoreVersion = new("23.0");
@@ -105,6 +105,8 @@ public static class Constants
 
 	public static readonly FeeRate MinRelayFeeRate = new(1m);
 	public static readonly FeeRate AbsurdlyHighFeeRate = new(10_000m);
+
+	public const decimal BnBMaximumDifferenceTolerance = 0.15m;
 
 	// Defined in hours. Do not modify these values or the order!
 	public static readonly int[] CoinJoinFeeRateMedianTimeFrames = new[] { 24, 168, 720 };
@@ -125,37 +127,24 @@ public static class Constants
 
 	public static readonly string[] UserAgents = new[]
 	{
+		"/Satoshi:28.1.0/",
+		"/Satoshi:28.0.0/",
+		"/Satoshi:27.2.0/",
+		"/Satoshi:27.1.0/",
+		"/Satoshi:27.0.0/",
+		"/Satoshi:26.2.0/",
+		"/Satoshi:26.1.0/",
 		"/Satoshi:26.0.0/",
 		"/Satoshi:25.1.0/",
 		"/Satoshi:25.0.0/",
-		"/Satoshi:24.2.0/",
 		"/Satoshi:24.1.0/",
 		"/Satoshi:24.0.1/",
-		"/Satoshi:24.0.0/",
-		"/Satoshi:23.2.0/",
-		"/Satoshi:23.1.0/",
 		"/Satoshi:23.0.0/",
-		"/Satoshi:22.1.0/",
 		"/Satoshi:22.0.0/",
-		"/Satoshi:0.21.2/",
 		"/Satoshi:0.21.1/",
 		"/Satoshi:0.21.0/",
-		"/Satoshi:0.20.2/",
 		"/Satoshi:0.20.1/",
 		"/Satoshi:0.20.0/",
-		"/Satoshi:0.19.1/",
-		"/Satoshi:0.19.0.1/",
-		"/Satoshi:0.19.0/",
-		"/Satoshi:0.18.1/",
-		"/Satoshi:0.18.0/",
-		"/Satoshi:0.17.2/",
-		"/Satoshi:0.17.1/",
-		"/Satoshi:0.17.0.1/",
-		"/Satoshi:0.17.0/",
-		"/Satoshi:0.16.3/",
-		"/Satoshi:0.16.2/",
-		"/Satoshi:0.16.1/",
-		"/Satoshi:0.16.0/",
 	};
 
 	public static readonly int[] ConfirmationTargets = new[]

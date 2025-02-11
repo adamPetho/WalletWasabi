@@ -89,6 +89,19 @@
           <!-- Status -->
           <StackPanel Spacing="16">
 
+
+            <StatusItem Title="Priority Fee" StatusText="{Binding HealthMonitor.PriorityFee, Converter={x:Static converters:StatusConverters.FeeRateToString}}">
+              <StatusItem.Icon>
+                <PathIcon Data="{StaticResource rocket_regular}" />
+              </StatusItem.Icon>
+            </StatusItem>
+
+            <StatusItem Title="Chain Tip" StatusText="{Binding HealthMonitor.BlockchainTip, Converter={x:Static converters:StatusConverters.BlockchainTipToString}}">
+              <StatusItem.Icon>
+                <PathIcon Data="{StaticResource block_height}" />
+              </StatusItem.Icon>
+            </StatusItem>
+
             <StatusItem Title="{x:Static lang:Resources.Words_Tor}" StatusText="{Binding HealthMonitor.TorStatus, Converter={x:Static converters:StatusConverters.TorStatusToString}}">
               <StatusItem.Icon>
                 <Panel>

@@ -139,18 +139,14 @@ public partial class ConfirmRecoveryWordsViewModel : RoutableViewModel
 			Lang.Resources.ConfirmRecoveryWordsViewModel_AddPassphrase_Caption,
 			enableEmpty: true).GetResultAsync();
 
+		var options = _options;
 		if (password is { })
 		{
-			IsBusy = true;
-
-			var options = _options with { Password = password };
-
-			var walletSettings = await UiContext.WalletRepository.NewWalletAsync(options);
-
-			IsBusy = false;
-
-			await Navigate().To().CoinJoinProfiles(walletSettings, options).GetResultAsync();
+			options = _options with { Password = password };
 		}
+
+		var walletSettings = await UiContext.WalletRepository.NewWalletAsync(options);
+		Navigate().To().AddedWalletPage(walletSettings, options!);
 	}
 
 	private void OnCancel()

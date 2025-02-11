@@ -1,11 +1,9 @@
-using System.Reactive;
 using NBitcoin;
 using ReactiveUI;
 using System.Reactive.Linq;
 using WalletWasabi.Blockchain.Keys;
 using WalletWasabi.Fluent.Helpers;
 using WalletWasabi.Fluent.Infrastructure;
-using WalletWasabi.Models;
 using WalletWasabi.Wallets;
 
 namespace WalletWasabi.Fluent.Models.Wallets;
@@ -19,14 +17,15 @@ public partial class WalletSettingsModel : ReactiveObject
 
 	[AutoNotify] private bool _isNewWallet;
 	[AutoNotify] private bool _autoCoinjoin;
-	[AutoNotify] private bool _isCoinjoinProfileSelected;
 	[AutoNotify] private bool _preferPsbtWorkflow;
 	[AutoNotify] private Money _plebStopThreshold;
 	[AutoNotify] private int _anonScoreTarget;
-	[AutoNotify] private bool _redCoinIsolation;
-	[AutoNotify] private CoinjoinSkipFactors _coinjoinSkipFactors;
+	[AutoNotify] private bool _nonPrivateCoinIsolation;
 	[AutoNotify] private int _feeRateMedianTimeFrameHours;
 	[AutoNotify] private WalletId? _outputWalletId;
+	[AutoNotify] private ScriptType _defaultReceiveScriptType;
+	[AutoNotify] private WalletWasabi.Models.PreferredScriptPubKeyType _changeScriptPubKeyType;
+	[AutoNotify] private WalletWasabi.Models.SendWorkflow _defaultSendWorkflow;
 
 	public WalletSettingsModel(KeyManager keyManager, bool isNewWallet = false, bool isCoinJoinPaused = false)
 	{
@@ -37,12 +36,10 @@ public partial class WalletSettingsModel : ReactiveObject
 		IsCoinJoinPaused = isCoinJoinPaused;
 
 		_autoCoinjoin = _keyManager.AutoCoinJoin;
-		_isCoinjoinProfileSelected = _keyManager.IsCoinjoinProfileSelected;
 		_preferPsbtWorkflow = _keyManager.PreferPsbtWorkflow;
 		_plebStopThreshold = _keyManager.PlebStopThreshold ?? KeyManager.DefaultPlebStopThreshold;
 		_anonScoreTarget = _keyManager.AnonScoreTarget;
-		_redCoinIsolation = _keyManager.RedCoinIsolation;
-		_coinjoinSkipFactors = _keyManager.CoinjoinSkipFactors;
+		_nonPrivateCoinIsolation = _keyManager.NonPrivateCoinIsolation;
 		_feeRateMedianTimeFrameHours = _keyManager.FeeRateMedianTimeFrameHours;
 
 		if (!isNewWallet)
@@ -50,24 +47,27 @@ public partial class WalletSettingsModel : ReactiveObject
 			_outputWalletId = Services.WalletManager.GetWalletByName(_keyManager.WalletName).WalletId;
 		}
 
+		_defaultReceiveScriptType = ScriptType.FromEnum(_keyManager.DefaultReceiveScriptType);
+		_changeScriptPubKeyType = _keyManager.ChangeScriptPubKeyType;
+		_defaultSendWorkflow = _keyManager.DefaultSendWorkflow;
+
 		WalletType = WalletHelpers.GetType(_keyManager);
 
 		this.WhenAnyValue(
 				x => x.AutoCoinjoin,
-				x => x.IsCoinjoinProfileSelected,
 				x => x.PreferPsbtWorkflow,
 				x => x.PlebStopThreshold,
 				x => x.AnonScoreTarget,
-				x => x.RedCoinIsolation,
+				x => x.NonPrivateCoinIsolation,
 				x => x.FeeRateMedianTimeFrameHours)
 			.Skip(1)
 			.Do(_ => SetValues())
 			.Subscribe();
 
-		// This should go to the previous WhenAnyValue, it's just that it's not working for some reason.
 		this.WhenAnyValue(
-			x => x.CoinjoinSkipFactors)
-			.Skip(1)
+				x => x.DefaultSendWorkflow,
+				x => x.DefaultReceiveScriptType,
+				x => x.ChangeScriptPubKeyType)
 			.Do(_ => SetValues())
 			.Subscribe();
 	}
@@ -102,13 +102,19 @@ public partial class WalletSettingsModel : ReactiveObject
 	private void SetValues()
 	{
 		_keyManager.AutoCoinJoin = AutoCoinjoin;
-		_keyManager.IsCoinjoinProfileSelected = IsCoinjoinProfileSelected;
 		_keyManager.PreferPsbtWorkflow = PreferPsbtWorkflow;
 		_keyManager.PlebStopThreshold = PlebStopThreshold;
 		_keyManager.AnonScoreTarget = AnonScoreTarget;
-		_keyManager.RedCoinIsolation = RedCoinIsolation;
-		_keyManager.CoinjoinSkipFactors = CoinjoinSkipFactors;
+		_keyManager.NonPrivateCoinIsolation = NonPrivateCoinIsolation;
 		_keyManager.SetFeeRateMedianTimeFrame(FeeRateMedianTimeFrameHours);
+		_keyManager.DefaultSendWorkflow = DefaultSendWorkflow;
+		_keyManager.DefaultReceiveScriptType = ScriptType.ToScriptPubKeyType(DefaultReceiveScriptType);
+		_keyManager.ChangeScriptPubKeyType = ChangeScriptPubKeyType;
 		_isDirty = true;
+	}
+
+	public void RescanWallet(int startingHeight = 0)
+	{
+		_keyManager.SetBestHeights(startingHeight, startingHeight);
 	}
 }

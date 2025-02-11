@@ -14,6 +14,7 @@ using WalletWasabi.Blockchain.TransactionBuilding;
 using WalletWasabi.Blockchain.TransactionOutputs;
 using WalletWasabi.Blockchain.Transactions;
 using WalletWasabi.Extensions;
+using WalletWasabi.FeeRateEstimation;
 using WalletWasabi.Helpers;
 using WalletWasabi.Models;
 using WalletWasabi.Rpc;
@@ -22,6 +23,7 @@ using WalletWasabi.WabiSabi.Client;
 using WalletWasabi.WabiSabi.Client.Batching;
 using WalletWasabi.WabiSabi.Client.CoinJoin.Client;
 using WalletWasabi.Wallets;
+using WalletWasabi.Wallets.Exchange;
 using JsonRpcResult = System.Collections.Generic.Dictionary<string, object?>;
 using JsonRpcResultList = System.Collections.Immutable.ImmutableArray<System.Collections.Generic.Dictionary<string, object?>>;
 
@@ -141,7 +143,7 @@ public class WasabiJsonRpcService : IJsonRpcService
 			["isWatchOnly"] = activeWallet.KeyManager.IsWatchOnly,
 			["isHardwareWallet"] = activeWallet.KeyManager.IsHardwareWallet,
 			["isAutoCoinjoin"] = activeWallet.KeyManager.AutoCoinJoin,
-			["isRedCoinIsolation"] = activeWallet.KeyManager.RedCoinIsolation,
+			["isNonPrivateCoinIsolation"] = activeWallet.KeyManager.NonPrivateCoinIsolation,
 			["accounts"] = new[] { segwit }
 		};
 
@@ -196,6 +198,7 @@ public class WasabiJsonRpcService : IJsonRpcService
 	public JsonRpcResult GetStatus()
 	{
 		var sync = Global.HostedServices.Get<WasabiSynchronizer>();
+		var exchangeRateUpdater = Global.HostedServices.Get<ExchangeRateUpdater>();
 		var smartHeaderChain = Global.BitcoinStore.SmartHeaderChain;
 
 		return new JsonRpcResult
@@ -213,7 +216,7 @@ public class WasabiJsonRpcService : IJsonRpcService
 			["filtersCount"] = smartHeaderChain.HashCount,
 			["filtersLeft"] = smartHeaderChain.HashesLeft,
 			["network"] = Global.Network.Name,
-			["exchangeRate"] = sync.UsdExchangeRate,
+			["exchangeRate"] = exchangeRateUpdater.UsdExchangeRate,
 			["peers"] = Global.HostedServices.Get<P2pNetwork>().Nodes.ConnectedNodes.Select(
 				x => new JsonRpcResult
 				{
@@ -522,7 +525,7 @@ public class WasabiJsonRpcService : IJsonRpcService
 	[JsonRpcMethod("getfeerates", initializable: false)]
 	public object GetFeeRate()
 	{
-		if (Global.HostedServices.Get<WasabiSynchronizer>().LastAllFeeEstimate is { } nonNullFeeRates)
+		if (Global.HostedServices.Get<FeeRateEstimationUpdater>().FeeEstimates is { } nonNullFeeRates)
 		{
 			return nonNullFeeRates.Estimations;
 		}

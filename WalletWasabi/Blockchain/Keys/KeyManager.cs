@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Security;
 using System.Text;
 using WalletWasabi.Blockchain.Analysis.Clustering;
+using WalletWasabi.CoinJoinProfiles;
 using WalletWasabi.Helpers;
 using WalletWasabi.Io;
 using WalletWasabi.JsonConverters;
@@ -22,7 +23,6 @@ namespace WalletWasabi.Blockchain.Keys;
 [JsonObject(MemberSerialization.OptIn)]
 public class KeyManager
 {
-	public const int DefaultAnonScoreTarget = 5;
 	public const bool DefaultAutoCoinjoin = false;
 	public const bool DefaultRedCoinIsolation = false;
 	public const int DefaultFeeRateMedianTimeFrameHours = 0;
@@ -39,7 +39,9 @@ public class KeyManager
 		new ExtPubKeyJsonConverter(),
 		new KeyPathJsonConverter(),
 		new MoneyBtcJsonConverter(),
-		new CoinjoinSkipFactorsJsonConverter()
+		new ScriptPubKeyTypeJsonConverter(),
+		new SendWorkflowJsonConverter(),
+		new PreferredScriptPubKeyTypeJsonConverter()
 	};
 
 	[JsonConstructor]
@@ -99,12 +101,6 @@ public class KeyManager
 	[OnDeserialized]
 	private void OnDeserializedMethod(StreamingContext context)
 	{
-		// This should be impossible but in any case, coinjoin can only happen,
-		// if a profile is selected. Otherwise, the user's money can be drained.
-		if (AutoCoinJoin && !IsCoinjoinProfileSelected)
-		{
-			AutoCoinJoin = false;
-		}
 		_hdPubKeyCache.AddRangeKeys(_hdPubKeys);
 	}
 
@@ -189,19 +185,22 @@ public class KeyManager
 	public string? Icon { get; private set; }
 
 	[JsonProperty(PropertyName = "AnonScoreTarget")]
-	public int AnonScoreTarget { get; set; } = DefaultAnonScoreTarget;
+	public int AnonScoreTarget { get; set; } = PrivacyProfiles.DefaultProfile.AnonScoreTarget;
 
 	[JsonProperty(PropertyName = "FeeRateMedianTimeFrameHours")]
 	public int FeeRateMedianTimeFrameHours { get; private set; } = DefaultFeeRateMedianTimeFrameHours;
 
-	[JsonProperty(PropertyName = "IsCoinjoinProfileSelected")]
-	public bool IsCoinjoinProfileSelected { get; set; } = false;
-
 	[JsonProperty(PropertyName = "RedCoinIsolation")]
-	public bool RedCoinIsolation { get; set; } = DefaultRedCoinIsolation;
+	public bool NonPrivateCoinIsolation { get; set; } = PrivacyProfiles.DefaultProfile.NonPrivateCoinIsolation;
 
-	[JsonProperty(PropertyName = "CoinjoinSkipFactors")]
-	public CoinjoinSkipFactors CoinjoinSkipFactors { get; set; } = CoinjoinSkipFactors.SpeedMaximizing;
+	[JsonProperty(PropertyName = "DefaultReceiveScriptType")]
+	public ScriptPubKeyType DefaultReceiveScriptType { get; set; } = ScriptPubKeyType.Segwit;
+
+	[JsonProperty(PropertyName = "DefaultSendWorkflow")]
+	public SendWorkflow DefaultSendWorkflow { get; set; } = SendWorkflow.Automatic;
+
+	[JsonProperty(PropertyName = "ChangeScriptPubKeyType")]
+	public PreferredScriptPubKeyType ChangeScriptPubKeyType { get; set; } = PreferredScriptPubKeyType.Unspecified.Instance;
 
 	[JsonProperty(Order = 999, PropertyName = "HdPubKeys")]
 	private readonly List<HdPubKey> _hdPubKeys = new();
@@ -394,13 +393,22 @@ public class KeyManager
 	public HdPubKey GetNextChangeKey() =>
 		GetKeys(x =>
 			x.KeyState == KeyState.Clean &&
-			x.IsInternal == true)
+			x.IsInternal &&
+			MatchesChangeScriptPubKeyType(x))
 			.First();
 
 	public IEnumerable<HdPubKey> GetNextCoinJoinKeys() =>
 		GetKeys(x =>
 				x.KeyState == KeyState.Locked &&
 				x.IsInternal == true);
+
+	private bool MatchesChangeScriptPubKeyType(HdPubKey hd) =>
+		ChangeScriptPubKeyType switch
+		{
+			PreferredScriptPubKeyType.Unspecified => true,
+			PreferredScriptPubKeyType.Specified scriptType => hd.FullKeyPath.GetScriptTypeFromKeyPath() == scriptType.ScriptType,
+			_ => throw new ArgumentOutOfRangeException()
+		};
 
 	public IEnumerable<HdPubKey> GetKeys(Func<HdPubKey, bool>? wherePredicate)
 	{

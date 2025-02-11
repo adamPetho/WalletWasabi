@@ -11,16 +11,66 @@
              x:CompileBindings="True">
 
   <StackPanel Classes="settingsLayout">
+    <StackPanel Margin="0 0 0 20"
+            Opacity="0.85"
+            Spacing="40"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Classes="settingsLayout">
+      <Button Theme="{StaticResource AccentButton}"
+              Height="37"
+              Command="{Binding SelectMaximizePrivacySettings}"
+              Classes.bordered="{Binding MaximizePrivacyProfileSelected}"
+              ToolTip.Tip="Optimizes for privacy at all costs.">
+        <StackPanel Spacing="10" Orientation="Horizontal">
+          <PathIcon Opacity="0.9" Data="{StaticResource double_shield_regular}" />
+          <TextBlock Margin="0 2 0 0" Text="Enhance Privacy" />
+        </StackPanel>
+      </Button>
+      <Button Theme="{StaticResource AccentButton}"
+              Height="37"
+              Command="{Binding SelectDefaultSettings}"
+              Classes.bordered="{Binding DefaultProfileSelected}"
+              ToolTip.Tip="Well rounded strategy">
+        <StackPanel Spacing="10" Orientation="Horizontal">
+          <PathIcon Opacity="0.9" Data="{StaticResource shield_regular}" />
+          <TextBlock Margin="0 2 0 0" Text="Default Strategy" />
+        </StackPanel>
+      </Button>
+      <Button Theme="{StaticResource AccentButton}"
+              Height="37"
+              Command="{Binding SelectEconomicalSettings}"
+              Classes.bordered="{Binding EconomicalProfileSelected}"
+              ToolTip.Tip="Only participate in coinjoins during the cheapest parts of the week.">
+        <StackPanel Spacing="10" Orientation="Horizontal">
+          <PathIcon Opacity="0.9" Data="{StaticResource coinjoin_cost}" />
+          <TextBlock Margin="0 2 0 0" Text="Reduce Costs" />
+        </StackPanel>
+      </Button>
+    </StackPanel>
 
-    <DockPanel>
-      <TextBlock Text="{x:Static lang:Resources.WalletCoinJoinSettingsView_AutomaticallyStartCoinjoinText}" />
-      <ToggleSwitch IsChecked="{Binding AutoCoinJoin, Mode=OneWay}" Command="{Binding SetAutoCoinJoin}" />
+    <DockPanel ToolTip.Tip="Out of the registered coins into coinjoin only one can be non-private (anonymity score 1).">
+      <TextBlock Text="Non-private coin isolation" />
+      <ToggleSwitch IsChecked="{Binding NonPrivateCoinIsolation}" Command="{Binding SetNonPrivateCoinIsolationCommand}" />
+    </DockPanel>
+
+    <DockPanel ToolTip.Tip="Only coinjoin when the fee rate is below the median of this time period.">
+      <TextBlock Text="Coinjoin time preference" />
+      <ComboBox HorizontalAlignment="Right"
+                ItemsSource="{Binding TimeFrames}"
+                SelectedItem="{Binding SelectedTimeFrame}" />
     </DockPanel>
 
     <DockPanel>
-      <TextBlock Text="{x:Static lang:Resources.WalletCoinJoinSettingsView_CoinjoinStrategyText}" VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0" />
-      <Button Theme="{StaticResource AccentButton}" Content="Change" Command="{Binding SelectCoinjoinProfileCommand}" DockPanel.Dock="Right" />
-      <TextBlock Text="{Binding SelectedCoinjoinProfileName}" VerticalAlignment="Center" MinWidth="120" Margin="10 3 10 0" />
+      <TextBlock Text="Anonymity score target" ToolTip.Tip="Minimum anonymity score to consider a coin private." />
+      <TextBox Classes="standalone" Name="AnonScoreTargetTextBox" Text="{Binding AnonScoreTarget}" DockPanel.Dock="Right" Watermark="Choose between 2 and 300." MaxLength="3" />
+    </DockPanel>
+
+    <Separator />
+
+    <DockPanel>
+      <TextBlock Text="Automatically start coinjoin" />
+      <ToggleSwitch IsChecked="{Binding AutoCoinJoin}" Command="{Binding SetAutoCoinJoin}" />
     </DockPanel>
 
     <DockPanel>
@@ -49,6 +99,5 @@
       <TextBlock Text="{x:Static lang:Resources.WalletCoinJoinSettingsView_StopCoinjoinThresholdText}" />
       <CurrencyEntryBox Classes="standalone" Text="{Binding PlebStopThreshold}" CurrencyCode="BTC" />
     </DockPanel>
-
   </StackPanel>
 </UserControl>

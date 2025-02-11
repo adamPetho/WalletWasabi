@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NBitcoin;
 using ReactiveUI;
-using WalletWasabi.Blockchain.Analysis.FeesEstimation;
+using WalletWasabi.FeeRateEstimation;
 using WalletWasabi.Fluent.Helpers;
 using WalletWasabi.Fluent.ViewModels.Dialogs.Base;
 using WalletWasabi.Logging;
@@ -96,10 +96,10 @@ public partial class SendFeeViewModel : DialogViewModelBase<FeeRate>
 
 		base.OnNavigatedTo(isInHistory, disposables);
 
-		var feeProvider = _wallet.FeeProvider;
+		var feeProvider = _wallet.FeeRateEstimationUpdater;
 
 		Observable
-			.FromEventPattern(feeProvider, nameof(feeProvider.AllFeeEstimateChanged))
+			.FromEventPattern(feeProvider, nameof(feeProvider.FeeEstimationsChanged))
 			.Select(_ =>
 			{
 				TransactionFeeHelper.TryGetFeeEstimates(_wallet, out var estimates);
@@ -112,12 +112,12 @@ public partial class SendFeeViewModel : DialogViewModelBase<FeeRate>
 
 		RxApp.MainThreadScheduler.Schedule(async () =>
 		{
-			AllFeeEstimate feeEstimates;
+			FeeRateEstimations feeRateEstimations;
 			using var cancelTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(15));
 
 			try
 			{
-				feeEstimates = await TransactionFeeHelper.GetFeeEstimatesWhenReadyAsync(_wallet, cancelTokenSource.Token);
+				feeRateEstimations = await TransactionFeeHelper.GetFeeEstimatesWhenReadyAsync(_wallet, cancelTokenSource.Token);
 			}
 			catch (Exception ex)
 			{
@@ -126,7 +126,7 @@ public partial class SendFeeViewModel : DialogViewModelBase<FeeRate>
 				return;
 			}
 
-			FeeChart.UpdateFeeEstimates(feeEstimates.WildEstimations, _transactionInfo.MaximumPossibleFeeRate);
+			FeeChart.UpdateFeeEstimates(feeRateEstimations.WildEstimations, _transactionInfo.MaximumPossibleFeeRate);
 
 			if (_transactionInfo.FeeRate != FeeRate.Zero)
 			{

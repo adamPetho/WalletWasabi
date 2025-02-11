@@ -129,7 +129,7 @@ public partial class WalletRepository : ReactiveObject
 		ArgumentNullException.ThrowIfNull(device);
 		ArgumentNullException.ThrowIfNull(cancelToken);
 
-		var walletFilePath = Services.WalletManager.WalletDirectories.GetWalletFilePaths(walletName).walletFilePath;
+		var walletFilePath = Services.WalletManager.WalletDirectories.GetWalletFilePaths(walletName);
 		var keyManager = await HardwareWalletOperationHelpers.GenerateWalletAsync(device, walletFilePath, Services.WalletManager.Network, cancelToken.Value);
 		keyManager.SetIcon(device.WalletType);
 
@@ -159,7 +159,7 @@ public partial class WalletRepository : ReactiveObject
 
 		var keyManager = await Task.Run(() =>
 		{
-			var walletFilePath = Services.WalletManager.WalletDirectories.GetWalletFilePaths(walletName).walletFilePath;
+			var walletFilePath = Services.WalletManager.WalletDirectories.GetWalletFilePaths(walletName);
 
 			var result = KeyManager.Recover(
 				mnemonic,
@@ -169,8 +169,6 @@ public partial class WalletRepository : ReactiveObject
 				null,
 				"", // Make sure it is not saved into a file yet.
 				minGapLimit.Value);
-
-			result.AutoCoinJoin = true;
 
 			// Set the filepath but we will only write the file later when the Ui workflow is done.
 			result.SetFilePath(walletFilePath);

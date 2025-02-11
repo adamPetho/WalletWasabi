@@ -22,7 +22,6 @@ public partial class CoinJoinStateViewModel : ViewModelBase
 	private static string CountDownMessage = Resources.MusicBox_CountDownMessage;
 	private static string WaitingMessage = Resources.MusicBox_WaitingMessage;
 	private static string UneconomicalRoundMessage = Resources.MusicBox_UneconomicalRoundMessage;
-	private static string RandomlySkippedRoundMessage = Resources.MusicBox_RandomlySkippedRoundMessage;
 	private static string CoinjoinMiningFeeRateTooHighMessage = Resources.MusicBox_CoinjoinMiningFeeRateTooHighMessage;
 	private static string MinInputCountTooLowMessage = Resources.MusicBox_MinInputCountTooLowMessage;
 	private static string PauseMessage = Resources.MusicBox_PauseMessage;
@@ -111,16 +110,8 @@ public partial class CoinJoinStateViewModel : ViewModelBase
 
 		PlayCommand = ReactiveCommand.CreateFromTask(async () =>
 		{
-			if (!wallet.Settings.IsCoinjoinProfileSelected)
-			{
-				await UiContext.Navigate().To().CoinJoinProfiles(wallet.Settings).GetResultAsync();
-			}
-
-			if (wallet.Settings.IsCoinjoinProfileSelected)
-			{
-				var overridePlebStop = _stateMachine.IsInState(State.PlebStopActive);
-				await walletCoinjoinModel.StartAsync(stopWhenAllMixed: !IsAutoCoinJoinEnabled, overridePlebStop);
-			}
+			var overridePlebStop = _stateMachine.IsInState(State.PlebStopActive);
+			await walletCoinjoinModel.StartAsync(stopWhenAllMixed: !IsAutoCoinJoinEnabled, overridePlebStop);
 		});
 
 		var stopPauseCommandCanExecute =
@@ -147,7 +138,7 @@ public partial class CoinJoinStateViewModel : ViewModelBase
 						   _stateMachine.Fire(Trigger.PlebStopChanged);
 					   });
 
-		_autoCoinJoinStartTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(Random.Shared.Next(5, 16)) };
+		_autoCoinJoinStartTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(Random.Shared.Next(60, 180)) };
 		_autoCoinJoinStartTimer.Tick += async (_, _) =>
 		{
 			await walletCoinjoinModel.StartAsync(stopWhenAllMixed: false, false);
@@ -387,9 +378,9 @@ public partial class CoinJoinStateViewModel : ViewModelBase
 					CoinjoinError.OnlyImmatureCoinsAvailable => OnlyImmatureCoinsAvailableMessage,
 					CoinjoinError.OnlyExcludedCoinsAvailable => OnlyExcludedCoinsAvailableMessage,
 					CoinjoinError.UneconomicalRound => UneconomicalRoundMessage,
-					CoinjoinError.RandomlySkippedRound => RandomlySkippedRoundMessage,
 					CoinjoinError.MiningFeeRateTooHigh => CoinjoinMiningFeeRateTooHighMessage,
 					CoinjoinError.MinInputCountTooLow => MinInputCountTooLowMessage,
+					CoinjoinError.CoordinatorLiedAboutInputs => CoordinatorLiedMessage,
 					_ => GeneralErrorMessage
 				};
 

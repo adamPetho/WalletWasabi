@@ -57,13 +57,6 @@ public partial class AboutViewModel : RoutableViewModel
 				new SeparatorViewModel(),
 				new LinkViewModel(UiContext)
 				{
-					Link = StatusPageLink,
-					Description = Lang.Resources.Sentences_BackendStatus,
-					IsClickable = true
-				},
-				new SeparatorViewModel(),
-				new LinkViewModel(UiContext)
-				{
 					Link = UserSupportLink,
 					Description = Lang.Resources.Sentences_UserSupport,
 					IsClickable = true
@@ -95,6 +88,8 @@ public partial class AboutViewModel : RoutableViewModel
 
 		AboutAdvancedInfoDialogCommand = ReactiveCommand.CreateFromTask(async () => await Navigate().To().AboutAdvancedInfo().GetResultAsync());
 
+		ReleaseHighlightsDialogCommand = ReactiveCommand.CreateFromTask(async () => await Navigate().To().ReleaseHighlightsDialog().GetResultAsync());
+
 		CopyLinkCommand = ReactiveCommand.CreateFromTask<string>(async (link) => await UiContext.Clipboard.SetTextAsync(link));
 
 		NextCommand = CancelCommand;
@@ -106,6 +101,7 @@ public partial class AboutViewModel : RoutableViewModel
 
 	public LinkViewModel License { get; }
 
+	public ICommand ReleaseHighlightsDialogCommand { get; }
 	public ICommand AboutAdvancedInfoDialogCommand { get; }
 
 	public ICommand OpenBrowserCommand { get; }
@@ -119,8 +115,6 @@ public partial class AboutViewModel : RoutableViewModel
 	public static string TorLink => "http://wasabiukrxmkdgve5kynjztuovbg43uxcbcxn6y2okcrsg7gb6jdmbad.onion";
 
 	public static string SourceCodeLink => "https://github.com/WalletWasabi/WalletWasabi/";
-
-	public static string StatusPageLink => "https://stats.uptimerobot.com/pOhAlrGWM9";
 
 	public static string UserSupportLink => "https://github.com/WalletWasabi/WalletWasabi/discussions/5185";
 
